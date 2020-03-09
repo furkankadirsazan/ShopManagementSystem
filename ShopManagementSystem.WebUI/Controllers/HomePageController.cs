@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShopManagementSystem.WebUI.Repository.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,19 +9,19 @@ namespace ShopManagementSystem.WebUI.Controllers
 {
     public class HomePageController : Controller
     {
-        //private readonly IUnitOfWork uow;
-        //public HomePageController(IUnitOfWork _uow)
-        //{
-        //    uow = _uow;
-        //}
+        private readonly IUnitOfWork uow;
+        public HomePageController(IUnitOfWork _uow)
+        {
+            uow = _uow;
+        }
 
-        //public IUnitOfWork Uow
-        //{
-        //    get
-        //    {
-        //        return uow;
-        //    }
-        //}
+        public IUnitOfWork Uow
+        {
+            get
+            {
+                return uow;
+            }
+        }
         // GET: Home
         //[Route("kaymek")]
         public ActionResult Index()

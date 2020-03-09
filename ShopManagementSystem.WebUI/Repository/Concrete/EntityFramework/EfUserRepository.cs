@@ -1,8 +1,7 @@
 ﻿using ShopManagementSystem.WebUI.Entity;
 using ShopManagementSystem.WebUI.Repository.Abstract;
-using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Web.Security;
 
 namespace ShopManagementSystem.WebUI.Repository.Concrete.EntityFramework
 {
@@ -16,46 +15,13 @@ namespace ShopManagementSystem.WebUI.Repository.Concrete.EntityFramework
         {
             get { return db; }
         }
-        public Users GetByEmail(string email)
-        {
-            return db.Users.Where(u => u.Email == email).FirstOrDefault();
-        }
-        public Users GetByUsername(string username)
-        {
-            return db.Users.Where(u => u.Username == username).FirstOrDefault();
-        }
-        public Users GetByUsernameAndPassword(string username, string password)
-        {
-            return db.Users.Where(u => u.Username == username && u.Password == password).FirstOrDefault();
-        }
 
-        //ToDo Metodu Generic yap
-        public bool HasSameRecords(Users entity)
-        {
-            if (entity != null)
-            {
-                try
-                {
-                    var usersInDb = db.Users.Where(a => a.Username == entity.Username || a.Email == entity.Email).ToList();
-                    if (usersInDb != null)
-                    {
-                        if (usersInDb.Any())
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                    return false;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
-            }
-            return false;
-        }
+        public string CreateAuthenticationCode() => Membership.GeneratePassword(6, 1);
+        public Users GetByEmail(string email) => db.Users.Where(u => u.Email == email).FirstOrDefault();
+        public Users GetByShopId(int shopId) => db.Users.Where(u => u.ShopID == shopId).FirstOrDefault();
+        public Users GetByUsername(string username) => db.Users.Where(u => u.Username == username).FirstOrDefault();    
+        public Users GetByUsernameAndPassword(string username, string password) => db.Users.Where(u => u.Username == username && u.Password == password).FirstOrDefault();
+        public bool HasSameRecords(Users entity) => db.Users.Where(a => a.Username == entity.Username || a.Email == entity.Email).Any();
+
     }
 }

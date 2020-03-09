@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShopManagementSystem.WebUI.Repository.Abstract
 {
@@ -12,6 +8,14 @@ namespace ShopManagementSystem.WebUI.Repository.Abstract
         IRoleRepository Roles { get; }
         ISettingRepository Settings { get; }
         IUserRepository Users { get; }
+        IOutOfStockStatusRepository OutOfStockStatuses { get; }
+        IProductGalleryRepository ProductGalleries{ get; }
+        IProductRepository Products { get; }
+        IShopRepository Shops { get; }
+        ISystemSettingRepository SystemSettings { get; }
+        ITaxDescriptionRepository TaxDescriptions { get; }
+        IWarrantyPeriodRepository WarrantyPeriods { get; }
         int SaveChanges();
+        
     }
 }

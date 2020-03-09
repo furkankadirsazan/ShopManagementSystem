@@ -26,18 +26,12 @@ namespace ShopManagementSystem.WebUI.Repository.Concrete.EntityFramework
         {
             db.Entry(entity).State = EntityState.Modified;
         }
-        public IQueryable<T> Find(Expression<Func<T, bool>> predicate)
-        {
-            return db.Set<T>().Where(predicate);
-        }
-        public T Get(int id)
-        {
-            return db.Set<T>().Find(id);
-        }
-        public IQueryable<T> GetAll()
-        {
-            return db.Set<T>();
-        }
+        public IQueryable<T> Find(Expression<Func<T, bool>> predicate) => db.Set<T>().Where(predicate);
+        
+        public T Get(int id) => db.Set<T>().Find(id);
+
+        public IQueryable<T> GetAll() => db.Set<T>();    
+        
         public void Save()
         {
             db.SaveChanges();

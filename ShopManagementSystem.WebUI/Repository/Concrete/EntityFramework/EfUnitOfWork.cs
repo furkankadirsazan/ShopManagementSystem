@@ -1,13 +1,9 @@
 ﻿using ShopManagementSystem.WebUI.Entity;
 using ShopManagementSystem.WebUI.Repository.Abstract;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace ShopManagementSystem.WebUI.Repository.Concrete.EntityFramework
 {
-    public class EfUnitOfWork : IUnitOfWork
+    public sealed class EfUnitOfWork : IUnitOfWork
     {
         private readonly ShopManagementSystemEntities dbContext;
         public EfUnitOfWork()
@@ -56,14 +52,63 @@ namespace ShopManagementSystem.WebUI.Repository.Concrete.EntityFramework
             {
                 return _users ?? (_users = new EfUserRepository(dbContext));
             }
-        }      
+        }
+
+        private IOutOfStockStatusRepository _outofstockstatus;
+        public IOutOfStockStatusRepository OutOfStockStatuses
+        {
+            get
+            {
+                return _outofstockstatus ?? (_outofstockstatus = new EfOutOfStockStatusRepository(dbContext));
+            }
+        }
+        private IProductGalleryRepository _productgalleries;
+        public IProductGalleryRepository ProductGalleries
+        {
+            get
+            {
+                return _productgalleries ?? (_productgalleries = new EfProductGalleryRepository(dbContext));
+            }
+        }
+        private IProductRepository _products;
+        public IProductRepository Products
+        {
+            get
+            {
+                return _products ?? (_products = new EfProductRepository(dbContext));
+            }
+        }
+        private IShopRepository _shops;
+        public IShopRepository Shops
+        {
+            get
+            {
+                return _shops ?? (_shops = new EfShopRepository(dbContext));
+            }
+        }
+
+        private ITaxDescriptionRepository _taxdescriptions;
+        public ITaxDescriptionRepository TaxDescriptions
+        {
+            get
+            {
+                return _taxdescriptions ?? (_taxdescriptions = new EfTaxDescriptionRepository(dbContext));
+            }
+        }
+
+        private IWarrantyPeriodRepository _warrantyperiods;
+        public IWarrantyPeriodRepository WarrantyPeriods
+        {
+            get
+            {
+                return _warrantyperiods ?? (_warrantyperiods = new EfWarrantyPeriodRepository(dbContext));
+            }
+        }
         public void Dispose()
         {
             dbContext.Dispose();
         }
-        public int SaveChanges()
-        {
-            return dbContext.SaveChanges();
-        }
+        public int SaveChanges() => dbContext.SaveChanges();
+
     }
 }

@@ -13,6 +13,19 @@
         <EntityTypeShape EntityType="ShopManagementSystemModel.Users" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="ShopManagementSystemModel.FK_Users_Roles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="ShopManagementSystemModel.SystemSettings" Width="1.5" PointX="7.375" PointY="3.75" />
+        <EntityTypeShape EntityType="ShopManagementSystemModel.OutOfStockStatuses" Width="1.5" PointX="3.375" PointY="14.25" />
+        <EntityTypeShape EntityType="ShopManagementSystemModel.ProductGallery" Width="1.5" PointX="7.875" PointY="11" />
+        <EntityTypeShape EntityType="ShopManagementSystemModel.Products" Width="1.5" PointX="5.625" PointY="9.625" />
+        <EntityTypeShape EntityType="ShopManagementSystemModel.Shops" Width="1.5" PointX="3.375" PointY="11.25" />
+        <EntityTypeShape EntityType="ShopManagementSystemModel.TaxDescriptions" Width="1.5" PointX="3.375" PointY="16.625" />
+        <EntityTypeShape EntityType="ShopManagementSystemModel.WarrantyPeriods" Width="1.5" PointX="3.375" PointY="8" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_Products_OutOfStockStatuses" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_ProductGallery_Products" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_ProductGallery_Shops" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_Products_Shops" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_Products_TaxDescriptions" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_Products_WarrantyPeriods" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_Users_Shops" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

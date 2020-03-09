@@ -1,40 +1,432 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="tr">
+
+<!-- begin::Head -->
 <head>
+    <base href="../../../../">
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <title>İdealiz Mağaza Yönetim Sistemi | Yönetim Paneli</title>
+    <meta name="description" content="Pricing table example">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="https://images.kentmedia.com.tr/uploads/big/9e2c4e4db9961ae5bce54373a381a78d.png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: {
+                "families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"]
+            },
+            active: function () {
+                sessionStorage.fonts = true;
+            }
+        });
+    </script>
+    <link href="~/Content/Bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" />
+    <link href="~/Content/Iconpicker/dist/css/bootstrap-iconpicker.min.css" rel="stylesheet" />
+    <link href="~/Content/AdminTemplate/assets/css/demo1/pages/general/pricing/pricing-1.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/tether/dist/css/tether.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/ion-rangeslider/css/ion.rangeSlider.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/nouislider/distribute/nouislider.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/owl.carousel/dist/assets/owl.carousel.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/owl.carousel/dist/assets/owl.theme.default.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/dropzone/dist/dropzone.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/bootstrap-markdown/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/animate.css/animate.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/toastr/build/toastr.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/morris.js/morris.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/sweetalert2/dist/sweetalert2.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/socicon/css/socicon.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/custom/vendors/line-awesome/css/line-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/custom/vendors/flaticon/flaticon.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/custom/vendors/flaticon2/flaticon.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/custom/vendors/flaticon2/flaticon.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/custom/vendors/flaticon/flaticon.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/custom/vendors/line-awesome/css/line-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/css/demo1/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/css/demo1/skins/header/base/light.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/css/demo1/skins/header/menu/light.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/css/demo1/skins/brand/dark.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/css/demo1/skins/aside/dark.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/css/demo1/pages/general/pricing/pricing-4.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet" />
+
+    <style>
+        /* width */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #646c9a;
+        }
+
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
+
+        .kt-aside-menu .kt-menu__nav > .kt-menu__item {
+            position: relative;
+            margin: -5px 0;
+        }
+
+            .kt-aside-menu .kt-menu__nav > .kt-menu__item > .kt-menu__heading, .kt-aside-menu .kt-menu__nav > .kt-menu__item > .kt-menu__link {
+                cursor: pointer;
+                height: 37px;
+            }
+
+    </style>
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
-            </div>
+<!-- end::Head -->
+<!-- begin::Body -->
+<body onload="codeAddress();StartTimers();" onmousemove="ResetTimers();" class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--enabled kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading">
+    <!-- begin:: Page -->
+    <!-- begin:: Header Mobile -->
+    <div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
+        <div class="kt-header-mobile__logo">
+            <a href="/admin/home/index">
+                <img alt="Logo" src="~/content/admintemplate/assets/media/logos/logo-5.png" height="35" />
+            </a>
+        </div>
+        <div class="kt-header-mobile__toolbar">
+            <button class="kt-header-mobile__toggler kt-header-mobile__toggler--left" id="kt_aside_mobile_toggler"><span></span></button>
+            <button class="kt-header-mobile__topbar-toggler" id="kt_header_mobile_topbar_toggler"><i class="flaticon-more"></i></button>
         </div>
     </div>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+    <!-- end:: Header Mobile -->
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <div class="kt-grid kt-grid--hor kt-grid--root">
+        <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
+
+            <!-- begin:: Aside -->
+            <button class="kt-aside-close " id="kt_aside_close_btn"><i class="la la-close"></i></button>
+            <div class="kt-aside  kt-aside--fixed  kt-grid__item kt-grid kt-grid--desktop kt-grid--hor-desktop" id="kt_aside">
+
+                <!-- begin:: Aside -->
+                <div class="kt-aside__brand kt-grid__item " id="kt_aside_brand">
+                    <div class="kt-aside__brand-logo">
+                        <a href="/admin/home/index">
+                            <img alt="Logo" src="~/content/admintemplate/assets/media/logos/logo-5.png" height="35" />
+                        </a>
+                    </div>
+                    <div class="kt-aside__brand-tools">
+                        <button class="kt-aside__brand-aside-toggler" id="kt_aside_toggler">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <polygon id="Shape" points="0 0 24 0 24 24 0 24" />
+                                        <path d="M5.29288961,6.70710318 C4.90236532,6.31657888 4.90236532,5.68341391 5.29288961,5.29288961 C5.68341391,4.90236532 6.31657888,4.90236532 6.70710318,5.29288961 L12.7071032,11.2928896 C13.0856821,11.6714686 13.0989277,12.281055 12.7371505,12.675721 L7.23715054,18.675721 C6.86395813,19.08284 6.23139076,19.1103429 5.82427177,18.7371505 C5.41715278,18.3639581 5.38964985,17.7313908 5.76284226,17.3242718 L10.6158586,12.0300721 L5.29288961,6.70710318 Z" id="Path-94" fill="#000000" fill-rule="nonzero" transform="translate(8.999997, 11.999999) scale(-1, 1) translate(-8.999997, -11.999999) " />
+                                        <path d="M10.7071009,15.7071068 C10.3165766,16.0976311 9.68341162,16.0976311 9.29288733,15.7071068 C8.90236304,15.3165825 8.90236304,14.6834175 9.29288733,14.2928932 L15.2928873,8.29289322 C15.6714663,7.91431428 16.2810527,7.90106866 16.6757187,8.26284586 L22.6757187,13.7628459 C23.0828377,14.1360383 23.1103407,14.7686056 22.7371482,15.1757246 C22.3639558,15.5828436 21.7313885,15.6103465 21.3242695,15.2371541 L16.0300699,10.3841378 L10.7071009,15.7071068 Z" id="Path-94" fill="#000000" fill-rule="nonzero" opacity="0.3" transform="translate(15.999997, 11.999999) scale(-1, 1) rotate(-270.000000) translate(-15.999997, -11.999999) " />
+                                    </g>
+                                </svg>
+                            </span>
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <polygon id="Shape" points="0 0 24 0 24 24 0 24" />
+                                        <path d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z" id="Path-94" fill="#000000" fill-rule="nonzero" />
+                                        <path d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z" id="Path-94" fill="#000000" fill-rule="nonzero" opacity="0.3" transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999) " />
+                                    </g>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- end:: Aside -->
+                <!-- begin:: Aside Menu -->
+
+                <div class="kt-aside-menu-wrapper kt-grid__item kt-grid__item--fluid overflow-auto" id="kt_aside_menu_wrapper">
+                    <div id="kt_aside_menu" class="kt-aside-menu " style="margin: -5px 0;" data-ktmenu-vertical="1" data-ktmenu-scroll="1" data-ktmenu-dropdown-timeout="500">
+                        <ul class="kt-menu__nav ">
+                            <li class="kt-menu__item " aria-haspopup="true">
+                                <a href="/admin/home/index" class="kt-menu__link ">
+                                    <span class="kt-menu__link-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect id="bound" x="0" y="0" width="24" height="24" />
+                                                <path d="M3,19 L5,19 L5,21 L3,21 L3,19 Z M8,19 L10,19 L10,21 L8,21 L8,19 Z M13,19 L15,19 L15,21 L13,21 L13,19 Z M18,19 L20,19 L20,21 L18,21 L18,19 Z" id="Combined-Shape" fill="#000000" opacity="0.3" />
+                                                <path d="M10.504,3.256 L12.466,3.256 L17.956,16 L15.364,16 L14.176,13.084 L8.65000004,13.084 L7.49800004,16 L4.96000004,16 L10.504,3.256 Z M13.384,11.14 L11.422,5.956 L9.42400004,11.14 L13.384,11.14 Z" id="A" fill="#000000" />
+                                            </g>
+                                        </svg>
+                                    </span><span class="kt-menu__link-text">Anasayfa</span>
+                                </a>
+                            </li>
+
+                            @*<li class="kt-menu__item kt-menu__item--submenu" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+                                <a href="javascript:;" class="kt-menu__link kt-menu__toggle">
+                                    <span class="kt-menu__link-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <polygon id="Shape" points="0 0 24 0 24 24 0 24" />
+                                                <path d="M18,14 C16.3431458,14 15,12.6568542 15,11 C15,9.34314575 16.3431458,8 18,8 C19.6568542,8 21,9.34314575 21,11 C21,12.6568542 19.6568542,14 18,14 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z" id="Combined-Shape" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                                <path d="M17.6011961,15.0006174 C21.0077043,15.0378534 23.7891749,16.7601418 23.9984937,20.4 C24.0069246,20.5466056 23.9984937,21 23.4559499,21 L19.6,21 C19.6,18.7490654 18.8562935,16.6718327 17.6011961,15.0006174 Z M0.00065168429,20.1992055 C0.388258525,15.4265159 4.26191235,13 8.98334134,13 C13.7712164,13 17.7048837,15.2931929 17.9979143,20.2 C18.0095879,20.3954741 17.9979143,21 17.2466999,21 C13.541124,21 8.03472472,21 0.727502227,21 C0.476712155,21 -0.0204617505,20.45918 0.00065168429,20.1992055 Z" id="Combined-Shape" fill="#000000" fill-rule="nonzero" />
+                                            </g>
+                                        </svg>
+                                    </span><span class="kt-menu__link-text">Öğrenci Yönetimi</span><i class="kt-menu__ver-arrow la la-angle-right"></i>
+                                </a>
+                                <div class="kt-menu__submenu " kt-hidden-height="200" style="display: none; overflow: hidden;">
+                                    <span class="kt-menu__arrow"></span>
+                                    <ul class="kt-menu__subnav">
+                                        <li class="kt-menu__item  kt-menu__item--parent" aria-haspopup="true"><span class="kt-menu__link"><span class="kt-menu__link-text">Öğrenci Yönetimi</span></span></li>
+                                        <li class="kt-menu__item " aria-haspopup="true"><a href="/admin/students/index" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Öğrenci Hesapları</span></a></li>
+                                        <li class="kt-menu__item " aria-haspopup="true"><a href="/admin/studentspecialsituation/index" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--dot"><span></span></i><span class="kt-menu__link-text">Öğrenci Özel Durumları</span></a></li>
+
+                                    </ul>
+                                </div>
+                            </li>*@
+                     
+                            @*<li class="kt-menu__item" aria-haspopup="true">
+                                <a href="/admin/workshopregistrationwish/index" class="kt-menu__link ">
+                                    <span class="kt-menu__link-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect id="bound" x="0" y="0" width="24" height="24" />
+                                                <path d="M10.9630156,7.5 L11.0475062,7.5 C11.3043819,7.5 11.5194647,7.69464724 11.5450248,7.95024814 L12,12.5 L15.2480695,14.3560397 C15.403857,14.4450611 15.5,14.6107328 15.5,14.7901613 L15.5,15 C15.5,15.2109164 15.3290185,15.3818979 15.1181021,15.3818979 C15.0841582,15.3818979 15.0503659,15.3773725 15.0176181,15.3684413 L10.3986612,14.1087258 C10.1672824,14.0456225 10.0132986,13.8271186 10.0316926,13.5879956 L10.4644883,7.96165175 C10.4845267,7.70115317 10.7017474,7.5 10.9630156,7.5 Z" id="Path-107" fill="#000000" />
+                                                <path d="M7.38979581,2.8349582 C8.65216735,2.29743306 10.0413491,2 11.5,2 C17.2989899,2 22,6.70101013 22,12.5 C22,18.2989899 17.2989899,23 11.5,23 C5.70101013,23 1,18.2989899 1,12.5 C1,11.5151324 1.13559454,10.5619345 1.38913364,9.65805651 L3.31481075,10.1982117 C3.10672013,10.940064 3,11.7119264 3,12.5 C3,17.1944204 6.80557963,21 11.5,21 C16.1944204,21 20,17.1944204 20,12.5 C20,7.80557963 16.1944204,4 11.5,4 C10.54876,4 9.62236069,4.15592757 8.74872191,4.45446326 L9.93948308,5.87355717 C10.0088058,5.95617272 10.0495583,6.05898805 10.05566,6.16666224 C10.0712834,6.4423623 9.86044965,6.67852665 9.5847496,6.69415008 L4.71777931,6.96995273 C4.66931162,6.97269931 4.62070229,6.96837279 4.57348157,6.95710938 C4.30487471,6.89303938 4.13906482,6.62335149 4.20313482,6.35474463 L5.33163823,1.62361064 C5.35654118,1.51920756 5.41437908,1.4255891 5.49660017,1.35659741 C5.7081375,1.17909652 6.0235153,1.2066885 6.2010162,1.41822583 L7.38979581,2.8349582 Z" id="Combined-Shape" fill="#000000" opacity="0.3" />
+                                            </g>
+                                        </svg>
+                                    </span><span class="kt-menu__link-text">Workshop Başvuruları</span>
+                                </a>
+                            </li>*@                        
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- end:: Aside Menu -->
+            </div>
+
+            <!-- end:: Aside -->
+            <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
+
+                <!-- begin:: Header -->
+                <div id="kt_header" class="kt-header kt-grid__item  kt-header--fixed ">
+
+                    <!-- begin:: Header Menu -->
+                    <button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn"><i class="la la-close"></i></button>
+                    <div class="kt-header-menu-wrapper" id="kt_header_menu_wrapper">
+                        <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile  kt-header-menu--layout-default ">
+                            <ul class="kt-menu__nav ">
+                                <li class="kt-menu__item  kt-menu__item--rel" aria-haspopup="true">
+                                    <a href="https://www.kentmedia.com.tr" target="_blank" class="kt-menu__link"><span class="kt-menu__link-text">@Html.Raw("Kentmedia İnternet Hizmetleri")</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- end:: Header Menu -->
+                    <!-- begin:: Header Topbar -->
+                    <div class="kt-header__topbar">
+                        <div class="kt-header__topbar-item kt-header__topbar-item--user">
+                            <div class="kt-header__topbar-wrapper" data-offset="0px,0px">
+                                <div class="kt-header__topbar-user">
+                                    <a href="/homepage/index" target="_blank">
+                                        <span class="kt-header__topbar-welcome kt-hidden-mobile"></span>
+                                        <span class="kt-header__topbar-username kt-hidden-mobile">
+                                            @Html.Raw("<i class=\"fa fa-door-open\"></i>&nbsp; " + " Anasayfayı Göster")
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--begin: User Bar -->
+                        <div class="kt-header__topbar-item kt-header__topbar-item--user">
+                            <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="0px,0px">
+                                <div class="kt-header__topbar-user">
+                                    <span class="kt-header__topbar-welcome kt-hidden-mobile">Merhaba,</span>
+                                    <span class="kt-header__topbar-username kt-hidden-mobile">
+                                        @Html.Raw((!string.IsNullOrEmpty(ViewData["FullName"].ToString())) ? ViewData["FullName"].ToString() : "Giriş Yapmayan Kullanıcı")
+                                    </span>
+                                    <img class="kt-hidden" alt="Pic" src="~/Content/AdminTemplate/assets/media/users/300_25.jpg" />
+                                    <span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">
+                                        @Html.Raw((!string.IsNullOrEmpty(ViewData["FullName"].ToString())) ? ViewData["FullName"].ToString().Substring(0, 1) : "G")
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
+                                <!--begin: Head -->
+                                <div class="kt-user-card kt-user-card--skin-dark kt-notification-item-padding-x" style="background-image: url(/content/admintemplate/assets/media/misc/bg-1.jpg)">
+                                    <div class="kt-user-card__avatar">
+                                        <img class="kt-hidden" alt="Pic" src="~/content/admintemplate/assets/media/users/300_25.jpg" />
+
+                                        <!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
+                                        <span class="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success">
+                                            @Html.Raw((!string.IsNullOrEmpty(ViewData["FullName"].ToString())) ? ViewData["FullName"].ToString().Substring(0, 1) : "G")
+                                        </span>
+                                    </div>
+                                    <div class="kt-user-card__name">
+                                        @Html.Raw((!string.IsNullOrEmpty(ViewData["FullName"].ToString())) ? ViewData["FullName"].ToString() : "Giriş Yapmayan Kullanıcı")
+                                    </div>
+                                    <div class="kt-user-card__badge">
+                                        <span class="btn btn-success btn-sm btn-bold btn-font-md"><a href="/admin/security/account"> <font color="white">Bilgilerim</font></a> </span>
+                                    </div>
+                                </div>
+                                <!--end: Head -->
+                                <!--begin: Navigation -->
+                                <div class="kt-notification">
+                                    <div class="kt-notification__custom kt-space-between">
+                                        <a href="https://www.kentmedia.com.tr/iletisim" target="_blank" class="btn btn-outline-warning btn-sm btn-bold">Yardım İstiyorum</a>
+                                        <a href="/admin/security/logout" class="btn btn-label btn-label-brand btn-sm btn-bold">Çıkış Yap</a>
+                                    </div>
+                                </div>
+
+                                <!--end: Navigation -->
+                            </div>
+                        </div>
+                        <!--end: User Bar -->
+                    </div>
+
+                    <!-- end:: Header Topbar -->
+                </div>
+
+                <!-- end:: Header -->
+                <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+
+                    <!-- begin:: Subheader -->
+                    <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+                        <div class="kt-subheader__main">
+                            <h3 class="kt-subheader__title">
+                                @Html.Raw("İdealiz Mağaza Yönetim Sistemi | Yönetim Paneli (V1.1) ")
+                            </h3>
+                            <span class="kt-subheader__separator kt-hidden"></span>
+                        </div>
+
+                    </div>
+
+                    <!-- end:: Subheader -->
+                    <!-- begin:: Content -->
+                    <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
+                        @RenderBody()
+                    </div>
+
+                    <!-- end:: Content -->
+                </div>
+                <!-- begin:: Footer -->
+                <div class="kt-footer kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop" id="kt_footer">
+                    <div class="kt-footer__copyright">
+                        @DateTime.Now.Year&nbsp;&copy;&nbsp;<a href="https://www.kentmedia.com.tr" target="_blank" class="kt-link"><b>Kentmedia İnternet Hizmetleri</b></a>&nbsp;&nbsp;Tüm Hakları Saklıdır
+                    </div>
+                </div>
+
+                <!-- end:: Footer -->
+            </div>
+        </div>
+    </div>
+    <div class="kt-dialog kt-dialog--shown kt-dialog--default kt-dialog--loader kt-dialog--top-center" id="loading-dialog">Yükleniyor...</div>
+    <div id="kt_scrolltop" class="kt-scrolltop">
+        <i class="fa fa-arrow-up"></i>
+    </div>
+    <script>
+        var KTAppOptions = {
+            "colors": {
+                "state": {
+                    "brand": "#5d78ff",
+                    "dark": "#282a3c",
+                    "light": "#ffffff",
+                    "primary": "#5867dd",
+                    "success": "#34bfa3",
+                    "info": "#36a3f7",
+                    "warning": "#ffb822",
+                    "danger": "#fd3995"
+                },
+                "base": {
+                    "label": ["#c5cbe3", "#a1a8c3", "#3d4465", "#3e4466"],
+                    "shape": ["#f0f3ff", "#d9dffa", "#afb4d4", "#646c9a"]
+                }
+            }
+        };
+    </script>
+    <script src="~/Content/AdminTemplate/assets/vendors/general/jquery/dist/jquery.js"></script>
+    <script src="~/Scripts/umd/popper.js"></script>
+
+    <script src="~/Content/AdminTemplate/assets/vendors/general/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/AdminTemplate/assets/vendors/general/js-cookie/src/js.cookie.js"></script>
+    <script src="~/Content/AdminTemplate/assets/vendors/general/moment/min/moment.min.js"></script>
+    <script src="~/Content/AdminTemplate/assets/vendors/general/tooltip.js/dist/umd/tooltip.min.js"></script>
+    <script src="~/Content/AdminTemplate/assets/vendors/general/sticky-js/dist/sticky.min.js"></script>
+
+
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+
+
+    <script src="~/Content/Iconpicker/dist/js/bootstrap-iconpicker.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" integrity="sha256-3blsJd4Hli/7wCQ+bmgXfOdK7p/ZUMtPXY08jmxSSgk=" crossorigin="anonymous"></script>
+    <script src="~/Content/AdminTemplate/assets/js/demo1/pages/components/extended/perfect-scrollbar.js"></script>
+    <script src="~/Content/AdminTemplate/assets/js/demo1/scripts.bundle.js" type="text/javascript"></script>
+    @RenderSection("scripts", false)
+
+    <script language="javascript" type="text/javascript">
+        function codeAddress() {
+            setTimeout(function () {
+                document.getElementById("loading-dialog").style.visibility = 'hidden';
+            }, 1000);
+        }
+        window.onload = codeAddress;
+    </script>
+    <script type="text/javascript">
+        // Set timeout variables.
+        var timoutWarning = 840000; // Display warning in 14 Mins.
+        var timoutNow = 900000; // Timeout in 15 mins.
+        var logoutUrl = '/admin/security/logout'; // URL to logout page.
+
+        var warningTimer;
+        var timeoutTimer;
+
+        // Start timers.
+        function StartTimers() {
+            warningTimer = setTimeout("IdleWarning()", timoutWarning);
+            timeoutTimer = setTimeout("IdleTimeout()", timoutNow);
+        }
+
+        // Reset timers.
+        function ResetTimers() {
+            clearTimeout(warningTimer);
+            clearTimeout(timeoutTimer);
+            StartTimers();
+        }
+
+        // Show idle timeout warning dialog.
+        function IdleWarning() {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": true,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "10000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+            toastr.warning("15 dakikadır herhangi bir işlem yapmadığınız için 1 dk sonra oturum kapatılacak. Kapanmasını istemiyorsan mouseyi hareket ettir.", "Dikkat");
+        }
+
+        // Logout the user.
+        function IdleTimeout() {
+            window.location = logoutUrl;
+        }
+    </script>
 </body>
+<!-- end::Body -->
 </html>

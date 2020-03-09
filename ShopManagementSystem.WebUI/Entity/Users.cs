@@ -22,7 +22,11 @@ namespace ShopManagementSystem.WebUI.Entity
         public string Email { get; set; }
         public string Phone { get; set; }
         public Nullable<bool> IsRemember { get; set; }
+        public Nullable<int> ShopID { get; set; }
+        public string AuthenticationCode { get; set; }
+        public bool IsAuthenticated { get; set; }
     
         public virtual Roles Roles { get; set; }
+        public virtual Shops Shops { get; set; }
     }
 }

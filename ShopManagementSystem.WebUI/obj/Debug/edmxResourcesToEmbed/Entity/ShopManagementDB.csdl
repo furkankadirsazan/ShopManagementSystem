@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ShopManagementSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ELMAH_Error">
+    <Key>
+      <PropertyRef Name="ErrorId" />
+    </Key>
+    <Property Name="ErrorId" Type="Guid" Nullable="false" />
+    <Property Name="Application" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Host" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Source" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="User" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusCode" Type="Int32" Nullable="false" />
+    <Property Name="TimeUtc" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Sequence" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AllXml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Logs">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="IPAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UrlAccessed" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ExecutionMs" Type="Int64" />
+    <Property Name="AddedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Settings">
+    <Key>
+      <PropertyRef Name="Skey" />
+    </Key>
+    <Property Name="Skey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsRemember" Type="Boolean" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
+    <Property Name="ShopID" Type="Int32" />
+    <NavigationProperty Name="Shops" Relationship="ShopManagementSystemModel.FK_Users_Shops" FromRole="Users" ToRole="Shops" />
+    <Property Name="AuthenticationCode" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IsAuthenticated" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Users_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ShopManagementSystemEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ELMAH_Error" EntityType="Self.ELMAH_Error" />
+    <EntitySet Name="Logs" EntityType="Self.Logs" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" />
+    <EntitySet Name="Settings" EntityType="Self.Settings" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="SystemSettings" EntityType="ShopManagementSystemModel.SystemSettings" />
+    <EntitySet Name="OutOfStockStatuses" EntityType="ShopManagementSystemModel.OutOfStockStatuses" />
+    <EntitySet Name="ProductGallery" EntityType="ShopManagementSystemModel.ProductGallery" />
+    <EntitySet Name="Products" EntityType="ShopManagementSystemModel.Products" />
+    <EntitySet Name="Shops" EntityType="ShopManagementSystemModel.Shops" />
+    <EntitySet Name="TaxDescriptions" EntityType="ShopManagementSystemModel.TaxDescriptions" />
+    <EntitySet Name="WarrantyPeriods" EntityType="ShopManagementSystemModel.WarrantyPeriods" />
+    <AssociationSet Name="FK_Products_OutOfStockStatuses" Association="ShopManagementSystemModel.FK_Products_OutOfStockStatuses">
+      <End Role="OutOfStockStatuses" EntitySet="OutOfStockStatuses" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductGallery_Products" Association="ShopManagementSystemModel.FK_ProductGallery_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductGallery" EntitySet="ProductGallery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductGallery_Shops" Association="ShopManagementSystemModel.FK_ProductGallery_Shops">
+      <End Role="Shops" EntitySet="Shops" />
+      <End Role="ProductGallery" EntitySet="ProductGallery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Shops" Association="ShopManagementSystemModel.FK_Products_Shops">
+      <End Role="Shops" EntitySet="Shops" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_TaxDescriptions" Association="ShopManagementSystemModel.FK_Products_TaxDescriptions">
+      <End Role="TaxDescriptions" EntitySet="TaxDescriptions" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_WarrantyPeriods" Association="ShopManagementSystemModel.FK_Products_WarrantyPeriods">
+      <End Role="WarrantyPeriods" EntitySet="WarrantyPeriods" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Shops" Association="ShopManagementSystemModel.FK_Users_Shops">
+      <End Role="Shops" EntitySet="Shops" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="SystemSettings">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Value" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OutOfStockStatuses">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="ShopManagementSystemModel.FK_Products_OutOfStockStatuses" FromRole="OutOfStockStatuses" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="ProductGallery">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShopID" Type="Int32" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="ShopManagementSystemModel.FK_ProductGallery_Products" FromRole="ProductGallery" ToRole="Products" />
+    <NavigationProperty Name="Shops" Relationship="ShopManagementSystemModel.FK_ProductGallery_Shops" FromRole="ProductGallery" ToRole="Shops" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShopID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ProductCode" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="TaxDescriptionID" Type="Int32" Nullable="false" />
+    <Property Name="Number" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="StockHoldingUnit" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="OutOfStockStatusID" Type="Int32" Nullable="false" />
+    <Property Name="IsInStock" Type="Boolean" Nullable="false" />
+    <Property Name="WarrantyPeriodID" Type="Int32" Nullable="false" />
+    <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ThumbNailImagePath" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OutOfStockStatuses" Relationship="ShopManagementSystemModel.FK_Products_OutOfStockStatuses" FromRole="Products" ToRole="OutOfStockStatuses" />
+    <NavigationProperty Name="ProductGallery" Relationship="ShopManagementSystemModel.FK_ProductGallery_Products" FromRole="Products" ToRole="ProductGallery" />
+    <NavigationProperty Name="Shops" Relationship="ShopManagementSystemModel.FK_Products_Shops" FromRole="Products" ToRole="Shops" />
+    <NavigationProperty Name="TaxDescriptions" Relationship="ShopManagementSystemModel.FK_Products_TaxDescriptions" FromRole="Products" ToRole="TaxDescriptions" />
+    <NavigationProperty Name="WarrantyPeriods" Relationship="ShopManagementSystemModel.FK_Products_WarrantyPeriods" FromRole="Products" ToRole="WarrantyPeriods" />
+  </EntityType>
+  <EntityType Name="Shops">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ProductGallery" Relationship="ShopManagementSystemModel.FK_ProductGallery_Shops" FromRole="Shops" ToRole="ProductGallery" />
+    <NavigationProperty Name="Products" Relationship="ShopManagementSystemModel.FK_Products_Shops" FromRole="Shops" ToRole="Products" />
+    <NavigationProperty Name="Users" Relationship="ShopManagementSystemModel.FK_Users_Shops" FromRole="Shops" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="TaxDescriptions">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="ShopManagementSystemModel.FK_Products_TaxDescriptions" FromRole="TaxDescriptions" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="WarrantyPeriods">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Products" Relationship="ShopManagementSystemModel.FK_Products_WarrantyPeriods" FromRole="WarrantyPeriods" ToRole="Products" />
+  </EntityType>
+  <Association Name="FK_Products_OutOfStockStatuses">
+    <End Type="ShopManagementSystemModel.OutOfStockStatuses" Role="OutOfStockStatuses" Multiplicity="1" />
+    <End Type="ShopManagementSystemModel.Products" Role="Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OutOfStockStatuses">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="OutOfStockStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductGallery_Products">
+    <End Type="ShopManagementSystemModel.Products" Role="Products" Multiplicity="1" />
+    <End Type="ShopManagementSystemModel.ProductGallery" Role="ProductGallery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductGallery">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductGallery_Shops">
+    <End Type="ShopManagementSystemModel.Shops" Role="Shops" Multiplicity="1" />
+    <End Type="ShopManagementSystemModel.ProductGallery" Role="ProductGallery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shops">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductGallery">
+        <PropertyRef Name="ShopID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Shops">
+    <End Type="ShopManagementSystemModel.Shops" Role="Shops" Multiplicity="1" />
+    <End Type="ShopManagementSystemModel.Products" Role="Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shops">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="ShopID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_TaxDescriptions">
+    <End Type="ShopManagementSystemModel.TaxDescriptions" Role="TaxDescriptions" Multiplicity="1" />
+    <End Type="ShopManagementSystemModel.Products" Role="Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaxDescriptions">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="TaxDescriptionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_WarrantyPeriods">
+    <End Type="ShopManagementSystemModel.WarrantyPeriods" Role="WarrantyPeriods" Multiplicity="1" />
+    <End Type="ShopManagementSystemModel.Products" Role="Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WarrantyPeriods">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="WarrantyPeriodID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Shops">
+    <End Type="ShopManagementSystemModel.Shops" Role="Shops" Multiplicity="0..1" />
+    <End Type="ShopManagementSystemModel.Users" Role="Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shops">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="ShopID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

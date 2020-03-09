@@ -1,4 +1,6 @@
 ﻿using ShopManagementSystem.WebUI.Extensions.Mail.Abstract;
+using ShopManagementSystem.WebUI.Extensions.Security;
+using ShopManagementSystem.WebUI.Extensions.String;
 using ShopManagementSystem.WebUI.Models;
 using System;
 using System.Net;
@@ -8,92 +10,78 @@ namespace ShopManagementSystem.WebUI.Extensions.Mail.Concrete
 {
     public class Email : IEmail<EmailModel>
     {
-        public void SendForAccountAuthentication(EmailModel entity)
+        public void SendForAccountAuthentication(string ReceiverEmail, string AuthenticationCode, int ShopId)
         {
-            if (entity != null)
+
+            var senderEmail = MailStrings.SenderEmail;
+            var receiverEmail = ReceiverEmail.ToLower();
+            var mailTitle = System.String.Format(MailStrings.MailTitle, "İdealiz Mağaza Girişi Hesap Onaylama İşleminiz");
+            var senderName = MailStrings.SenderName;
+
+            var fromAddress = new MailAddress(senderEmail);
+            var toAddress = new MailAddress(receiverEmail);
+            var subject = System.String.Format(MailStrings.Subject, mailTitle, senderName);
+            var authenticationCodeHash = HashString.MD5Hash(AuthenticationCode);
+            var link = System.String.Format(MailStrings.AuthenticationLink, ShopId, authenticationCodeHash);
+            var body = System.String.Format(MailStrings.AccountAuthenticationBody, senderName, link, link);
+           
+            using (var smtp = new SmtpClient
             {
-                var senderEmail = entity.SenderEmail.ToLower();
-                var receiverEmail = entity.ReceiverEmail.ToLower();
-                var mailTitle = entity.MailTitle;
-                var senderName = entity.SenderName;
-                var _message = entity.Message;
-                var fromAddress = new MailAddress(senderEmail);
-                var toAddress = new MailAddress(receiverEmail);
-                var subject = mailTitle + " from " + senderName;
-                var body = "" +
-                "<p>" +
-                "Bu mesaj sizlere " + senderName + " tarafından hesabınızı onaylamanız için gönderildi. Aşağıdaki linke tıklayarak hesabınızı onaylayınız." +
-                "</p>" + "<br>" +
-                "<p><b> Onaylama Linki: </b><a href="+"\"" + _message  +"\">" + _message + "</a></p>";
-                var smtpAdress = entity.MailServer;
-                string mailPassword = entity.MailPassword;
-                using (var smtp = new SmtpClient
+                Host = MailStrings.MailServer,
+                Port = MailStrings.Port,
+                Timeout = MailStrings.Timeout,
+                EnableSsl = MailStrings.IsSecure,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = MailStrings.IsUseDefaultCredentials,
+                Credentials = new NetworkCredential(fromAddress.Address, MailStrings.MailPassword)
+            })
+            {
+                using (var message = new MailMessage(fromAddress, toAddress) { Subject = subject, Body = body, IsBodyHtml = MailStrings.IsBodyHtml })
                 {
-                    Host = smtpAdress,
-                    Port = entity.Port,
-                    Timeout = 10000,
-                    EnableSsl = entity.isSecure,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = entity.isUseDefaultCredentials,
-                    Credentials = new NetworkCredential(fromAddress.Address, mailPassword)
-                })
-                {
-                    using (var message = new MailMessage(fromAddress, toAddress) { Subject = subject, Body = body, IsBodyHtml = true })
+                    try
                     {
-                        try
-                        {
-                            smtp.Send(message);
-                        }
-                        catch
-                        {
-                            throw new NotImplementedException();
-                        }
+                        smtp.Send(message);
+                    }
+                    catch
+                    {
+                        throw new NotImplementedException();
                     }
                 }
             }
         }
 
-        public void SendForNewPassword(EmailModel entity)
+        public void SendForNewPassword(string ReceiverEmail, string NewGeneratedPassword)
         {
-            if (entity != null)
-            {
-                var senderEmail = entity.SenderEmail.ToLower();
-                var receiverEmail = entity.ReceiverEmail.ToLower();
-                var mailTitle = entity.MailTitle;
-                var senderName = entity.SenderName;
-                var fromAddress = new MailAddress(senderEmail);
-                var toAddress = new MailAddress(receiverEmail);
-                var subject = mailTitle + " from " + senderName;
-                var newGeneratedPassword = entity.NewGeneratedPassword;
-                var body = "" +
-                "<p>" +
-                "Bu mesaj sizlere " + senderName + " tarafından şifrenizi sıfırlamaya yardımcı olmak için gönderildi." +
-                "</p>" + "</br>" + "<p>" +
-                "Sizin için oluşturulmuş yeni şifreniz: <b>" + newGeneratedPassword + "</b></p>";
+            var senderEmail = MailStrings.SenderEmail;
+            var receiverEmail = ReceiverEmail.ToLower();
+            var mailTitle = System.String.Format(MailStrings.MailTitle, "İdealiz Mağaza Girişi Şifre Sıfırlama Talebiniz");
 
-                var smtpAdress = entity.MailServer;
-                string mailPassword = entity.MailPassword;
-                using (var smtp = new SmtpClient
+            var senderName = MailStrings.SenderName;
+            var fromAddress = new MailAddress(senderEmail);
+            var toAddress = new MailAddress(receiverEmail);
+            var subject = System.String.Format(MailStrings.Subject,mailTitle,senderName);
+            var body = System.String.Format(MailStrings.NewPasswordBody,senderName,NewGeneratedPassword);
+
+            using (var smtp = new SmtpClient
+            {
+                Host = MailStrings.MailServer,
+                Port = MailStrings.Port,
+                Timeout = MailStrings.Timeout,
+                EnableSsl = MailStrings.IsSecure,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = MailStrings.IsUseDefaultCredentials,
+                Credentials = new NetworkCredential(fromAddress.Address, MailStrings.MailPassword)
+            })
+            {
+                using (var message = new MailMessage(fromAddress, toAddress) { Subject = subject, Body = body, IsBodyHtml = MailStrings.IsBodyHtml })
                 {
-                    Host = smtpAdress,
-                    Port = entity.Port,
-                    Timeout = 10000,
-                    EnableSsl = entity.isSecure,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = entity.isUseDefaultCredentials,
-                    Credentials = new NetworkCredential(fromAddress.Address, mailPassword)
-                })
-                {
-                    using (var message = new MailMessage(fromAddress, toAddress) { Subject = subject, Body = body, IsBodyHtml = true })
+                    try
                     {
-                        try
-                        {
-                            smtp.Send(message);
-                        }
-                        catch
-                        {
-                            throw new NotImplementedException();
-                        }
+                        smtp.Send(message);
+                    }
+                    catch
+                    {
+                        throw new NotImplementedException();
                     }
                 }
             }

@@ -32,5 +32,11 @@ namespace ShopManagementSystem.WebUI.Entity
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<SystemSettings> SystemSettings { get; set; }
+        public virtual DbSet<OutOfStockStatuses> OutOfStockStatuses { get; set; }
+        public virtual DbSet<ProductGallery> ProductGallery { get; set; }
+        public virtual DbSet<Products> Products { get; set; }
+        public virtual DbSet<Shops> Shops { get; set; }
+        public virtual DbSet<TaxDescriptions> TaxDescriptions { get; set; }
+        public virtual DbSet<WarrantyPeriods> WarrantyPeriods { get; set; }
     }
 }

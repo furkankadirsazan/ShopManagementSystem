@@ -53,11 +53,10 @@ namespace ShopManagementSystem.WebUI.Extensions.Security
         public override string[] GetRolesForUser(string username)
         {
             var user = uow.Users.Find(a => a.Username == username).FirstOrDefault();
-            if (user==null)
-            {
-                //return new string[] { (uow.Students.Find(a => a.Ssn == username).FirstOrDefault()).Roles.Name };
-                return new string[] { };
-            }
+            //if (user==null)
+            //{
+            //    return new string[] { (uow.Students.Find(a => a.Ssn == username).FirstOrDefault()).Roles.Name };
+            //}
             return new string[] { user.Roles.Name };
         }
 

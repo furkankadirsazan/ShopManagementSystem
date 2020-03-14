@@ -45,14 +45,6 @@ namespace ShopManagementSystem.WebUI.Repository.Concrete.EntityFramework
             }
         }
         
-        private IUserRepository _users;
-        public IUserRepository Users
-        {
-            get
-            {
-                return _users ?? (_users = new EfUserRepository(dbContext));
-            }
-        }
 
         private IOutOfStockStatusRepository _outofstockstatus;
         public IOutOfStockStatusRepository OutOfStockStatuses
@@ -104,6 +96,24 @@ namespace ShopManagementSystem.WebUI.Repository.Concrete.EntityFramework
                 return _warrantyperiods ?? (_warrantyperiods = new EfWarrantyPeriodRepository(dbContext));
             }
         }
+
+        private IProvinceRepository _provinces;
+        public IProvinceRepository Provinces
+        {
+            get
+            {
+                return _provinces ?? (_provinces = new EfProvinceRepository(dbContext));
+            }
+        }
+        private ICountyRepository _counties;
+        public ICountyRepository Counties
+        {
+            get
+            {
+                return _counties ?? (_counties = new EfCountyRepository(dbContext));
+            }
+        }
+
         public void Dispose()
         {
             dbContext.Dispose();

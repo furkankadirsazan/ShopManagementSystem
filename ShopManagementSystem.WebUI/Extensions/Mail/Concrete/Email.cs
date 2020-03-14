@@ -1,14 +1,13 @@
 ﻿using ShopManagementSystem.WebUI.Extensions.Mail.Abstract;
 using ShopManagementSystem.WebUI.Extensions.Security;
 using ShopManagementSystem.WebUI.Extensions.String;
-using ShopManagementSystem.WebUI.Models;
 using System;
 using System.Net;
 using System.Net.Mail;
 
 namespace ShopManagementSystem.WebUI.Extensions.Mail.Concrete
 {
-    public class Email : IEmail<EmailModel>
+    public class Email : IEmail
     {
         public void SendForAccountAuthentication(string ReceiverEmail, string AuthenticationCode, int ShopId)
         {

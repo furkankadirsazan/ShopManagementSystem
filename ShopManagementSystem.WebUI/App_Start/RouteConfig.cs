@@ -16,10 +16,19 @@ namespace ShopManagementSystem.WebUI
             routes.MapMvcAttributeRoutes();
 
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "homepage", action = "index", id = UrlParameter.Optional }
-            );
+                "Default", // Route name
+                "{controller}/{action}/{id}", // URL with parameters
+                new { area = "Admin", controller = "home", action = "index", id = UrlParameter.Optional }, // Parameter defaults
+                null,
+                new[] { "ShopManagementSystem.WebUI.Areas.Admin.Controllers" }
+            ).DataTokens.Add("area", "Admin");
+
+
+          //  routes.MapRoute(
+          //    name: "Default",
+          //    url: "{controller}/{action}/{id}",
+          //    defaults: new { controller = "home", action = "index", id = UrlParameter.Optional }
+          //);
         }
     }
 }

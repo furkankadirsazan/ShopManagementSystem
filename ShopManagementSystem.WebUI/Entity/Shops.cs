@@ -19,17 +19,36 @@ namespace ShopManagementSystem.WebUI.Entity
         {
             this.ProductGallery = new HashSet<ProductGallery>();
             this.Products = new HashSet<Products>();
-            this.Users = new HashSet<Users>();
+            this.ProductCategories = new HashSet<ProductCategories>();
         }
     
         public int ID { get; set; }
+        public int RoleID { get; set; }
+        public int ProvinceID { get; set; }
+        public int CountyID { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
         public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Title { get; set; }
+        public string Address { get; set; }
+        public string TaxNumber { get; set; }
+        public string TaxAdministration { get; set; }
+        public string ShopWebsite { get; set; }
+        public string AuthenticationCode { get; set; }
+        public bool IsAuthenticated { get; set; }
+        public Nullable<bool> IsRemember { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductGallery> ProductGallery { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Products> Products { get; set; }
+        public virtual Provinces Provinces { get; set; }
+        public virtual Roles Roles { get; set; }
+        public virtual Counties Counties { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Users> Users { get; set; }
+        public virtual ICollection<ProductCategories> ProductCategories { get; set; }
     }
 }

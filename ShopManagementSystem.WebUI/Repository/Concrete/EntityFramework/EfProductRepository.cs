@@ -1,9 +1,6 @@
 ﻿using ShopManagementSystem.WebUI.Entity;
 using ShopManagementSystem.WebUI.Repository.Abstract;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace ShopManagementSystem.WebUI.Repository.Concrete.EntityFramework
 {
@@ -17,5 +14,7 @@ namespace ShopManagementSystem.WebUI.Repository.Concrete.EntityFramework
         {
             get { return db; }
         }
+
+        public bool HasSameRecords(Products entity) => db.Products.Where(a => a.Name == entity.Name).Any();
     }
 }

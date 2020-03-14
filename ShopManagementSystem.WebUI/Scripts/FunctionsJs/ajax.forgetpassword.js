@@ -4,7 +4,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "POST",
-            url: '/admin/security/forgotmypassword',
+            url: '/security/forgotmypassword',
             data: {
                 __RequestVerificationToken: token,
                 Email: document.getElementById("Email").value

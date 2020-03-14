@@ -1,4 +1,6 @@
-﻿using ShopManagementSystem.WebUI.Extensions.Log;
+﻿using ShopManagementSystem.WebUI.Areas.Admin.Models;
+using ShopManagementSystem.WebUI.Extensions.Log;
+using ShopManagementSystem.WebUI.Extensions.Mail.Concrete;
 using ShopManagementSystem.WebUI.Extensions.Security;
 using ShopManagementSystem.WebUI.Repository.Abstract;
 using System;
@@ -6,13 +8,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace ShopManagementSystem.WebUI.Controllers
 {
-    public class SecurityController : Controller
+    public class SecurityController : BaseController
     {
         private readonly IUnitOfWork uow;
-        public SecurityController(IUnitOfWork _uow)
+        public SecurityController(IUnitOfWork _uow):base(_uow)
         {
             uow = _uow;
         }
@@ -21,7 +24,105 @@ namespace ShopManagementSystem.WebUI.Controllers
         {
             return View();
         }
+        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(ShopLoginModel shopEntity)
+        {
+            if (ModelState.IsValid)
+            {
+                var shop = uow.Shops.GetByUsernameAndPassword(shopEntity.Username, shopEntity.Password);
+
+                if (shop != null)
+                {
+                    if (shopEntity.IsRemember)
+                    {
+                        shop.IsRemember = shopEntity.IsRemember;
+                        uow.Shops.Edit(shop);
+                        uow.SaveChanges();
+                        FormsAuthentication.SetAuthCookie(shop.Username, Convert.ToBoolean(shop.IsRemember));
+                    }
+                    else
+                    {
+                        FormsAuthentication.SetAuthCookie(shop.Username, Convert.ToBoolean(shop.IsRemember));
+                    }
+
+                    Session["ShopID"] = shop.ID;
+                    Session["FullName"] = shop.Name+ " " + shop.Surname;
+                    Session["ShopEmail"] = shop.Email;
+                    Session["Role"] = shop.RoleID;
+                    Session["RoleName"] = shop.Roles.Name;
+
+                    return Json(new { Url = "/admin/home/index", Status = "Success" });
+                }
+                else if (shopEntity.Username == null || shopEntity.Password == null)
+                {
+                    return Json(new { Url = "/security/login", Status = "None" });
+                }
+                else
+                {
+                    return Json(new { Url = "/security/login", Status = "Fail" });
+                }
+            }
+            return View(shopEntity);
+        }
+
+
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login","Security");
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult ForgotMyPassword()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [AllowAnonymous]
+        public ActionResult ForgotMyPassword(ShopLoginModel shopEntity)
+        {
+            var shop = uow.Shops.GetByEmail(shopEntity.Email);
+            if (shop != null)
+            {
+                try
+                {
+                    string newPassword = Membership.GeneratePassword(6, 1);
+
+                    Email email = new Email();
+                    email.SendForNewPassword(shopEntity.Email, newPassword);
+
+                    shop.Password = newPassword;
+                    uow.Shops.Edit(shop);
+                    uow.SaveChanges();
+                }
+                catch (Exception)
+                {
+                    return Json(new { Url = "/security/login", Status = "Fail" });
+                }
+                return Json(new { Url = "/security/login", Status = "Success" });
+            }
+            else if (shopEntity.Email == null)
+            {
+                return Json(new { Url = "/security/login", Status = "NonEmail" });
+            }
+            else
+            {
+                return Json(new { Url = "/security/login", Status = "Fail" });
+            }
+        }
 
         [AllowAnonymous]
         [Log]
@@ -34,33 +135,33 @@ namespace ShopManagementSystem.WebUI.Controllers
                 if (string.IsNullOrEmpty(shopId))
                 {
                     TempData["ResponseStatus"] = "NonUsableAccount";
-                    return RedirectToAction("login", "security",new { Area="Admin"});
+                    return RedirectToAction("login", "security");
                 }
                 if (string.IsNullOrEmpty(token))
                 {
                     TempData["ResponseStatus"] = "EmptyToken";
-                    return RedirectToAction("login", "security", new { Area = "Admin" });
+                    return RedirectToAction("login", "security");
                 }
-                var user = uow.Users.GetByShopId(Convert.ToInt32(shopId));
-                if (user != null && HashString.MD5Hash(user.AuthenticationCode) == token)
+                var shop = uow.Shops.Get(Convert.ToInt32(shopId));
+                if (shop != null && HashString.MD5Hash(shop.AuthenticationCode) == token)
                 {
                     TempData["ResponseStatus"] = "SuccessVerification";
-                    user.AuthenticationCode = null;
-                    user.IsAuthenticated = true;
-                    uow.Users.Edit(user);
+                    shop.AuthenticationCode = null;
+                    shop.IsAuthenticated = true;
+                    uow.Shops.Edit(shop);
                     uow.SaveChanges();
-                    return RedirectToAction("login", "security", new { Area = "Admin" });
+                    return RedirectToAction("login", "security");
                 }
                 else
                 {
                     TempData["ResponseStatus"] = "NotSuccessVerification";
-                    return RedirectToAction("login", "security", new { Area = "Admin" });
+                    return RedirectToAction("login", "security");
                 }
             }
             catch (Exception)
             {
                 TempData["ResponseStatus"] = "VerificationError";
-                return RedirectToAction("login", "security", new { Area = "Admin" });
+                return RedirectToAction("login", "security");
             }
 
 
@@ -168,6 +269,26 @@ namespace ShopManagementSystem.WebUI.Controllers
         //    return View(studentEntity);
         //}
 
-       
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            if (User.Identity.Name != null)
+            {
+                var username = User.Identity.Name;
+                if (!string.IsNullOrEmpty(username))
+                {
+                    var shop = uow.Shops.Find(u => u.Username == username).FirstOrDefault();
+                    if (shop != null)
+                    {
+                        ViewData.Add("ShopEmail", shop.Email);
+                    }
+                }
+            }
+            else
+            {
+                FormsAuthentication.SignOut();
+                RedirectToAction("Login", "Security");
+            }
+            base.OnActionExecuting(filterContext);
+        }
     }
 }

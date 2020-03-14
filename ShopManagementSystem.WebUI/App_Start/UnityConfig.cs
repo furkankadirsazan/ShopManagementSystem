@@ -16,8 +16,9 @@ namespace ShopManagementSystem.WebUI
             container.RegisterType<IRoleRepository, EfRoleRepository>();
             container.RegisterType<ISettingRepository, EfSettingRepository>();
             container.RegisterType<ISystemSettingRepository, EfSystemSettingRepository>();
+            container.RegisterType<IProvinceRepository, EfProvinceRepository>();
+            container.RegisterType<ICountyRepository, EfCountyRepository>();
             container.RegisterType<IUnitOfWork, EfUnitOfWork>();
-            container.RegisterType<IUserRepository, EfUserRepository>();
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }

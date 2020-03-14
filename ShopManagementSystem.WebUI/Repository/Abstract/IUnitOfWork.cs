@@ -7,7 +7,6 @@ namespace ShopManagementSystem.WebUI.Repository.Abstract
         ILogRepository Logs { get; }
         IRoleRepository Roles { get; }
         ISettingRepository Settings { get; }
-        IUserRepository Users { get; }
         IOutOfStockStatusRepository OutOfStockStatuses { get; }
         IProductGalleryRepository ProductGalleries{ get; }
         IProductRepository Products { get; }
@@ -15,6 +14,8 @@ namespace ShopManagementSystem.WebUI.Repository.Abstract
         ISystemSettingRepository SystemSettings { get; }
         ITaxDescriptionRepository TaxDescriptions { get; }
         IWarrantyPeriodRepository WarrantyPeriods { get; }
+        ICountyRepository Counties { get; }
+        IProvinceRepository Provinces { get; }
         int SaveChanges();
         
     }

@@ -17,6 +17,7 @@ namespace ShopManagementSystem.WebUI.Entity
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Roles()
         {
+            this.Shops = new HashSet<Shops>();
             this.Users = new HashSet<Users>();
         }
     
@@ -24,6 +25,8 @@ namespace ShopManagementSystem.WebUI.Entity
         public string Name { get; set; }
         public string DisplayName { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Shops> Shops { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Users> Users { get; set; }
     }

@@ -7,10 +7,10 @@ using System.Web.Mvc;
 
 namespace ShopManagementSystem.WebUI.Controllers
 {
-    public class HomePageController : Controller
+    public class HomePageController : BaseController
     {
         private readonly IUnitOfWork uow;
-        public HomePageController(IUnitOfWork _uow)
+        public HomePageController(IUnitOfWork _uow):base(_uow)
         {
             uow = _uow;
         }

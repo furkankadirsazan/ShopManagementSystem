@@ -30,15 +30,15 @@ namespace ShopManagementSystem.WebUI.Extensions.Log
             //  TO DO
 
             var request = filterContext.HttpContext.Request; 
-            var user = uow.Users.Where(a => a.Username == HttpContext.Current.User.Identity.Name).FirstOrDefault();
-            int userId = Convert.ToInt32((user==null || string.IsNullOrEmpty(user.ID.ToString())) ? HttpContext.Current.Session["UserID"] : user.ID);     //login olan kullanıcının alınacağı method; cookie'den, session'dan alınabilir  
+            var shop = uow.Shops.Where(a => a.Username == HttpContext.Current.User.Identity.Name).FirstOrDefault();
+            int shopId = Convert.ToInt32((shop == null || string.IsNullOrEmpty(shop.ID.ToString())) ? HttpContext.Current.Session["ShopID"] : shop.ID);     //login olan kullanıcının alınacağı method; cookie'den, session'dan alınabilir  
             Logs l = new Logs();
             l.AddedDate = DateTime.Now;
 
             l.ExecutionMs = _stopwatch.ElapsedMilliseconds;
             l.IPAddress = request.ServerVariables["HTTP_X_FORWARDED_FOR"] ?? request.UserHostAddress;
             l.UrlAccessed = request.RawUrl;
-            l.UserId = userId;
+            l.UserId = shopId;
 
             uow.Logs.Add(l);
             uow.SaveChanges();

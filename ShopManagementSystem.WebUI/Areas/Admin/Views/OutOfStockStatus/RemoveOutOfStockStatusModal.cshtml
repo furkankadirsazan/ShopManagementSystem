@@ -1,0 +1,6 @@
+﻿@model OutOfStockStatuses
+<p><strong>@Model.Name </strong> isimli stok dışı durumu silmek istediğinize emin misiniz?</p><br />
+<div class="modal-footer">
+    <a class="btn btn-primary" href="/admin/outofstockstatus/remove/@Model.ID"><i class="flaticon-delete"></i>Onayla</a>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+</div>

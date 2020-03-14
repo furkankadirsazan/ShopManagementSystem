@@ -18,6 +18,7 @@ namespace ShopManagementSystem.WebUI.Entity
         public Products()
         {
             this.ProductGallery = new HashSet<ProductGallery>();
+            this.ProductCategories = new HashSet<ProductCategories>();
         }
     
         public int ID { get; set; }
@@ -25,7 +26,6 @@ namespace ShopManagementSystem.WebUI.Entity
         public string Name { get; set; }
         public string ProductCode { get; set; }
         public decimal Price { get; set; }
-        public int CategoryID { get; set; }
         public int TaxDescriptionID { get; set; }
         public int Number { get; set; }
         public string Description { get; set; }
@@ -35,6 +35,8 @@ namespace ShopManagementSystem.WebUI.Entity
         public int WarrantyPeriodID { get; set; }
         public string ImagePath { get; set; }
         public string ThumbNailImagePath { get; set; }
+        public bool IsInDopingo { get; set; }
+        public string FileName { get; set; }
     
         public virtual OutOfStockStatuses OutOfStockStatuses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -42,5 +44,7 @@ namespace ShopManagementSystem.WebUI.Entity
         public virtual Shops Shops { get; set; }
         public virtual TaxDescriptions TaxDescriptions { get; set; }
         public virtual WarrantyPeriods WarrantyPeriods { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductCategories> ProductCategories { get; set; }
     }
 }

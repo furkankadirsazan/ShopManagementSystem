@@ -6,6 +6,8 @@ namespace ShopManagementSystem.WebUI.Repository.Abstract
 {
     public interface ITaxDescriptionRepository : IGenericRepository<TaxDescriptions>
     {
-        List<SelectListItem> SetTaxDescriptionDropdownList();
+        SelectList SetTaxDescriptionDropdownList();
+
+        IEnumerable<SelectListItem> SetTaxDescriptionDropdownList(bool IsSelectListItem);
     }
 }

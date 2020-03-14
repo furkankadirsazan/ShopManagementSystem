@@ -6,6 +6,9 @@ namespace ShopManagementSystem.WebUI.Repository.Abstract
 {
     public interface IWarrantyPeriodRepository : IGenericRepository<WarrantyPeriods>
     {
-        List<SelectListItem> SetWarrantyPeriodDropdownList();
+        SelectList SetWarrantyPeriodDropdownList();
+        IEnumerable<SelectListItem> SetWarrantyPeriodDropdownList(bool IsSelectListItem);
+        bool CheckRelatedRecords(int id);
+        bool HasSameRecords(string name);
     }
 }

@@ -3,7 +3,7 @@ $(document).ready(function () {
     $("#btn-login").click(function () {
         $.ajax({
             type: "POST",
-            url: '/admin/security/login',
+            url: '/security/login',
             data: {
                 __RequestVerificationToken: token,
                 Username: document.getElementById("Username").value,

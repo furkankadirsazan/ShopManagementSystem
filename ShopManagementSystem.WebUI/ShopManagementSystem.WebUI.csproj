@@ -4740,13 +4740,6 @@
     <Content Include="Content\Iconpicker\package.json" />
     <Content Include="Content\Iconpicker\README.md" />
     <Content Include="Areas\Admin\Views\web.config" />
-    <EntityDeploy Include="Entity\ShopManagementDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ShopManagementDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Entity\ShopManagementDB.edmx.diagram">
-      <DependentUpon>ShopManagementDB.edmx</DependentUpon>
-    </Content>
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Security\Login.cshtml" />
     <Content Include="Content\AdminTemplate\assets\vendors\general\summernote\.editorconfig" />
@@ -4841,6 +4834,31 @@
     <Content Include="Content\AdminTemplate\assets\vendors\general\summernote\built\lite\ui\TooltipUI.js.map" />
     <Content Include="Content\AdminTemplate\assets\vendors\general\summernote\built\summernote.js.map" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shop\Index.cshtml" />
+    <EntityDeploy Include="Entity\ShopManagementDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ShopManagementDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Entity\ShopManagementDB.edmx.diagram">
+      <DependentUpon>ShopManagementDB.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Admin\Views\Shop\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Shop\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Shop\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Shop\RemoveShopModal.cshtml" />
+    <Content Include="Areas\Admin\Views\OutOfStockStatus\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\OutOfStockStatus\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\OutOfStockStatus\RemoveOutOfStockStatusModal.cshtml" />
+    <Content Include="Areas\Admin\Views\OutOfStockStatus\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\WarrantyPeriod\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\WarrantyPeriod\RemoveWarrantyPeriodModal.cshtml" />
+    <Content Include="Areas\Admin\Views\WarrantyPeriod\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\WarrantyPeriod\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\RemoveProductModal.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Add.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\FunctionsJs\ajax.contactform.js" />
     <Content Include="Scripts\FunctionsJs\ajax.forgetpassword.js" />
@@ -4894,13 +4912,26 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Admin\Controllers\SecurityController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OutOfStockStatusController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MasterSecurityController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ShopController.cs" />
+    <Compile Include="Areas\Admin\Controllers\WarrantyPeriodController.cs" />
+    <Compile Include="Areas\Admin\Models\FileUploadModel.cs" />
     <Compile Include="Areas\Admin\Models\SettingModel.cs" />
+    <Compile Include="Areas\Admin\Models\ShopLoginModel.cs" />
     <Compile Include="Areas\Admin\Models\UserLoginModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ShopViewModel.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
     <Compile Include="Controllers\SecurityController.cs" />
+    <Compile Include="Entity\Categories.cs">
+      <DependentUpon>ShopManagementDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Counties.cs">
+      <DependentUpon>ShopManagementDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\ELMAH_Error.cs">
       <DependentUpon>ShopManagementDB.tt</DependentUpon>
     </Compile>
@@ -4910,10 +4941,16 @@
     <Compile Include="Entity\OutOfStockStatuses.cs">
       <DependentUpon>ShopManagementDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entity\ProductCategories.cs">
+      <DependentUpon>ShopManagementDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\ProductGallery.cs">
       <DependentUpon>ShopManagementDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Products.cs">
+      <DependentUpon>ShopManagementDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Provinces.cs">
       <DependentUpon>ShopManagementDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Roles.cs">
@@ -4964,35 +5001,45 @@
     <Compile Include="Extensions\Security\ShopManagementSystemRoleProvider.cs" />
     <Compile Include="Extensions\Security\HashString.cs" />
     <Compile Include="Extensions\Security\TenantAttribute.cs" />
+    <Compile Include="Extensions\String\AlertType.cs" />
     <Compile Include="Extensions\String\Base64Extension.cs" />
     <Compile Include="Extensions\String\EnumerableExtension.cs" />
+    <Compile Include="Extensions\String\EnumStrings.cs" />
     <Compile Include="Extensions\String\ExceptionMessages.cs" />
     <Compile Include="Extensions\String\HexExtension.cs" />
     <Compile Include="Extensions\String\MailStrings.cs" />
     <Compile Include="Extensions\String\StringExtension.cs" />
+    <Compile Include="Extensions\String\SuccessMessages.cs" />
+    <Compile Include="Extensions\String\UploadStrings.cs" />
+    <Compile Include="Extensions\String\WarningMessages.cs" />
     <Compile Include="Extensions\Url\UrlExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Abstract\ICategoryRepository.cs" />
+    <Compile Include="Repository\Abstract\ICountyRepository.cs" />
     <Compile Include="Repository\Abstract\IGenericRepository.cs" />
     <Compile Include="Repository\Abstract\ILogRepository.cs" />
     <Compile Include="Repository\Abstract\IOutOfStockStatusRepository.cs" />
+    <Compile Include="Repository\Abstract\IProductCategoryRepository.cs" />
     <Compile Include="Repository\Abstract\IProductGalleryRepository.cs" />
     <Compile Include="Repository\Abstract\IProductRepository.cs" />
+    <Compile Include="Repository\Abstract\IProvinceRepository.cs" />
     <Compile Include="Repository\Abstract\IRoleRepository.cs" />
     <Compile Include="Repository\Abstract\ISettingRepository.cs" />
     <Compile Include="Repository\Abstract\IShopRepository.cs" />
     <Compile Include="Repository\Abstract\ISystemSettingRepository.cs" />
     <Compile Include="Repository\Abstract\ITaxDescriptionRepository.cs" />
     <Compile Include="Repository\Abstract\IUnitOfWork.cs" />
-    <Compile Include="Repository\Abstract\IUserRepository.cs" />
     <Compile Include="Repository\Abstract\IWarrantyPeriodRepository.cs" />
+    <Compile Include="Repository\Concrete\EntityFramework\EfCountyRepository.cs" />
     <Compile Include="Repository\Concrete\EntityFramework\EfLogRepository.cs" />
     <Compile Include="Repository\Concrete\EntityFramework\EfOutOfStockStatusRepository.cs" />
     <Compile Include="Repository\Concrete\EntityFramework\EfProductGalleryRepository.cs" />
     <Compile Include="Repository\Concrete\EntityFramework\EfProductRepository.cs" />
+    <Compile Include="Repository\Concrete\EntityFramework\EfProvinceRepository.cs" />
     <Compile Include="Repository\Concrete\EntityFramework\EfRoleRepository.cs" />
     <Compile Include="Repository\Concrete\EntityFramework\EfGenericRepository.cs" />
     <Compile Include="Repository\Concrete\EntityFramework\EfSettingRepository.cs" />
@@ -5000,7 +5047,6 @@
     <Compile Include="Repository\Concrete\EntityFramework\EfSystemSettingRepository.cs" />
     <Compile Include="Repository\Concrete\EntityFramework\EfTaxDescriptionRepository.cs" />
     <Compile Include="Repository\Concrete\EntityFramework\EfUnitOfWork.cs" />
-    <Compile Include="Repository\Concrete\EntityFramework\EfUserRepository.cs" />
     <Compile Include="Repository\Concrete\EntityFramework\EfWarrantyPeriodRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -5012,6 +5058,7 @@
     <Content Include="Views\Error\Error404.cshtml" />
     <Content Include="Views\Error\Error403.cshtml" />
     <Content Include="Views\Error\Error500.cshtml" />
+    <Content Include="Views\Security\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -5022,9 +5069,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Uploads\Products\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Security\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

@@ -18,6 +18,7 @@ namespace ShopManagementSystem.WebUI.Entity
         public int ShopID { get; set; }
         public int ProductID { get; set; }
         public string ImagePath { get; set; }
+        public string FileName { get; set; }
     
         public virtual Products Products { get; set; }
         public virtual Shops Shops { get; set; }

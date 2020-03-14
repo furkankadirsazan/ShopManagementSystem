@@ -17,25 +17,28 @@ namespace ShopManagementSystem.WebUI.Repository.Concrete.EntityFramework
         {
             get { return db; }
         }
-        public List<SelectListItem> SetRoleDropdownList()
-        {
-            List<SelectListItem> Roles = new List<SelectListItem>();
-            Roles.Add(
-                   new SelectListItem
-                   {
-                       Text = "Seçiniz",
-                       Value = ""
-                   });
-            foreach (var item in db.Roles.OrderBy(p => p.Name).ToList())
-            {
-                Roles.Add(
-                    new SelectListItem
-                    {
-                        Text = item.DisplayName,
-                        Value = item.ID.ToString()
-                    });
-            }
-            return Roles;
-        }
+        public SelectList SetRoleDropdownList() => new SelectList (db.Roles.OrderBy(p => p.Name).ToList(), "ID", "DisplayName");
+
+
+        //public List<SelectListItem> SetCountyDropdownList()
+        //{
+        //    List<SelectListItem> Counties = new List<SelectListItem>();
+        //    Counties.Add(
+        //           new SelectListItem
+        //           {
+        //               Text = "Seçiniz",
+        //               Value = ""
+        //           });
+        //    foreach (var item in db.Counties.OrderBy(p => p.Name).ToList())
+        //    {
+        //        Counties.Add(
+        //            new SelectListItem
+        //            {
+        //                Text = item.Name,
+        //                Value = item.ID.ToString()
+        //            });
+        //    }
+        //    return Counties;
+        //}
     }
 }

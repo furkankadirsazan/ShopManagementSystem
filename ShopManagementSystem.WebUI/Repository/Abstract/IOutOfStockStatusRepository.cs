@@ -6,6 +6,9 @@ namespace ShopManagementSystem.WebUI.Repository.Abstract
 {
     public interface IOutOfStockStatusRepository : IGenericRepository<OutOfStockStatuses>
     {
-        List<SelectListItem> SetOutOfStockDropdownList();
+        SelectList SetOutOfStockDropdownList();
+        IEnumerable<SelectListItem> SetOutOfStockDropdownList(bool IsSelectListItem);
+        bool CheckRelatedRecords(int id);
+        bool HasSameRecords(string name);
     }
 }

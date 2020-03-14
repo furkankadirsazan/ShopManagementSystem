@@ -4,28 +4,38 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b895f8dacc144e1fa247da536d037876" Name="Diagram1">
-        <EntityTypeShape EntityType="ShopManagementSystemModel.ELMAH_Error" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShopManagementSystemModel.Logs" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShopManagementSystemModel.Roles" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShopManagementSystemModel.Settings" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShopManagementSystemModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ShopManagementSystemModel.Users" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+      <Diagram DiagramId="d2def017f9cc4bf9b9ca40592b9aa81c" Name="Diagram1">
+        <EntityTypeShape EntityType="ShopManagementSystemModel.Counties" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopManagementSystemModel.ELMAH_Error" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopManagementSystemModel.Logs" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopManagementSystemModel.OutOfStockStatuses" Width="1.5" PointX="9" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopManagementSystemModel.ProductGallery" Width="1.5" PointX="8.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopManagementSystemModel.Products" Width="1.5" PointX="11.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopManagementSystemModel.Provinces" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopManagementSystemModel.Roles" Width="1.5" PointX="3.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopManagementSystemModel.Settings" Width="1.5" PointX="2.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopManagementSystemModel.Shops" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopManagementSystemModel.sysdiagrams" Width="1.5" PointX="4.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopManagementSystemModel.SystemSettings" Width="1.5" PointX="11.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopManagementSystemModel.TaxDescriptions" Width="1.5" PointX="9" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopManagementSystemModel.Users" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ShopManagementSystemModel.WarrantyPeriods" Width="1.5" PointX="9" PointY="11.625" IsExpanded="true" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_Counties_Provinces" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_Products_OutOfStockStatuses" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_ProductGallery_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_ProductGallery_Shops" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_Products_Shops" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_Products_TaxDescriptions" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_Products_WarrantyPeriods" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_Shops_Provinces" ManuallyRouted="false" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_Shops_Roles" ManuallyRouted="false" />
         <AssociationConnector Association="ShopManagementSystemModel.FK_Users_Roles" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ShopManagementSystemModel.SystemSettings" Width="1.5" PointX="7.375" PointY="3.75" />
-        <EntityTypeShape EntityType="ShopManagementSystemModel.OutOfStockStatuses" Width="1.5" PointX="3.375" PointY="14.25" />
-        <EntityTypeShape EntityType="ShopManagementSystemModel.ProductGallery" Width="1.5" PointX="7.875" PointY="11" />
-        <EntityTypeShape EntityType="ShopManagementSystemModel.Products" Width="1.5" PointX="5.625" PointY="9.625" />
-        <EntityTypeShape EntityType="ShopManagementSystemModel.Shops" Width="1.5" PointX="3.375" PointY="11.25" />
-        <EntityTypeShape EntityType="ShopManagementSystemModel.TaxDescriptions" Width="1.5" PointX="3.375" PointY="16.625" />
-        <EntityTypeShape EntityType="ShopManagementSystemModel.WarrantyPeriods" Width="1.5" PointX="3.375" PointY="8" />
-        <AssociationConnector Association="ShopManagementSystemModel.FK_Products_OutOfStockStatuses" />
-        <AssociationConnector Association="ShopManagementSystemModel.FK_ProductGallery_Products" />
-        <AssociationConnector Association="ShopManagementSystemModel.FK_ProductGallery_Shops" />
-        <AssociationConnector Association="ShopManagementSystemModel.FK_Products_Shops" />
-        <AssociationConnector Association="ShopManagementSystemModel.FK_Products_TaxDescriptions" />
-        <AssociationConnector Association="ShopManagementSystemModel.FK_Products_WarrantyPeriods" />
-        <AssociationConnector Association="ShopManagementSystemModel.FK_Users_Shops" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_Shops_Counties" />
+        <EntityTypeShape EntityType="ShopManagementSystemModel.Categories" Width="1.5" PointX="11.25" PointY="11.5" />
+        <EntityTypeShape EntityType="ShopManagementSystemModel.ProductCategories" Width="1.5" PointX="13.5" PointY="6.125" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_ProductCategories_Categories" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_ProductCategories_Products" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_ProductCategories_Shops" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

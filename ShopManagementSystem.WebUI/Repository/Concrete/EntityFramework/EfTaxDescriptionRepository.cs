@@ -1,9 +1,7 @@
 ﻿using ShopManagementSystem.WebUI.Entity;
 using ShopManagementSystem.WebUI.Repository.Abstract;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ShopManagementSystem.WebUI.Repository.Concrete.EntityFramework
@@ -18,10 +16,7 @@ namespace ShopManagementSystem.WebUI.Repository.Concrete.EntityFramework
         {
             get { return db; }
         }
-
-        public List<SelectListItem> SetTaxDescriptionDropdownList()
-        {
-            throw new NotImplementedException();
-        }
+        public SelectList SetTaxDescriptionDropdownList() => new SelectList(db.TaxDescriptions.OrderBy(p => p.Name).ToList(), "ID", "Name");
+        public IEnumerable<SelectListItem> SetTaxDescriptionDropdownList(bool IsSelectListItem) => db.TaxDescriptions.Select(a => new SelectListItem { Text = a.Name, Value = a.ID.ToString() });
     }
 }

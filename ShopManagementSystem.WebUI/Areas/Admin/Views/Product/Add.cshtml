@@ -102,7 +102,7 @@
                     <div class="form-group row">
                         <label for="Price" class="col-2 col-form-label"><font color="red">*</font> Fiyat</label>
                         <div class="col-10">
-                            @Html.TextBoxFor(m => Model.Price, new { id = "Price", name = "Price", @class = "form-control", type = "text", pattern = "[0-9]", title = "Bu alan sadece rakam olabilir.", required = "" })
+                            @Html.TextBoxFor(m => Model.Price, new { id = "Price", name = "Price", @class = "form-control", type = "number", required = "" })
                         </div>
                     </div>
                     <div class="form-group row">

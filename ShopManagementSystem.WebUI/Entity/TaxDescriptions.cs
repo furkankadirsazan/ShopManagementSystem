@@ -22,6 +22,7 @@ namespace ShopManagementSystem.WebUI.Entity
     
         public int ID { get; set; }
         public string Name { get; set; }
+        public double Value { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Products> Products { get; set; }

@@ -32,6 +32,13 @@ namespace ShopManagementSystem.WebUI.Extensions.String
             "</p>" + "</br>" + "<p>" +
             "Sizin için oluşturulmuş yeni şifreniz: <b>{1}</b></p>";
 
+        /// <summary>{0} Title </summary>
+        public const string CreateAccountBody =
+            "<p>Merhaba {0} ,</p>" +
+            "<p>Mağaza açma talebiniz başarıyla tarafımıza ulaşmıştır.</p>" +
+            "<p>Talebiniz ekibimiz tarafından değerlendirilmekte olup süreç hakkında en kısa zamanda sizlere dönüş yapılacaktır.</p>" +
+            "<p><b>İyi günler, iyi çalışmalar dileriz</b></p>";
+
         /// <summary>{0}(mailTitle) from {1} (senderName)/summary>
         public const string Subject = "{0} from {1}" ;
     }

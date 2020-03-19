@@ -11,5 +11,7 @@ namespace ShopManagementSystem.WebUI.Extensions.String
 
         /// <summary>{0} alanı boş geçilemez.</summary>
         public const string EmptyImpassable = "{0} alanı boş geçilemez.";
+
+        public const string PasswordsAreNotSame = "Girdiğiniz şifreler eşleşmemektedir.";
     }
 }

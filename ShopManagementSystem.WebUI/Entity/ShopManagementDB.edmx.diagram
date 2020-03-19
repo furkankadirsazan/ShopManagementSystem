@@ -36,6 +36,16 @@
         <AssociationConnector Association="ShopManagementSystemModel.FK_ProductCategories_Categories" />
         <AssociationConnector Association="ShopManagementSystemModel.FK_ProductCategories_Products" />
         <AssociationConnector Association="ShopManagementSystemModel.FK_ProductCategories_Shops" />
+        <EntityTypeShape EntityType="ShopManagementSystemModel.Orders" Width="1.5" PointX="13.5" PointY="9.25" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_Orders_Products" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_Orders_Shops" />
+        <EntityTypeShape EntityType="ShopManagementSystemModel.Customers" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="ShopManagementSystemModel.OrderStatuses" Width="1.5" PointX="8.75" PointY="0.75" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_Orders_Customers" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_Orders_OrderStatuses" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_Customers_Counties" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_Customers_Provinces" />
+        <AssociationConnector Association="ShopManagementSystemModel.FK_Customers_Shops" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

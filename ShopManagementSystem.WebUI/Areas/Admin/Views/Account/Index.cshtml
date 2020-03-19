@@ -1,0 +1,587 @@
+﻿@model ShopAccountModel
+
+<style>
+    #blah {
+        max-height: 120px;
+        height: auto;
+        width: auto;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 5px;
+        max-width: 735px;
+    }
+
+    #blah2 {
+        max-height: 120px;
+        height: auto;
+        width: auto;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 5px;
+        max-width: 735px;
+    }
+
+    #img_contain {
+        border-radius: 5px;
+        /*border:1px solid grey;*/
+        margin-top: 20px;
+        width: auto;
+    }
+
+    #img_contain2 {
+        border-radius: 5px;
+        /*border:1px solid grey;*/
+        margin-top: 20px;
+        width: auto;
+    }
+</style>
+<div class="row">
+    <div class="col-xl-12">
+
+        <!--begin:: Widgets/Applications/User/Profile3-->
+        <div class="kt-portlet kt-portlet--height-fluid" style="background-image:url('@Model.BannerImagePath');background-attachment: fixed;width:100%;height: 250px;border-style: solid;
+    border-color: #ff5600;border-width: 5px;">
+            <div class="kt-widget kt-widget--user-profile-3">
+                <div class="kt-widget__top">
+
+                    <div class="kt-widget__content">
+                        <div class="kt-widget__info">
+                            <div class="kt-widget__desc">
+                                <img style="margin-top: 7px;border-style: solid; border-width: 5px;border-color: #ff5600;" src="@Model.LogoPath" width="100" height="100" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!--end:: Widgets/Applications/User/Profile3-->
+    </div>
+    <div class="col-xl-12">
+
+        <!--begin:: Widgets/Applications/User/Profile3-->
+        <div class="kt-portlet kt-portlet--height-fluid">
+            <div class="kt-portlet__body">
+                <div class="kt-widget kt-widget--user-profile-3">
+                    <div class="kt-widget__top">
+                        <div class="kt-widget__media kt-hidden-">
+                            <span class="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success" style="font-size:35px;">
+                                @Html.Raw((!string.IsNullOrEmpty(Model.Title)) ? Model.Title.Substring(0, 1) : "M")
+                            </span>
+                        </div>
+                        <div class="kt-widget__pic kt-widget__pic--danger kt-font-danger kt-font-boldest kt-font-light kt-hidden">
+                            JM
+                        </div>
+                        <div class="kt-widget__content">
+                            <div class="kt-widget__head">
+                                <a class="kt-widget__username">
+                                    @Html.Raw(Model.Title)
+                                    <i class="flaticon2-correct" title="Onaylanmış Hesap"></i>
+                                </a>
+                            </div>
+                            <div class="kt-widget__subhead">
+                                <a href="@Html.Raw("mailto:" + Model.Email)"><i class="flaticon2-new-email"></i>@Html.Raw(Model.Email)</a>
+                                <a href="#"><i class="flaticon2-calendar-3"></i>@Html.Raw("Yetkili: " + Model.Name + " " + Model.Surname) </a>
+                            </div>
+                            <div class="kt-widget__info">
+                                <div class="kt-widget__progress">
+                                    <div class="kt-widget__text">
+                                        Puan
+                                    </div>
+                                    <div class="progress" style="height: 5px;width: 100%;">
+                                        <div class="progress-bar kt-bg-success" role="progressbar" style="width: @Html.Raw(Model.Point+"%");" aria-valuenow="@Html.Raw(Model.Point)" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <div class="kt-widget__stats">
+                                        @Html.Raw(Model.Point + "%")
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--end:: Widgets/Applications/User/Profile3-->
+    </div>
+    <div class="col-xl-12">
+
+        <div class="kt-portlet kt-portlet--tabs">
+            <div class="kt-portlet__head">
+                <div class="kt-portlet__head-toolbar">
+                    <ul class="nav nav-tabs nav-tabs-space-lg nav-tabs-line nav-tabs-bold nav-tabs-line-3x nav-tabs-line-brand" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#kt_apps_contacts_view_tab_2" role="tab" aria-selected="true">
+                                <i class="flaticon2-calendar-3"></i> Kullanıcı Bilgileri
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#kt_apps_contacts_view_tab_3" role="tab" aria-selected="false">
+                                <i class="flaticon-home-1"></i> Mağaza Bilgileri
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#kt_apps_contacts_view_tab_4" role="tab" aria-selected="false">
+                                <i class="flaticon2-phone"></i> İletişim Bilgileri
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#kt_apps_contacts_view_tab_1" role="tab" aria-selected="false">
+                                <i class="flaticon2-photo-camera"></i> Mağaza Görselleri
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="kt-portlet__body">
+                <div class="tab-content  kt-margin-t-20">
+
+                    <!--Begin:: Tab Content-->
+                    <div class="tab-pane active" id="kt_apps_contacts_view_tab_2" role="tabpanel">
+                        @using (Html.BeginForm("UserInfo", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "kt-form kt-form--label-right" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="kt-form__body">
+                                <div class="kt-section kt-section--first">
+                                    <div class="kt-section__body">
+                                        <div class="form-group form-group-last">
+                                            @if (!string.IsNullOrEmpty(TempData["Message"] as string))
+                                            {
+                                                <div class="@("alert " + TempData["ResultClass"] as string) fade show" role="alert">
+                                                    <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                                                    <div class="alert-text">@(Html.Raw(TempData["Message"] as string))</div>
+                                                    <div class="alert-close">
+                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                            <span aria-hidden="true"><i class="la la-close"></i></span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="row">
+                                            <label class="col-xl-3"></label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                <h3 class="kt-section__title kt-section__title-sm">Kullanıcı Bilgileri:</h3>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="Username" class="col-xl-3 col-lg-3 col-form-label">Kullanıcı Adı</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                <label class="form-control" style="text-align:left">@Model.Username</label>
+                                                <font color="red">Bu alan değiştirilemez!</font>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="Password" class="col-xl-3 col-lg-3 col-form-label"><font color="red">*</font> Şifre</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                @Html.TextBoxFor(m => Model.Password, new { id = "Password", name = "Password", @class = "form-control", type = "password", required = "" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="NewPassword" class="col-xl-3 col-lg-3 col-form-label"> Yeni Şifre</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                <input type="password" class="form-control" value="" placeholder="Yeni Şifre" name="NewPassword" id="NewPassword">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="VerifyPassword" class="col-xl-3 col-lg-3 col-form-label"> Yeni Şifre Tekrar</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                <input type="password" class="form-control" value="" placeholder="Yeni Şifre Tekrar" name="VerifyPassword" id="VerifyPassword">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="Name" class="col-xl-3 col-lg-3 col-form-label"><font color="red">*</font> Yetkili Adı</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                @Html.TextBoxFor(m => Model.Name, new { id = "Name", name = "Name", @class = "form-control", type = "text", required = "" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="Surname" class="col-xl-3 col-lg-3 col-form-label"><font color="red">*</font> Yetkili Soyadı</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                @Html.TextBoxFor(m => Model.Surname, new { id = "Surname", name = "Surname", @class = "form-control", type = "text", required = "" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="kt-separator kt-separator--space-lg kt-separator--fit kt-separator--border-solid"></div>
+                            <div class="kt-form__actions">
+                                <div class="row">
+                                    <div class="col-xl-3"></div>
+                                    <div class="col-lg-9 col-xl-6">
+                                        <button type="submit" class="btn btn-brand btn-bold">Güncelle</button>
+                                        <a href="/admin/home/index" class="btn btn-clean btn-bold">Geri</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <!--End:: Tab Content-->
+                    <!--Begin:: Tab Content-->
+                    <div class="tab-pane" id="kt_apps_contacts_view_tab_3" role="tabpanel">
+                        @using (Html.BeginForm("ShopInfo", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "kt-form kt-form--label-right" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="kt-form__body">
+
+                                <div class="kt-section">
+                                    <div class="kt-section__body">
+                                        <div class="form-group form-group-last">
+                                            @if (!string.IsNullOrEmpty(TempData["Message"] as string))
+                                            {
+                                                <div class="@("alert " + TempData["ResultClass"] as string) fade show" role="alert">
+                                                    <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                                                    <div class="alert-text">@(Html.Raw(TempData["Message"] as string))</div>
+                                                    <div class="alert-close">
+                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                            <span aria-hidden="true"><i class="la la-close"></i></span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="row">
+                                            <label class="col-xl-3"></label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                <h3 class="kt-section__title kt-section__title-sm">Mağaza Bilgileri:</h3>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="Title" class="col-xl-3 col-lg-3 col-form-label"><font color="red">*</font> Mağaza Ünvanı</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                @Html.TextBoxFor(m => Model.Title, new { id = "Title", name = "Title", @class = "form-control", type = "text", required = "" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="TaxAdministration" class="col-xl-3 col-lg-3 col-form-label"><font color="red">*</font> Vergi Dairesi</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                @Html.TextBoxFor(m => Model.TaxAdministration, new { id = "TaxAdministration", name = "TaxAdministration", @class = "form-control", type = "text", placeholder = "Kayseri Vergi Dairesi" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="TaxNumber" class="col-xl-3 col-lg-3 col-form-label"><font color="red">*</font> Vergi No</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                @Html.TextBoxFor(m => Model.TaxNumber, new
+                                           {
+                                               id = "TaxNumber",
+                                               name = "TaxNumber",
+                                               @class = "form-control",
+                                               type = "text",
+                                               pattern = "[0-9]{10}",
+                                               title = "Bu alan sadece rakam olmalı ve maksimum 10 karakter içermelidir.",
+                                               required = ""
+                                           })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="ShopWebsite" class="col-xl-3 col-lg-3 col-form-label"> Mağaza Websitesi</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                @Html.TextBoxFor(m => Model.ShopWebsite, new { id = "ShopWebsite", name = "ShopWebsite", @class = "form-control", type = "url" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="kt-separator kt-separator--space-lg kt-separator--fit kt-separator--border-solid"></div>
+                            <div class="kt-form__actions">
+                                <div class="row">
+                                    <div class="col-xl-3"></div>
+                                    <div class="col-lg-9 col-xl-6">
+                                        <button type="submit" class="btn btn-brand btn-bold">Güncelle</button>
+                                        <a href="/admin/home/index" class="btn btn-clean btn-bold">Geri</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+
+                    <!--End:: Tab Content-->
+                    <!--Begin:: Tab Content-->
+                    <div class="tab-pane" id="kt_apps_contacts_view_tab_4" role="tabpanel">
+
+                        @using (Html.BeginForm("ContactInfo", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "kt-form kt-form--label-right" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="kt-form__body">
+                                <div class="kt-section kt-section--first">
+                                    <div class="kt-section__body">
+                                        <div class="form-group form-group-last">
+                                            @if (!string.IsNullOrEmpty(TempData["Message"] as string))
+                                            {
+                                                <div class="@("alert " + TempData["ResultClass"] as string) fade show" role="alert">
+                                                    <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                                                    <div class="alert-text">@(Html.Raw(TempData["Message"] as string))</div>
+                                                    <div class="alert-close">
+                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                            <span aria-hidden="true"><i class="la la-close"></i></span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="row">
+                                            <label class="col-xl-3"></label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                <h3 class="kt-section__title kt-section__title-sm">İletişim Bilgileri:</h3>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="ProvinceID" class="col-xl-3 col-lg-3 col-form-label"><font color="red">*</font> İl</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                @Html.DropDownListFor(m => Model.ProvinceID, (IEnumerable<SelectListItem>)ViewBag.Provinces, "Seçiniz", new { @class = "selectpicker form-control", data_live_search = "true", id = "ProvinceID", required = "" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="CountyID" class="col-xl-3 col-lg-3 col-form-label"><font color="red">*</font> İlçe</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                <button class="btn" id="ajax-loader" style="display:none;"><div class="kt-spinner kt-spinner--sm kt-spinner--warning"></div><br /></button>&nbsp;&nbsp;
+                                                @Html.DropDownListFor(m => Model.CountyID, (IEnumerable<SelectListItem>)ViewBag.Counties, "Seçiniz", new { @class = "selectpicker form-control", id = "CountyID", required = "" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="Address" class="col-xl-3 col-lg-3 col-form-label"><font color="red">*</font> Adres</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                @Html.TextAreaFor(m => Model.Address, new { id = "Address", name = "Address", @class = "form-control", type = "text", required = "" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="Email" class="col-xl-3 col-lg-3 col-form-label"><font color="red">*</font> Email</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                @Html.TextBoxFor(m => Model.Email, new { id = "Email", name = "Email", @class = "form-control", type = "email", required = "" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="Phone" class="col-xl-3 col-lg-3 col-form-label"><font color="red">*</font> Telefon</label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                @Html.TextBoxFor(m => Model.Phone, new { id = "Phone", name = "Phone", @class = "form-control", type = "number", required = "" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="kt-separator kt-separator--border-dashed kt-separator--portlet-fit kt-separator--space-lg"></div>
+                            </div>
+                            <div class="kt-separator kt-separator--space-lg kt-separator--fit kt-separator--border-solid"></div>
+                            <div class="kt-form__actions">
+                                <div class="row">
+                                    <div class="col-xl-3"></div>
+                                    <div class="col-lg-9 col-xl-6">
+                                        <button type="submit" class="btn btn-brand btn-bold">Güncelle</button>
+                                        <a href="/admin/home/index" class="btn btn-clean btn-bold">Geri</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+
+                    </div>
+
+                    <!--End:: Tab Content-->
+                    <!--Begin:: Tab Content-->
+                    <div class="tab-pane" id="kt_apps_contacts_view_tab_1" role="tabpanel">
+                        @using (Html.BeginForm("ImageInfo", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "kt-form kt-form--label-right" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="kt-form__body">
+                                <div class="kt-section kt-section--first">
+                                    <div class="kt-section__body">
+                                        <div class="form-group form-group-last">
+                                            @if (!string.IsNullOrEmpty(TempData["Message"] as string))
+                                            {
+                                                <div class="@("alert " + TempData["ResultClass"] as string) fade show" role="alert">
+                                                    <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                                                    <div class="alert-text">@(Html.Raw(TempData["Message"] as string))</div>
+                                                    <div class="alert-close">
+                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                            <span aria-hidden="true"><i class="la la-close"></i></span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="row">
+                                            <label class="col-xl-3"></label>
+                                            <div class="col-lg-9 col-xl-6">
+                                                <h3 class="kt-section__title kt-section__title-sm">Mağaza Görselleri:</h3>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label"> Önizleme</label>
+                                            <div id='img_contain' class="col-lg-9 col-xl-6">
+                                                <img id="blah" align='left' src="~/Content/sample-upload-image.png" alt="ornek resim" title='' />
+                                                <a class="btn btn-danger" style="color:white;" id="cleanImage">Temizle</a>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label"><font color="red">*</font> Banner Fotoğrafı</label>
+                                            <div></div>
+                                            <div class="custom-file col-lg-9 col-xl-6">
+                                                <input type="file" class="custom-file-input" id="inputGroupFile01" name="upload"  accept=".jpg,.png">
+                                                <label class="custom-file-label selected" for="upload"></label>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="form-group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label"> Önizleme</label>
+                                            <div id='img_contain2' class="col-lg-9 col-xl-6">
+                                                <img id="blah2" align='left' src="~/Content/sample-upload-image.png" alt="ornek resim" title='' />
+                                                <a class="btn btn-danger" style="color:white;" id="cleanImage2">Temizle</a>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-xl-3 col-lg-3 col-form-label"><font color="red">*</font> Logo</label>
+                                            <div></div>
+                                            <div class="custom-file col-lg-9 col-xl-6">
+                                                <input type="file" class="custom-file-input" id="inputGroupFile012" name="upload2"  accept=".jpg,.png">
+                                                <label class="custom-file-label selected" for="upload2"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="kt-separator kt-separator--space-lg kt-separator--fit kt-separator--border-solid"></div>
+                            <div class="kt-form__actions">
+                                <div class="row">
+                                    <div class="col-xl-3"></div>
+                                    <div class="col-lg-9 col-xl-6">
+                                        <button type="submit" class="btn btn-brand btn-bold">Güncelle</button>
+                                        <a href="/admin/home/index" class="btn btn-clean btn-bold">Geri</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+                    </div>
+
+                    <!--End:: Tab Content-->
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.js" integrity="sha256-+VCjCLUkzOOnKtJ0s04D3mcyypeENTag5Xivs9hQVKs=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.10/js/bootstrap-select.min.js" integrity="sha256-FXzZGmaRFZngOjUKy3lWZJq/MflaMpffBbu3lPT0izE=" crossorigin="anonymous"></script>
+    <script>
+
+        $('#inputGroupFile012').text('logo.png').attr('style', 'text-align:left');
+        $('#blah2').attr('src', '@Model.LogoPath');
+        $("#inputGroupFile012").change(function (event) {
+            RecurFadeIn2();
+            readURL2(this);
+        });
+        $("#inputGroupFile012").on('click', function (event) {
+            RecurFadeIn2();
+        });
+        function readURL2(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                var filename = $("#inputGroupFile012").val();
+                filename = filename.substring(filename.lastIndexOf('\\') + 1);
+                reader.onload = function (e) {
+                    debugger;
+                    $('#blah2').attr('src', e.target.result);
+                    $('#blah2').hide();
+                    $('#blah2').fadeIn(500);
+                    $('#inputGroupFile012').text(filename).attr('style', 'text-align:left');
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+            $(".alert").removeClass("loading").hide();
+        }
+        function RecurFadeIn2() {
+            FadeInAlert("Wait for it...");
+        }
+        function FadeInAlert2(text) {
+            $(".alert").show();
+            $(".alert").text(text).addClass("loading");
+        }
+        $('#cleanImage2').on({
+            'click': function () {
+                $('#blah2').attr('src', '/Content/sample-upload-image.png');
+                $('#inputGroupFile012').text('').attr('style', 'text-align:left');
+            }
+        });
+
+        $('#inputGroupFile01').text('banner.jpg').attr('style', 'text-align:left');
+        $('#blah').attr('src', '@Model.BannerImagePath');
+        $("#inputGroupFile01").change(function (event) {
+            RecurFadeIn();
+            readURL(this);
+        });
+        $("#inputGroupFile01").on('click', function (event) {
+            RecurFadeIn();
+        });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                var filename = $("#inputGroupFile01").val();
+                filename = filename.substring(filename.lastIndexOf('\\') + 1);
+                reader.onload = function (e) {
+                    debugger;
+                    $('#blah').attr('src', e.target.result);
+                    $('#blah').hide();
+                    $('#blah').fadeIn(500);
+                    $('#inputGroupFile01').text(filename).attr('style','text-align:left');
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+            $(".alert").removeClass("loading").hide();
+        }
+        function RecurFadeIn() {
+            FadeInAlert("Wait for it...");
+        }
+        function FadeInAlert(text) {
+            $(".alert").show();
+            $(".alert").text(text).addClass("loading");
+        }
+        $('#cleanImage').on({
+            'click': function () {
+                $('#blah').attr('src', '/Content/sample-upload-image.png');
+                $('#inputGroupFile01').text('').attr('style', 'text-align:left');
+            }
+        });
+
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#ProvinceID').change(function () {
+                $("#CountyID").empty();
+                var ProvinceId = $(this).val();
+                if (ProvinceId != null && ProvinceId != '') {
+                    $.ajax({
+                        type: "post",
+                        url: '@Url.Action("Counties","Account")',
+                        data: { provinceId: ProvinceId },
+                        success: function (counties) {
+                            $.each(counties, function (index, county) {
+                                var optionhtml = '<option value="' + county.ID + '">' + county.Name + '</option>';
+                                $("#CountyID").append(optionhtml);
+                                $("#CountyID").selectpicker("refresh");
+                            });
+                        },
+                        beforeSend: function () {
+                            $("#ajax-loader").show();
+                        },
+                        complete: function () {
+                            $("#ajax-loader").hide();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
+

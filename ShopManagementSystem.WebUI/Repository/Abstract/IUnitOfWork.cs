@@ -16,6 +16,9 @@ namespace ShopManagementSystem.WebUI.Repository.Abstract
         IWarrantyPeriodRepository WarrantyPeriods { get; }
         ICountyRepository Counties { get; }
         IProvinceRepository Provinces { get; }
+        IOrderRepository Orders { get; }
+        ICustomerRepository Customers { get; }
+        IOrderStatusRepository OrderStatuses { get; }
         int SaveChanges();
         
     }

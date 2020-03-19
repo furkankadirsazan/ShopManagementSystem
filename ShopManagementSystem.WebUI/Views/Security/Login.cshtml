@@ -111,13 +111,13 @@
                                     </div>
                                     <div class="form-group">
                                         @Html.TextBoxFor(m => m.Password, new
-                                   {
-                                       @class = "form-control form-control-last",
-                                       type = "password",
-                                       autocomplete = "off",
-                                       placeholder = "Şifre",
-                                       id = "Password"
-                                   })
+                                        {
+                                            @class = "form-control form-control-last",
+                                            type = "password",
+                                            autocomplete = "off",
+                                            placeholder = "Şifre",
+                                            sid = "Password"
+                                        })
                                     </div>
                                     <div class="row kt-login__extra">
                                         <div class="col kt-align-left">
@@ -196,7 +196,8 @@
                                 Mağazanızı ücretsiz oluşturun ürünlerinizi hemen satmaya başlayın.
                             </span>
                             <div class="kt-login__actions">
-                                <button type="button" id="kt_login_signup" class="btn btn-danger btn-pill btn-elevate" style="background-color: #ff5600;font-size:15px;font-weight:bold">Hemen Mağaza Açın</button>
+                                <a href="/security/createaccount" class="btn btn-danger btn-pill btn-elevate" style="background-color: #ff5600;font-size:15px;font-weight:bold">Hemen Mağaza Açın</a>
+                                @*<button type="button" id="kt_login_signup" class="btn btn-danger btn-pill btn-elevate" style="background-color: #ff5600;font-size:15px;font-weight:bold">Hemen Mağaza Açın</button>*@
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,537 @@
+﻿@model CreateAccountModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="tr">
+
+<!-- begin::Head -->
+<!-- begin::Head -->
+<head>
+
+    <!--begin::Base Path (base relative path for assets of this page) -->
+    <base href="../../../../">
+
+    <!--end::Base Path -->
+    <meta charset="utf-8" />
+    <title>İdealiz Mağaza Yönetim Sistemi | Mağaza Başvuru Ekranı</title>
+    <meta name="description" content="Wizard examples">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--begin::Fonts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: {
+                "families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"]
+            },
+            active: function () {
+                sessionStorage.fonts = true;
+            }
+        });
+    </script>
+
+    <!--end::Fonts -->
+    <!--begin::Page Custom Styles(used by this page) -->
+    <link href="~/Content/AdminTemplate/assets/css/demo1/pages/general/wizard/wizard-1.css" rel="stylesheet" type="text/css" />
+
+    <!--end::Page Custom Styles -->
+    <!--begin:: Global Mandatory Vendors -->
+    <link href="~/Content/AdminTemplate/assets/vendors/general/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" type="text/css" />
+
+    <!--end:: Global Mandatory Vendors -->
+    <!--begin:: Global Optional Vendors -->
+    <link href="~/Content/AdminTemplate/assets/vendors/general/tether/dist/css/tether.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/bootstrap-datetime-picker/css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/bootstrap-timepicker/css/bootstrap-timepicker.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/select2/dist/css/select2.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/ion-rangeslider/css/ion.rangeSlider.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/nouislider/distribute/nouislider.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/owl.carousel/dist/assets/owl.carousel.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/owl.carousel/dist/assets/owl.theme.default.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/dropzone/dist/dropzone.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/summernote/dist/summernote.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/bootstrap-markdown/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/animate.css/animate.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/toastr/build/toastr.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/morris.js/morris.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/sweetalert2/dist/sweetalert2.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/socicon/css/socicon.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/custom/vendors/line-awesome/css/line-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/custom/vendors/flaticon/flaticon.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/custom/vendors/flaticon2/flaticon.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+
+    <!--end:: Global Optional Vendors -->
+    <!--begin::Global Theme Styles(used by all pages) -->
+    <link href="~/Content/AdminTemplate/assets/css/demo1/style.bundle.css" rel="stylesheet" type="text/css" />
+
+    <!--end::Global Theme Styles -->
+    <!--begin::Layout Skins(used by all pages) -->
+    <link href="~/Content/AdminTemplate/assets/css/demo1/skins/header/base/light.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/css/demo1/skins/header/menu/light.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/css/demo1/skins/brand/dark.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/css/demo1/skins/aside/dark.css" rel="stylesheet" type="text/css" />
+
+    <!--end::Layout Skins -->
+    <link rel="shortcut icon" href="~/Content/AdminTemplate/assets/media/logos/favicon.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/css/bootstrap3/bootstrap-switch.min.css" integrity="sha256-sj3qkRTZIL8Kff5fST1TX0EF9lEmSfFgjNvuiw2CV5w=" crossorigin="anonymous" />
+
+</head>
+
+<!-- end::Head -->
+<!-- begin::Body -->
+<body class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--enabled kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading">
+
+
+    <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
+        <div class="kt-portlet">
+            <div class="kt-portlet__body kt-portlet__body--fit">
+                <div class="kt-grid  kt-wizard-v1 kt-wizard-v1--white" id="kt_wizard_v1" data-ktwizard-state="between">
+                    <div class="kt-grid__item">
+
+                        <!--begin: Form Wizard Nav -->
+                        <div class="kt-wizard-v1__nav">
+                            <div class="kt-wizard-v1__nav-items">
+                                <a class="kt-wizard-v1__nav-item"  data-ktwizard-type="step" data-ktwizard-state="done">
+                                    <div class="kt-wizard-v1__nav-body">
+                                        <div class="kt-wizard-v1__nav-icon">
+                                            <i class="flaticon-globe"></i>
+                                        </div>
+                                        <div class="kt-wizard-v1__nav-label">
+                                            1) Kullanıcı Bilgileri
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="kt-wizard-v1__nav-item" data-ktwizard-type="step" data-ktwizard-state="done">
+                                    <div class="kt-wizard-v1__nav-body">
+                                        <div class="kt-wizard-v1__nav-icon">
+                                            <i class="flaticon-home-2"></i>
+                                        </div>
+                                        <div class="kt-wizard-v1__nav-label">
+                                            2) Mağaza Bilgileri
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="kt-wizard-v1__nav-item"  data-ktwizard-type="step" data-ktwizard-state="current">
+                                    <div class="kt-wizard-v1__nav-body">
+                                        <div class="kt-wizard-v1__nav-icon">
+                                            <i class="flaticon-bus-stop"></i>
+                                        </div>
+                                        <div class="kt-wizard-v1__nav-label">
+                                            3) İletişim Bilgileri
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="kt-wizard-v1__nav-item" data-ktwizard-type="step" data-ktwizard-state="pending">
+                                    <div class="kt-wizard-v1__nav-body">
+                                        <div class="kt-wizard-v1__nav-icon">
+                                            <i class="flaticon-list"></i>
+                                        </div>
+                                        <div class="kt-wizard-v1__nav-label">
+                                            4) Şartlar ve Hukuki Metinler
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="kt-wizard-v1__nav-item"  data-ktwizard-type="step" data-ktwizard-state="pending">
+                                    <div class="kt-wizard-v1__nav-body">
+                                        <div class="kt-wizard-v1__nav-icon">
+                                            <i class="flaticon-paper-plane"></i>
+                                        </div>
+                                        <div class="kt-wizard-v1__nav-label">
+                                            5) Başvuru Onayı ve Formu Göndermek
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!--end: Form Wizard Nav -->
+                    </div>
+                    <div class="kt-grid__item kt-grid__item--fluid kt-wizard-v1__wrapper">
+
+
+                        @using (Ajax.BeginForm("CreateAccount", "Security", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "divResult2" }, new { @class = "kt-form", id = "kt_form", novalidate = "novalidate" }))
+                        {
+                            <!--begin: Form Wizard Form-->
+                            @Html.AntiForgeryToken()
+                            <button class="btn" id="ajax-loader" style="display:none;"><div class="kt-spinner kt-spinner--sm kt-spinner--warning"></div><br /></button>
+                            <div id="divResult2" style="border-radius: 20px;"></div>
+                          <!--begin: Form Wizard Step 1-->
+                            <div class="kt-wizard-v1__content" data-ktwizard-type="step-content">
+                                <div class="kt-heading kt-heading--md">Kullanıcı Bilgileri</div>
+                                <div class="kt-form__section kt-form__section--first">
+                                    <div class="kt-wizard-v1__form">
+                                        <div class="form-group">
+                                            <label><font color="red">*</font> Kullanıcı Adı</label>
+                                            @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Kullanıcı Adı", autocomplete = "off", id = "Username",type="text",required="" })
+                                        </div>          
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <div class="form-group">
+                                                    <label><font color="red">*</font> Şifre</label>
+                                                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control", placeholder = "Şifre", autocomplete = "off", id = "Password", type = "password", required = "" })
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="form-group">
+                                                    <label><font color="red">*</font> Şifre Tekrar</label>
+                                                    @Html.TextBoxFor(m => m.PasswordAgain, new { @class = "form-control", placeholder = "Şifre Tekrar", autocomplete = "off", id = "PasswordAgain", type = "password", required = "" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <div class="form-group">
+                                                    <label><font color="red">*</font> Yetkili Adı</label>
+                                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "Yetkili Adı", autocomplete = "off", id = "Name", type = "text", required = "" })
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="form-group">
+                                                    <label><font color="red">*</font> Yetkili Soyadı</label>
+                                                    @Html.TextBoxFor(m => m.Surname, new { @class = "form-control", placeholder = "Yetkili Soyadı", autocomplete = "off", id = "Surname", type = "text", required = "" })
+                                                </div>
+                                            </div>
+                                        </div>                       
+                                    </div>
+                                </div>
+                            </div>
+
+                        <!--end: Form Wizard Step 1-->
+                        <!--begin: Form Wizard Step 2-->
+                            <div class="kt-wizard-v1__content" data-ktwizard-type="step-content">
+                                <div class="kt-heading kt-heading--md">Mağaza Bilgileri</div>
+                                <div class="kt-form__section kt-form__section--first">
+                                    <div class="kt-wizard-v1__form">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <div class="form-group">
+                                                    <label><font color="red">*</font> Mağaza Ünvanı</label>
+                                                    @Html.TextBoxFor(m => m.Title, new { @class = "form-control", placeholder = "Mağaza Ünvanı", autocomplete = "off", id = "Title", type = "text", required = "" })
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="form-group">
+                                                    <label><font color="red">*</font> Vergi Dairesi</label>
+                                                    @Html.TextBoxFor(m => m.TaxAdministration, new { @class = "form-control", placeholder = "Vergi Dairesi", autocomplete = "off", id = "TaxAdministration", type = "text", required = "" })
+                                                </div>
+                                            </div>
+                                        </div>        
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <div class="form-group">
+                                                    <label><font color="red">*</font> Vergi No</label>
+                                                    @Html.TextBoxFor(m => m.TaxNumber, new { @class = "form-control", placeholder = "Vergi No", autocomplete = "off", id = "TaxNumber", type = "number", required = "" })
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="form-group">
+                                                    <label> Mağaza Websitesi</label>
+                                                    @Html.TextBoxFor(m => m.ShopWebsite, new { @class = "form-control", placeholder = "Mağaza Websitesi", autocomplete = "off", id = "ShopWebsite", type = "url" })
+                                                </div>
+                                            </div>
+                                        </div>        
+                                    </div>
+                                </div>
+                            </div>
+
+                        <!--end: Form Wizard Step 2-->
+                        <!--begin: Form Wizard Step 3-->
+                            <div class="kt-wizard-v1__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
+                                <div class="kt-heading kt-heading--md">İletişim Bilgileri</div>
+                                <div class="kt-form__section kt-form__section--first">
+                                    <div class="kt-wizard-v1__form">
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <div class="form-group">
+                                                    <label><font color="red">*</font> İl</label>
+                                                    @Html.DropDownListFor(m => Model.ProvinceID, ViewBag.Provinces as SelectList, "Seçiniz", new { @class = "form-control", id = "ProvinceID", required = "" })
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="form-group">
+                                                    <label><font color="red">*</font> İlçe</label>
+                                                    @Html.DropDownListFor(m => Model.CountyID, Enumerable.Empty<SelectListItem>(), "Seçiniz", new { @class = "form-control", id = "CountyID", required = "" })
+                                                </div>
+                                            </div>
+                                        </div>      
+                                        <div class="row">
+                                            <div class="col-xl-6">
+                                                <div class="form-group">
+                                                    <label><font color="red">*</font> Telefon</label>
+                                                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "Telefon", autocomplete = "off", id = "Phone", type = "number", required = "" })
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="form-group">
+                                                    <label><font color="red">*</font> Email</label>
+                                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email", autocomplete = "off", id = "Email", type = "email", required = "" })
+                                                </div>
+                                            </div>
+                                        </div>      
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="form-group">
+                                                    <label><font color="red">*</font> Adres</label>
+                                                    @Html.TextAreaFor(m => m.Address, new { @class = "form-control", placeholder = "Adres", autocomplete = "off", id = "Address", type = "text", required = "" })
+                                                </div>
+                                            </div>
+                                        </div>      
+                                    </div>
+                                </div>
+                            </div>
+
+                        <!--end: Form Wizard Step 3-->
+                        <!--begin: Form Wizard Step 4-->
+                            <div class="kt-wizard-v1__content" data-ktwizard-type="step-content">
+                                <div class="kt-heading kt-heading--md">Şartlar ve Hukuki Metinler</div>
+                                <div class="kt-form__section kt-form__section--first">
+                                    <div class="kt-wizard-v1__form">
+                                       <textarea class="form-control" style="margin-top: 0px; margin-bottom: 0px; height: 455px;">Mağazamızda verilen tüm servisler ve ,………… adresinde kayıtlı  ……………….Şti. firmamıza aittir ve firmamız tarafından işletilir. 
+
+Firmamız, çeşitli amaçlarla kişisel veriler toplayabilir. Aşağıda, toplanan kişisel verilerin nasıl ve ne şekilde toplandığı, bu verilerin nasıl ve ne şekilde korunduğu belirtilmiştir. 
+
+Üyelik veya Mağazamız üzerindeki çeşitli form ve anketlerin doldurulması suretiyle üyelerin kendileriyle ilgili bir takım kişisel bilgileri (isim-soy isim, firma bilgileri, telefon, adres veya e-posta adresleri gibi) Mağazamız tarafından işin doğası gereği toplanmaktadır. 
+
+Firmamız bazı dönemlerde müşterilerine ve üyelerine kampanya bilgileri, yeni ürünler hakkında bilgiler, promosyon teklifleri gönderebilir. Üyelerimiz bu gibi bilgileri alıp almama konusunda her türlü seçimi üye olurken yapabilir, sonrasında üye girişi yaptıktan sonra hesap bilgileri bölümünden bu seçimi değiştirilebilir ya da kendisine gelen bilgilendirme iletisindeki linkle bildirim yapabilir. 
+
+Mağazamız üzerinden veya eposta ile gerçekleştirilen onay sürecinde, üyelerimiz tarafından mağazamıza elektronik ortamdan iletilen kişisel bilgiler, Üyelerimiz ile yaptığımız "Kullanıcı Sözleşmesi" ile belirlenen amaçlar ve kapsam dışında üçüncü kişilere açıklanmayacaktır.
+
+Sistemle ilgili sorunların tanımlanması ve verilen hizmet ile ilgili çıkabilecek sorunların veya uyuşmazlıkların hızla çözülmesi için, Firmamız, üyelerinin IP adresini kaydetmekte ve bunu kullanmaktadır. IP adresleri, kullanıcıları genel bir şekilde tanımlamak ve kapsamlı demografik bilgi toplamak amacıyla da kullanılabilir.
+
+Firmamız, Üyelik Sözleşmesi ile belirlenen amaçlar ve kapsam dışında da, talep edilen bilgileri kendisi veya işbirliği içinde olduğu kişiler tarafından doğrudan pazarlama yapmak amacıyla kullanabilir.  Kişisel bilgiler, gerektiğinde kullanıcıyla temas kurmak için de kullanılabilir. Firmamız tarafından talep edilen bilgiler veya kullanıcı tarafından sağlanan bilgiler veya Mağazamız üzerinden yapılan işlemlerle ilgili bilgiler; Firmamız ve işbirliği içinde olduğu kişiler tarafından, "Üyelik Sözleşmesi" ile belirlenen amaçlar ve kapsam dışında da, üyelerimizin kimliği ifşa edilmeden çeşitli istatistiksel değerlendirmeler, veri tabanı oluşturma ve pazar araştırmalarında kullanılabilir.
+
+Firmamız, gizli bilgileri kesinlikle özel ve gizli tutmayı, bunu bir sır saklama yükümü olarak addetmeyi ve gizliliğin sağlanması ve sürdürülmesi, gizli bilginin tamamının veya herhangi bir kısmının kamu alanına girmesini veya yetkisiz kullanımını veya üçüncü bir kişiye ifşasını önlemek için gerekli tüm tedbirleri almayı ve gerekli özeni göstermeyi taahhüt etmektedir.
+ 
+KREDİ KARTI GÜVENLİĞİ
+ 
+Firmamız, alışveriş sitelerimizden alışveriş yapan kredi kartı sahiplerinin güvenliğini ilk planda tutmaktadır. Kredi kartı bilgileriniz hiçbir şekilde sistemimizde saklanmamaktadır.
+ 
+İşlemler sürecine girdiğinizde güvenli bir sitede olduğunuzu anlamak için dikkat etmeniz gereken iki şey vardır. Bunlardan biri tarayıcınızın en alt satırında bulunan bir anahtar ya da kilit simgesidir. Bu güvenli bir internet sayfasında olduğunuzu gösterir ve her türlü bilgileriniz şifrelenerek korunur. Bu bilgiler, ancak satış işlemleri sürecine bağlı olarak ve verdiğiniz talimat istikametinde kullanılır. Alışveriş sırasında kullanılan kredi kartı ile ilgili bilgiler alışveriş sitelerimizden bağımsız olarak 128 bit SSL (Secure Sockets Layer) protokolü ile şifrelenip sorgulanmak üzere ilgili bankaya ulaştırılır. Kartın kullanılabilirliği onaylandığı takdirde alışverişe devam edilir. Kartla ilgili hiçbir bilgi tarafımızdan görüntülenemediğinden ve kaydedilmediğinden, üçüncü şahısların herhangi bir koşulda bu bilgileri ele geçirmesi engellenmiş olur.
+Online olarak kredi kartı ile verilen siparişlerin ödeme/fatura/teslimat adresi bilgilerinin güvenilirliği firmamiz tarafından Kredi Kartları Dolandırıcılığı'na karşı denetlenmektedir. Bu yüzden, alışveriş sitelerimizden ilk defa sipariş veren müşterilerin siparişlerinin tedarik ve teslimat aşamasına gelebilmesi için öncelikle finansal ve adres/telefon bilgilerinin doğruluğunun onaylanması gereklidir. Bu bilgilerin kontrolü için gerekirse kredi kartı sahibi müşteri ile veya ilgili banka ile irtibata geçilmektedir.
+Üye olurken verdiğiniz tüm bilgilere sadece siz ulaşabilir ve siz değiştirebilirsiniz. Üye giriş bilgilerinizi güvenli koruduğunuz takdirde başkalarının sizinle ilgili bilgilere ulaşması ve bunları değiştirmesi mümkün değildir. Bu amaçla, üyelik işlemleri sırasında 128 bit SSL güvenlik alanı içinde hareket edilir. Bu sistem kırılması mümkün olmayan bir uluslararası bir şifreleme standardıdır.
+
+Bilgi hattı veya müşteri hizmetleri servisi bulunan ve açık adres ve telefon bilgilerinin belirtildiği İnternet alışveriş siteleri günümüzde daha fazla tercih edilmektedir. Bu sayede aklınıza takılan bütün konular hakkında detaylı bilgi alabilir, online alışveriş hizmeti sağlayan firmanın güvenirliği konusunda daha sağlıklı bilgi edinebilirsiniz. 
+ 
+Not: İnternet alışveriş sitelerinde firmanın açık adresinin ve telefonun yer almasına dikkat edilmesini tavsiye ediyoruz. Alışveriş yapacaksanız alışverişinizi yapmadan ürünü aldığınız mağazanın bütün telefon / adres bilgilerini not edin. Eğer güvenmiyorsanız alışverişten önce telefon ederek teyit edin. Firmamıza ait tüm online alışveriş sitelerimizde firmamıza dair tüm bilgiler ve firma yeri belirtilmiştir.
+ 
+MAİL ORDER KREDİ KART BİLGİLERİ GÜVENLİĞİ
+ 
+Kredi kartı mail-order yöntemi ile bize göndereceğiniz kimlik ve kredi kart bilgileriniz firmamız tarafından gizlilik prensibine göre saklanacaktır. Bu bilgiler olası banka ile oluşubilecek kredi kartından para çekim itirazlarına karşı 60 gün süre ile bekletilip daha sonrasında imha edilmektedir. Sipariş ettiğiniz ürünlerin bedeli karşılığında bize göndereceğiniz tarafınızdan onaylı mail-order formu bedeli dışında herhangi bir bedelin kartınızdan çekilmesi halinde doğal olarak bankaya itiraz edebilir ve bu tutarın ödenmesini engelleyebileceğiniz için bir risk oluşturmamaktadır. 
+
+
+ÜÇÜNCÜ TARAF WEB SİTELERİ VE UYGULAMALAR
+Mağazamız,  web sitesi dâhilinde başka sitelere link verebilir. Firmamız, bu linkler vasıtasıyla erişilen sitelerin gizlilik uygulamaları ve içeriklerine yönelik herhangi bir sorumluluk taşımamaktadır. Firmamıza ait sitede yayınlanan reklamlar, reklamcılık yapan iş ortaklarımız aracılığı ile kullanıcılarımıza dağıtılır. İş bu sözleşmedeki Gizlilik Politikası Prensipleri, sadece Mağazamızın kullanımına ilişkindir, üçüncü taraf web sitelerini kapsamaz. 
+
+İSTİSNAİ HALLER
+Aşağıda belirtilen sınırlı hallerde Firmamız, işbu "Gizlilik Politikası" hükümleri dışında kullanıcılara ait bilgileri üçüncü kişilere açıklayabilir. Bu durumlar sınırlı sayıda olmak üzere;
+1.Kanun, Kanun Hükmünde Kararname, Yönetmelik v.b. yetkili hukuki otorite tarafından çıkarılan ve yürürlülükte olan hukuk kurallarının getirdiği zorunluluklara uymak;
+2.Mağazamızın kullanıcılarla akdettiği "Üyelik Sözleşmesi"'nin ve diğer sözleşmelerin gereklerini yerine getirmek ve bunları uygulamaya koymak amacıyla;
+3.Yetkili idari ve adli otorite tarafından usulüne göre yürütülen bir araştırma veya soruşturmanın yürütümü amacıyla kullanıcılarla ilgili bilgi talep edilmesi;
+4.Kullanıcıların hakları veya güvenliklerini korumak için bilgi vermenin gerekli olduğu hallerdir. 
+
+E-POSTA GÜVENLİĞİ
+Mağazamızın Müşteri Hizmetleri’ne, herhangi bir siparişinizle ilgili olarak göndereceğiniz e-postalarda, asla kredi kartı numaranızı veya şifrelerinizi yazmayınız. E-postalarda yer alan bilgiler üçüncü şahıslar tarafından görülebilir. Firmamız e-postalarınızdan aktarılan bilgilerin güvenliğini hiçbir koşulda garanti edemez.
+
+TARAYICI ÇEREZLERİ 
+Firmamız, mağazamızı ziyaret eden kullanıcılar ve kullanıcıların web sitesini kullanımı hakkındaki bilgileri teknik bir iletişim dosyası (Çerez-Cookie) kullanarak elde edebilir. Bahsi geçen teknik iletişim dosyaları, ana bellekte saklanmak üzere bir internet sitesinin kullanıcının tarayıcısına (browser) gönderdiği küçük metin dosyalarıdır. Teknik iletişim dosyası site hakkında durum ve tercihleri saklayarak İnternet'in kullanımını kolaylaştırır.
+
+Teknik iletişim dosyası,  siteyi kaç kişinin ziyaret ettiğini, bir kişinin siteyi hangi amaçla, kaç kez ziyaret ettiğini ve ne kadar sitede kaldıkları hakkında istatistiksel bilgileri elde etmeye ve kullanıcılar için özel tasarlanmış kullanıcı sayfalarından  dinamik olarak reklam ve içerik üretilmesine yardımcı olur. Teknik iletişim dosyası, ana bellekte veya e-postanızdan veri veya başkaca herhangi bir kişisel bilgi almak için tasarlanmamıştır. Tarayıcıların pek çoğu başta teknik iletişim dosyasını kabul eder biçimde tasarlanmıştır ancak kullanıcılar dilerse teknik iletişim dosyasının gelmemesi veya teknik iletişim dosyasının gönderildiğinde uyarı verilmesini sağlayacak biçimde ayarları değiştirebilirler.
+
+Firmamız, işbu "Gizlilik Politikası" hükümlerini dilediği zaman sitede yayınlamak veya kullanıcılara elektronik posta göndermek veya sitesinde yayınlamak suretiyle değiştirebilir. Gizlilik Politikası hükümleri değiştiği takdirde, yayınlandığı tarihte yürürlük kazanır.
+
+Gizlilik politikamız ile ilgili her türlü soru ve önerileriniz için ……………….. adresine email gönderebilirsiniz. Firmamız’a ait aşağıdaki iletişim bilgilerinden ulaşabilirsiniz.
+
+Firma Ünvanı: 
+Adres: 
+Eposta: 
+Tel:
+Fax:
+
+</textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <!--end: Form Wizard Step 4-->
+                        <!--begin: Form Wizard Step 5-->
+                            <div class="kt-wizard-v1__content" data-ktwizard-type="step-content">
+                                <div class="kt-heading kt-heading--md"> Başvuru Onayı ve Formu Göndermek</div>
+                                <div class="kt-form__section kt-form__section--first">
+                                    <div class="kt-wizard-v1__form">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                <div class="form-group">
+                                                    <label><font color="red">*</font> Şartlar ve Hukuki metinleri okudum. Onaylıyorum.</label><br />
+                                                    <br />
+                                                    <span class="kt-switch kt-switch--icon">
+                                                        <label>
+                                                            @Html.CheckBoxFor(m => Model.IsAccepted, new { id = "IsAccepted" })
+                                                            <span></span>
+                                                        </label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button id="btn-createaccount" class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u">Başvur</button>                                       
+                                    </div>
+                                </div>
+                            </div>
+
+                        <!--end: Form Wizard Step 5-->
+                        <!--begin: Form Actions -->
+                            <div class="kt-form__actions">
+                                <div class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-prev">
+                                    Geri
+                                </div>
+                                @*<div class="btn btn-success btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-submit" id="btn-createaccount">
+                                    Başvur
+                                </div>*@
+                                
+                                <div class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u" data-ktwizard-type="action-next">
+                                    İleri
+                                </div>
+                            </div>
+
+                        <!--end: Form Actions -->
+
+                        }
+
+
+                        <!--end: Form Wizard Form-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- begin::Global Config(global config for global JS sciprts) -->
+    <script>
+        var KTAppOptions = {
+            "colors": {
+                "state": {
+                    "brand": "#5d78ff",
+                    "dark": "#282a3c",
+                    "light": "#ffffff",
+                    "primary": "#5867dd",
+                    "success": "#34bfa3",
+                    "info": "#36a3f7",
+                    "warning": "#ffb822",
+                    "danger": "#fd3995"
+                },
+                "base": {
+                    "label": ["#c5cbe3", "#a1a8c3", "#3d4465", "#3e4466"],
+                    "shape": ["#f0f3ff", "#d9dffa", "#afb4d4", "#646c9a"]
+                }
+            }
+        };
+    </script>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-js/1.2.2/sticky.min.js" integrity="sha256-xVuYoh/ruuLsbMBrs2Z+PgemhhoeWgJEoQFfpTUAh4Y=" crossorigin="anonymous"></script>
+
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+   
+    @*@Scripts.Render("~/bundles/jquery")*@
+    <script src="~/Content/AdminTemplate/assets/js/demo1/pages/wizard/wizard-1.js" type="text/javascript"></script>
+     <!--end:: Global Optional Vendors -->
+    <!--begin::Global Theme Bundle(used by all pages) -->
+    <script src="~/Content/AdminTemplate/assets/js/demo1/scripts.bundle.js" type="text/javascript"></script>
+
+    <!--end::Global Theme Bundle -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.js" integrity="sha256-+VCjCLUkzOOnKtJ0s04D3mcyypeENTag5Xivs9hQVKs=" crossorigin="anonymous"></script>
+
+    <script>
+
+        $("#kt_form").validate({
+            rules: {
+                Name: "required",
+                Surname: "required",
+                Username: "required",
+                Password: "required",
+                PasswordAgain: "required",
+                Title: "required",
+                TaxAdministration: "required",
+                TaxNumber: "required",
+                ProvinceID: "required",
+                CountyID: "required",
+                Address: "required",
+                Email: {
+                    required: true,
+                    email: true
+                },
+                Phone: {
+                    required: true,
+                    maxlength: 11,
+                    minlength: 11
+                },
+                IsAccepted: "required"
+            },
+            messages: {
+                Name: "Bu alan boş geçilemez.",
+                Surname: "Bu alan boş geçilemez.",
+                Username: "Bu alan boş geçilemez.",
+                Password: "Bu alan boş geçilemez.",
+                PasswordAgain: "Bu alan boş geçilemez.",
+                Title: "Bu alan boş geçilemez.",
+                TaxAdministration: "Bu alan boş geçilemez.",
+                TaxNumber: "Bu alan boş geçilemez.",
+                ShopWebsite: {
+                    required: "Bu alan boş geçilemez.",
+                    url: "Url formatında giriniz. Örnek: http://www.ornekwebsitesi.com"
+                },
+                ProvinceID: "Bu alan boş geçilemez.",
+                CountyID: "Bu alan boş geçilemez.",
+                Address: "Bu alan boş geçilemez.",
+                Email: {
+                    required: "Size ulaşabilmemiz için email adresinizi girmelisiniz.",
+                    email: "Email adresiniz isim@alanadi.com formatında olmalıdır."
+                },
+                Phone: {
+                    required: "Size ulaşabilmemiz için telefon numaranızı girmelisiniz.",
+                    maxlength: "Telefon 11 rakam olmalı. Numara: 054XXXXXXXX şeklinde olmalıdır.",
+                    minlength: "Telefon 11 rakam olmalı. Numara: 054XXXXXXXX şeklinde olmalıdır."
+                },
+                IsAccepted: "Başvurunuzu tamamlamak için bu alanı onaylamış olmanız gerekmektedir."
+            }
+        });
+        $(document).ready(function () {
+        $('#ProvinceID').change(function () {
+            $("#CountyID").empty();
+            var ProvinceId = $(this).val();
+            if (ProvinceId != null && ProvinceId != '') {
+                $.ajax({
+                    type: "post",
+                    url: '/security/counties',
+                    data: { provinceId: ProvinceId },
+                    success: function (counties) {
+                        $.each(counties, function (index, county) {
+                            var optionhtml = '<option value="' + county.ID + '">' + county.Name + '</option>';
+                            $("#CountyID").append(optionhtml);
+                        });
+                    },
+                    beforeSend: function () {
+                        $("#ajax-loader").show();
+                    },
+                    complete: function () {
+                        $("#ajax-loader").hide();
+                    }
+                });
+            }
+        });
+    });
+
+    </script>
+    <script src="~/Scripts/FunctionsJs/ajax.createaccount.js"></script>
+
+
+    <!--end::Page Scripts -->
+</body>
+<!-- end::Body -->
+</html>

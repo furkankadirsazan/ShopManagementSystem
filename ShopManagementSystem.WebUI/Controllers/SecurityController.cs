@@ -1,10 +1,14 @@
 ﻿using ShopManagementSystem.WebUI.Areas.Admin.Models;
+using ShopManagementSystem.WebUI.Entity;
 using ShopManagementSystem.WebUI.Extensions.Log;
 using ShopManagementSystem.WebUI.Extensions.Mail.Concrete;
 using ShopManagementSystem.WebUI.Extensions.Security;
+using ShopManagementSystem.WebUI.Extensions.String;
+using ShopManagementSystem.WebUI.Models;
 using ShopManagementSystem.WebUI.Repository.Abstract;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -42,6 +46,12 @@ namespace ShopManagementSystem.WebUI.Controllers
 
                 if (shop != null)
                 {
+
+                    if (!shop.IsAuthenticated)
+                    {
+                        return Json(new { Url = "/security/login", Status = "NotAuthentication" });
+                    }
+
                     if (shopEntity.IsRemember)
                     {
                         shop.IsRemember = shopEntity.IsRemember;
@@ -167,108 +177,73 @@ namespace ShopManagementSystem.WebUI.Controllers
 
         }
 
-        //[HttpPost]
-        //[AllowAnonymous]
-        //public ActionResult CreateAccount(StudentCreateAccountModel studentEntity)
-        //{
-        //    List<SelectListItem> EducationStatuses = uow.EducationStatuses.SetEducationStatusDropdownList();
-        //    ViewData["EducationStatuses"] = EducationStatuses;
-        //    if (
-        //        studentEntity.Ssn == null || studentEntity.Password == null || studentEntity.Name == null || studentEntity.Surname == null ||
-        //        studentEntity.Address == null || studentEntity.Email == null || studentEntity.Phone == null || studentEntity.EducationStatusID == null
-        //      ) return Json(new { Url = "/student/security/login", Status = "None" });
-        //    else if ((studentEntity.Phone.Length != 11))
-        //    {
-        //        return Json(new { Url = "/student/security/login", Status = "CorrectThePhone" });
-        //    }
-        //    else if (!(studentEntity.Password.Length > 5 && studentEntity.Password.Length < 11))
-        //    {
-        //        return Json(new { Url = "/student/security/login", Status = "TooLong" });
-        //    }
-        //    else if (!studentEntity.IsAccepted)
-        //    {
-        //        return Json(new { Url = "/student/security/login", Status = "NotAccepted" });
-        //    }
-        //    else if (ModelState.IsValid)
-        //    {
-        //        var student = new Students();
-        //        if (studentEntity != null)
-        //        {
-        //            if (uow.Students.HasSameRecords(studentEntity))
-        //            {
-        //                return Json(new { Url = "/student/security/login", Status = "Warning" });
-        //            }
+        public ActionResult Counties(int provinceId)
+        {
+            var counties = uow.Counties.GetAll().Where(x => x.ProvinceID == provinceId).Select(x => new { ID = x.ID, Name = x.Name }).ToList();
+            return Json(counties);
+        }
+        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult CreateAccount()
+        {
+            ViewBag.Provinces = uow.Provinces.SetProvinceDropdownList();
+            return View();
+        }
+       
 
-        //            if (Validation.SsnValidation(studentEntity.Ssn, studentEntity.Name, studentEntity.Surname, studentEntity.BirthdayDate.Year) == null)
-        //            {
-        //                return Json(new { Url = "/student/security/login", Status = "Fail" });
-        //            }
-        //            else if (Validation.SsnValidation(studentEntity.Ssn, studentEntity.Name, studentEntity.Surname, studentEntity.BirthdayDate.Year) == false)
-        //            {
-        //                return Json(new { Url = "/student/security/login", Status = "NotValid" });
-        //            }
-        //            else
-        //            {
-        //                student.Ssn = studentEntity.Ssn;
-        //                student.RoleID = 3;
-        //                student.Name = studentEntity.Name.ToUpper();
-        //                student.Surname = studentEntity.Surname.ToUpper();
-        //                student.Address = studentEntity.Address;
-        //                student.Email = studentEntity.Email;
-        //                student.Phone = studentEntity.Phone;
-        //                student.Gender = studentEntity.Gender;
-        //                //student.MaritalStatus = studentEntity.MaritalStatus;
-        //                student.MaritalStatus = false;
-        //                student.EducationStatusID = Convert.ToInt32(studentEntity.EducationStatusID);
-        //                student.Password = studentEntity.Password;
-        //                student.IsHandicapped = studentEntity.IsHandicapped;
-        //                student.IsMartyrOrVeteranRelative = studentEntity.IsMartyrOrVeteranRelative;
-        //                student.IsActive = true;
-        //                //student.IsAuthenticated = false;
-        //                student.IsAuthenticated = true;
-        //                student.BirthdayDate = studentEntity.BirthdayDate;
-        //                var authenticationCode = CreateAuthenticationCode();
-        //                student.AuthenticationCode = authenticationCode;
-        //                var authenticationCodeHash = HashString.MD5Hash(authenticationCode);
-        //                student.IsRemember = false;
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateAccount(CreateAccountModel entity)
+        {
+            ViewBag.Provinces = uow.Provinces.SetProvinceDropdownList();
 
-        //                uow.Students.Add(student);
-        //                uow.SaveChanges();
+            if (entity == null) return Json(new { Url = "/security/login", Status = "NullObject" });
 
-        //                EmailModel em = new EmailModel()
-        //                {
-        //                    SenderEmail = "kaymekteknikdestek@gmail.com",
-        //                    ReceiverEmail = student.Email,
-        //                    SenderName = "Kaymek Teknik Destek Ekibi",
-        //                    MailTitle = "Kaymek Online Hesap Onaylama İşlemi",
-        //                    MailServer = "smtp.gmail.com",
-        //                    MailPassword = "9IwcmHrxVt2q3XnO",
-        //                    isSecure = true,
-        //                    isUseDefaultCredentials = false,
-        //                    Message = "https://www.kaymekonline.com/student/security/verifyaccount?ssn=" + student.Ssn + "&token=" + authenticationCodeHash,
-        //                    Port = 587
-        //                };
-        //                try
-        //                {
-        //                    //Email email = new Email();
-        //                    //email.SendForAccountAuthentication(em);
-        //                    return Json(new { Url = "/student/security/login", Status = "Success" });
-        //                }
-        //                catch (Exception)
-        //                {
-        //                    return Json(new { Url = "/student/security/login", Status = "MailNotSend" });
-        //                }
+            if ( 
+                 entity.ProvinceID == 0 || entity.CountyID == 0 || entity.Username == null || entity.Password == null || 
+                 entity.Name == null || entity.Surname == null || entity.Email == null || entity.Phone == null || entity.Title == null || 
+                 entity.Address == null  || entity.TaxAdministration == null || entity.TaxAdministration == null || entity.TaxNumber == null
+               ) return Json(new { Url = "/security/login", Status = "NoToPassMandatoryFields" });
 
-        //            }
-        //        }
-        //        else
-        //        {
-        //            return Json(new { Url = "/student/security/login", Status = "Fail" });
-        //        }
-        //    }
-        //    return View(studentEntity);
-        //}
+            if (entity.Password != entity.PasswordAgain) return Json(new { Url = "/security/login", Status = "PasswordsAreNotSame" });
 
+            if (entity.Phone.Length != 11) return Json(new { Url = "/security/login", Status = "CorrectThePhone" });
+
+            if (!(entity.Password.Length > 6 && entity.Password.Length < 15)) return Json(new { Url = "/security/login", Status = "PasswordCheck" });
+
+            if (!entity.IsAccepted) return Json(new { Url = "/security/login", Status = "NotAccepted" });
+
+            if (ModelState.IsValid)
+            {
+                if (uow.Shops.HasSameRecords(entity)) return Json(new { Url = "/security/login", Status = "Warning" });            
+                else
+                {                   
+                    try
+                    {
+                        var shop = ShopBuilder(entity);
+                        uow.Shops.Add(shop);
+                        uow.SaveChanges();
+                        try
+                        {
+                            Email email = new Email();
+                            email.SendForSignUp(shop.Email, ToTitleCase(shop.Title));
+                        }
+                        catch (Exception)
+                        {
+                            return Json(new { Url = "/security/login", Status = "MailNotSend" });
+                        }                   
+                        return Json(new { Url = "/security/login", Status = "Success" });
+                    }
+                    catch (Exception)
+                    {
+                        return Json(new { Url = "/security/login", Status = "Fail" });
+                    }
+                }
+            }
+            return View(entity);
+        }
+       
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             if (User.Identity.Name != null)
@@ -290,5 +265,12 @@ namespace ShopManagementSystem.WebUI.Controllers
             }
             base.OnActionExecuting(filterContext);
         }
+
+
+       
+
+
+        
+
     }
 }

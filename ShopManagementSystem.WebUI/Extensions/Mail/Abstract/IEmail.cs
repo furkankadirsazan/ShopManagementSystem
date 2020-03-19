@@ -5,5 +5,6 @@ namespace ShopManagementSystem.WebUI.Extensions.Mail.Abstract
     {
         void SendForNewPassword(string ReceiverEmail, string NewGeneratedPassword);
         void SendForAccountAuthentication(string ReceiverEmail, string AuthenticationCode, int ShopId);
+        void SendForSignUp(string ReceiverEmail, string Title);
     }
 }

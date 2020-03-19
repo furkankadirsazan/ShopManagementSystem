@@ -20,6 +20,8 @@ namespace ShopManagementSystem.WebUI.Entity
             this.ProductGallery = new HashSet<ProductGallery>();
             this.Products = new HashSet<Products>();
             this.ProductCategories = new HashSet<ProductCategories>();
+            this.Orders = new HashSet<Orders>();
+            this.Customers = new HashSet<Customers>();
         }
     
         public int ID { get; set; }
@@ -40,6 +42,10 @@ namespace ShopManagementSystem.WebUI.Entity
         public string AuthenticationCode { get; set; }
         public bool IsAuthenticated { get; set; }
         public Nullable<bool> IsRemember { get; set; }
+        public string BannerImagePath { get; set; }
+        public Nullable<System.DateTime> RegistrationDate { get; set; }
+        public string LogoPath { get; set; }
+        public Nullable<int> Point { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductGallery> ProductGallery { get; set; }
@@ -50,5 +56,9 @@ namespace ShopManagementSystem.WebUI.Entity
         public virtual Counties Counties { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductCategories> ProductCategories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Orders> Orders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Customers> Customers { get; set; }
     }
 }

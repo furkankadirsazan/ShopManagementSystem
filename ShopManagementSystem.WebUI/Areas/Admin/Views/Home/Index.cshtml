@@ -1,4 +1,5 @@
-﻿@{
+﻿@model StatisticViewModel
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
@@ -9,29 +10,224 @@
             <div class="card-body">
 
                 <h4 class="card-title"><i class="flaticon2-website"></i> Genel Duyurular ve Teknik Destek </h4>
-                <p class="card-text" style="font-size:15px;">
+                @*<p class="card-text" style="font-size:15px;">
                     <span class="kt-badge kt-badge--brand kt-badge--inline">BİLGİLENDİRME</span> Duyuru deneme 1.</br></br>
                     <center><span id="dots" style="font-size:15px;"></span></center>
                     <span id="more" style="display:none;font-size:15px;">
                         <span class="kt-badge kt-badge--warning kt-badge--inline">BİLGİLENDİRME</span> Duyuru deneme 2.</br></br>
                     </span>
-                </p>
+                </p>*@
                 <a href="mailto:bilgi@kentmedia.com.tr" class="btn btn-warning"><i class="fas fa-envelope"></i> Teknik Destek</a>
                 <a href="tel:08507066088" class="btn btn-primary"><i class="fas fa-headphones"></i> Müşteri Hizmetleri</a>
-                <button onclick="myFunction()" id="myBtn" class="btn btn-success">Eski Duyuruları Göster</button>
+                @*<button onclick="myFunction()" id="myBtn" class="btn btn-success">Eski Duyuruları Göster</button>*@
             </div>
         </div>
+    </div>    
+</div>
+<br />
+<div class="row ui-sortable" id="kt_sortable_portlets">
+    
+    <div class="col-lg-12">
+        <!--begin::Portlet-->
+        <div class="kt-portlet kt-portlet--sortable">
+            <div class="kt-portlet__head ui-sortable-handle">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title">
+                        SİPARİŞ İSTATİSTİKLERİ
+                    </h3>
+                </div>
+                <div class="kt-portlet__head-toolbar">
+                    <div class="kt-portlet__head-group">
+                    </div>
+                </div>
+            </div>
+            <div class="kt-portlet__body">
+                <div class="row row-no-padding row-col-separator-xl">
+
+                    <div class="col-md-12 col-lg-6 col-xl-3">
+
+                        <!--begin::New Feedbacks-->
+                        <div class="kt-widget24">
+                            <div class="kt-widget24__details">
+                                <div class="kt-widget24__info">
+                                    <h4 class="kt-widget24__title">
+                                        Bekleyen
+                                    </h4>
+                                    <span class="kt-widget24__desc">
+                                        Sipariş Sayısı
+                                    </span>
+                                </div>
+                                <span class="kt-widget24__stats kt-font-warning">
+                                    @Model.OrdersInWait
+                                </span>
+                            </div>
+                        </div>
+
+                        <!--end::New Feedbacks-->
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-3">
+
+                        <!--begin::Total Profit-->
+                        <div class="kt-widget24">
+                            <div class="kt-widget24__details">
+                                <div class="kt-widget24__info">
+                                    <h4 class="kt-widget24__title">
+                                       İşleme Alınmış
+                                    </h4>
+                                    <span class="kt-widget24__desc">
+                                        Sipariş Sayısı
+                                    </span>
+                                </div>
+                                <span class="kt-widget24__stats kt-font-brand">
+                                    @Model.OrdersInProcess
+                                </span>
+                            </div>
+                        </div>
+
+                        <!--end::Total Profit-->
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-3">
+
+                        <!--begin::Total Profit-->
+                        <div class="kt-widget24">
+                            <div class="kt-widget24__details">
+                                <div class="kt-widget24__info">
+                                    <h4 class="kt-widget24__title">
+                                        Kargoya Verilmiş
+                                    </h4>
+                                    <span class="kt-widget24__desc">
+                                        Sipariş Sayısı
+                                    </span>
+                                </div>
+                                <span class="kt-widget24__stats kt-font-success">
+                                    @Model.OrdersInCargo
+                                </span>
+                            </div>
+                        </div>
+
+                        <!--end::Total Profit-->
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-3">
+
+                        <!--begin::New Orders-->
+                        <div class="kt-widget24">
+                            <div class="kt-widget24__details">
+                                <div class="kt-widget24__info">
+                                    <h4 class="kt-widget24__title">
+                                        Teslim Edilmiş
+                                    </h4>
+                                    <span class="kt-widget24__desc">
+                                        Sipariş Sayısı
+                                    </span>
+                                </div>
+                                <span class="kt-widget24__stats kt-font-success">
+                                    @Model.OrdersInCompleted
+                                </span>
+                            </div>
+                        </div>
+
+                        <!--end::New Orders-->
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-3">
+
+                        <!--begin::Total Profit-->
+                        <div class="kt-widget24">
+                            <div class="kt-widget24__details">
+                                <div class="kt-widget24__info">
+                                    <h4 class="kt-widget24__title">
+                                        İptal Edilmiş
+                                    </h4>
+                                    <span class="kt-widget24__desc">
+                                        Sipariş Sayısı
+                                    </span>
+                                </div>
+                                <span class="kt-widget24__stats kt-font-danger">
+                                    @Model.OrdersInCancelled
+                                </span>
+                            </div>
+                        </div>
+
+                        <!--end::Total Profit-->
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-3">
+
+                        <!--begin::New Users-->
+                        <div class="kt-widget24">
+                            <div class="kt-widget24__details">
+                                <div class="kt-widget24__info">
+                                    <h4 class="kt-widget24__title">
+                                        İade Edilen
+                                    </h4>
+                                    <span class="kt-widget24__desc">
+                                        Sipariş Sayısı
+                                    </span>
+                                </div>
+                                <span class="kt-widget24__stats kt-font-danger">
+                                    @(Model.OrdersInReturnBack)
+                                </span>
+                            </div>
+                        </div>
+
+                        <!--end::New Users-->
+                    </div>
+                    <div class="col-md-12 col-lg-6 col-xl-3">
+
+                        <!--begin::New Users-->
+                        <div class="kt-widget24">
+                            <div class="kt-widget24__details">
+                                <div class="kt-widget24__info">
+                                    <h4 class="kt-widget24__title">
+                                        Teslim Edilemeyen
+                                    </h4>
+                                    <span class="kt-widget24__desc">
+                                        Sipariş Sayısı
+                                    </span>
+                                </div>
+                                <span class="kt-widget24__stats kt-font-danger">
+                                    @(Model.OrdersInUnsuccesfull)
+                                </span>
+                            </div>
+                        </div>
+
+                        <!--end::New Users-->
+                    </div>
+                   
+                   
+                    <div class="col-md-12 col-lg-6 col-xl-3">
+
+                        <!--begin::New Orders-->
+                        <div class="kt-widget24">
+                            <div class="kt-widget24__details">
+                                <div class="kt-widget24__info">
+                                    <h4 class="kt-widget24__title">
+                                        Toplam
+                                    </h4>
+                                    <span class="kt-widget24__desc">
+                                        Sipariş Sayısı
+                                    </span>
+                                </div>
+                                <span class="kt-widget24__stats kt-font-dark">
+                                    @Model.OrdersTotal
+                                </span>
+                            </div>
+                        </div>
+
+                        <!--end::New Orders-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--end::Portlet-->
+        <!-- begin:Empty Portlet: sortable porlet required for each columns! -->
+        <!--end::Empty Portlet-->
     </div>
-    <br />
-    
-   
-    <br />
-   
-    
 
 </div>
-@section scripts{
-    <script>
+
+
+    @section scripts{
+        <script>
             function myFunction() {
                 var dots = document.getElementById("dots");
                 var moreText = document.getElementById("more");
@@ -48,6 +244,6 @@
                 }
             };
 
-    </script>
+        </script>
 
-}
+    }

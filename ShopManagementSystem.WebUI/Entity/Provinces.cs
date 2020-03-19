@@ -19,6 +19,7 @@ namespace ShopManagementSystem.WebUI.Entity
         {
             this.Counties = new HashSet<Counties>();
             this.Shops = new HashSet<Shops>();
+            this.Customers = new HashSet<Customers>();
         }
     
         public int ID { get; set; }
@@ -28,5 +29,7 @@ namespace ShopManagementSystem.WebUI.Entity
         public virtual ICollection<Counties> Counties { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Shops> Shops { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Customers> Customers { get; set; }
     }
 }

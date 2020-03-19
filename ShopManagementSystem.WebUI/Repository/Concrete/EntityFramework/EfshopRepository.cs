@@ -5,6 +5,7 @@ using System.Web.Security;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using ShopManagementSystem.WebUI.Models;
 
 namespace ShopManagementSystem.WebUI.Repository.Concrete.EntityFramework
 {
@@ -24,7 +25,7 @@ namespace ShopManagementSystem.WebUI.Repository.Concrete.EntityFramework
         public Shops GetByUsername(string username) => db.Shops.Where(u => u.Username == username).FirstOrDefault();
         public Shops GetByUsernameAndPassword(string username, string password) => db.Shops.Where(u => u.Username == username && u.Password == password).FirstOrDefault();
         public bool HasSameRecords(Shops entity) => db.Shops.Where(a => a.Username == entity.Username || a.Email == entity.Email || a.TaxNumber == entity.TaxNumber).Any();
-
+        public bool HasSameRecords(CreateAccountModel entity) => db.Shops.Where(a => a.Username == entity.Username || a.Email == entity.Email || a.TaxNumber == entity.TaxNumber).Any();
 
         public SelectList SetShopDropdownList(int id) => new SelectList(db.Shops.Where(a=>a.ID==id).OrderBy(p => p.Name).ToList(), "ID", "Title");
 

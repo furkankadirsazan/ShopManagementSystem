@@ -43,7 +43,9 @@
                                     <th>Vergi No</th>
                                     <th>Email</th>
                                     <th>Telefon</th>
+                                    <th>Başvuru Tarihi</th>
                                     <th>Yetki</th>
+                                    <th>Onay Durumu</th>
                                     <th>İşlemler</th>
                                 </tr>
                             </thead>
@@ -57,8 +59,19 @@
                                         <td>@item.TaxNumber</td>
                                         <td>@item.Email</td>
                                         <td>@item.Phone</td>
-
+                                        <td><span><span class="kt-badge kt-badge--warning kt-badge--dot"></span>&nbsp;<span class="kt-font-bold kt-font-warning"> @Convert.ToDateTime(item.RegistrationDate).ToShortDateString()</span></span></td>
                                         <td><span><span class="kt-badge kt-badge--info kt-badge--dot"></span>&nbsp;<span class="kt-font-bold kt-font-info"> @item.Roles.DisplayName</span></span></td>
+                                        <td>
+                                            @if (item.IsAuthenticated)
+                                            {
+                                                <span><span class="kt-badge kt-badge--success kt-badge--dot"></span>&nbsp;<span class="kt-font-bold kt-font-success"> Onaylı</span></span>
+                                            }
+                                            else
+                                            {
+                                                <span><span class="kt-badge kt-badge--danger kt-badge--dot"></span>&nbsp;<span class="kt-font-bold kt-font-danger"> Onaysız</span></span>
+                                            }
+                                        </td>
+                                        
                                         <td>
                                             @if (item != Model.Shops.First())
                                             {

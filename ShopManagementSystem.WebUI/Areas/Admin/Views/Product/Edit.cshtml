@@ -86,7 +86,7 @@
                         <label class="col-form-label col-2"><font color="red">*</font> Ürün Fotoğrafı</label>
                         <div></div>
                         <div class="custom-file col-10">
-                            <input type="file" class="custom-file-input" id="inputGroupFile01" name="upload" required="" accept=".jpg">
+                            <input type="file" class="custom-file-input" id="inputGroupFile01" name="upload" accept=".jpg">
                             <label class="custom-file-label selected" for="upload"></label>
                         </div>
                     </div>
@@ -107,7 +107,7 @@
                     <div class="form-group row">
                         <label for="Price" class="col-2 col-form-label"><font color="red">*</font> Fiyat</label>
                         <div class="col-10">
-                            @Html.TextBoxFor(m => Model.Price, new { id = "Price", name = "Price", @class = "form-control", type = "text", pattern = "[0-9]",title="Bu alan sadece rakam olabilir.", required = "" })
+                            @Html.TextBoxFor(m => Model.Price, new { id = "Price", name = "Price", @class = "form-control", type = "text", required = "" })
                         </div>
                     </div>
                     <div class="form-group row">
@@ -180,7 +180,7 @@
                             <div class="col-2">
                             </div>
                             <div class="col-10">
-                                <button type="submit" class="btn btn-success">Ekle</button>
+                                <button type="submit" class="btn btn-success">Güncelle</button>
                                 <a href="/admin/product/index" class="btn btn-warning">Geri</a>
                             </div>
                         </div>

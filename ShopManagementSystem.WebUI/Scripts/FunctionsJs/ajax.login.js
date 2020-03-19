@@ -25,6 +25,13 @@ $(document).ready(function () {
                         window.location.href = result.Url;
                     }, 3000);
                 }
+                else if (result.Status === "NotAuthentication") {
+                    $("#divResult").show();
+                    document.getElementById("divResult").innerHTML = '<div class="alert alert-warning" role="alert"><div class="alert-text"> DİKKAT : Başvuru talebiniz incelenmektedir. En kısa sürede sizlere dönüş yapılacaktır. Hesabınız onaylandıktan sonra bu bilgilerle giriş yapabileceksiniz.</div></div>';
+                    setTimeout(function () {
+                        $("#divResult").hide();
+                    }, 10000);
+                }
                 else if (result.Status === "Fail") {
                     $("#divResult").show();
                     document.getElementById("divResult").innerHTML = '<div class="alert alert-danger" role="alert"><div class="alert-text"> HATA : Kullanıcı adı veya şifre hatalı!</div></div>';

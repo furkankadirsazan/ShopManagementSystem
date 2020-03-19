@@ -108,6 +108,10 @@
     <EntitySetMapping Name="Shops">
       <EntityTypeMapping TypeName="ShopManagementSystemModel.Shops">
         <MappingFragment StoreEntitySet="Shops">
+          <ScalarProperty Name="Point" ColumnName="Point" />
+          <ScalarProperty Name="LogoPath" ColumnName="LogoPath" />
+          <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
+          <ScalarProperty Name="BannerImagePath" ColumnName="BannerImagePath" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="RoleID" ColumnName="RoleID" />
           <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
@@ -152,6 +156,7 @@
     <EntitySetMapping Name="TaxDescriptions">
       <EntityTypeMapping TypeName="ShopManagementSystemModel.TaxDescriptions">
         <MappingFragment StoreEntitySet="TaxDescriptions">
+          <ScalarProperty Name="Value" ColumnName="Value" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
@@ -193,6 +198,46 @@
           <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
           <ScalarProperty Name="ProductID" ColumnName="ProductID" />
           <ScalarProperty Name="ShopID" ColumnName="ShopID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="ShopManagementSystemModel.Orders">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="OrderStatusID" ColumnName="OrderStatusID" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="IsInDopingo" ColumnName="IsInDopingo" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="ShopID" ColumnName="ShopID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="ShopManagementSystemModel.Customers">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="CountyID" ColumnName="CountyID" />
+          <ScalarProperty Name="ProvinceID" ColumnName="ProvinceID" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="AddedDate" ColumnName="AddedDate" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShopID" ColumnName="ShopID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderStatuses">
+      <EntityTypeMapping TypeName="ShopManagementSystemModel.OrderStatuses">
+        <MappingFragment StoreEntitySet="OrderStatuses">
+          <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>

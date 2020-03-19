@@ -42,5 +42,8 @@ namespace ShopManagementSystem.WebUI.Entity
         public virtual DbSet<WarrantyPeriods> WarrantyPeriods { get; set; }
         public virtual DbSet<Categories> Categories { get; set; }
         public virtual DbSet<ProductCategories> ProductCategories { get; set; }
+        public virtual DbSet<Orders> Orders { get; set; }
+        public virtual DbSet<Customers> Customers { get; set; }
+        public virtual DbSet<OrderStatuses> OrderStatuses { get; set; }
     }
 }

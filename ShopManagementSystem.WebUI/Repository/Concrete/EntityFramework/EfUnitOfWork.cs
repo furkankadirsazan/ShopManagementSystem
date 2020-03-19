@@ -114,6 +114,30 @@ namespace ShopManagementSystem.WebUI.Repository.Concrete.EntityFramework
             }
         }
 
+        private IOrderRepository _orders;
+        public IOrderRepository Orders
+        {
+            get
+            {
+                return _orders ?? (_orders = new EfOrderRepository(dbContext));
+            }
+        }
+        private ICustomerRepository _customers;
+        public ICustomerRepository Customers
+        {
+            get
+            {
+                return _customers ?? (_customers = new EfCustomerRepository(dbContext));
+            }
+        }
+        private IOrderStatusRepository _orderstatuses;
+        public IOrderStatusRepository OrderStatuses
+        {
+            get
+            {
+                return _orderstatuses ?? (_orderstatuses = new EfOrderStatusRepository(dbContext));
+            }
+        }
         public void Dispose()
         {
             dbContext.Dispose();

@@ -1,0 +1,120 @@
+﻿@model Orders
+<div class="row">
+    <div class="col-md-12">
+
+        <!--begin::Portlet-->
+        <div class="kt-portlet">
+            <div class="kt-portlet__head">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title">
+                        Sipariş Oluştur
+                    </h3>
+                </div>
+            </div>
+
+            <!--begin::Form-->
+
+            @using (Html.BeginForm("Add", "Order", FormMethod.Post, new { enctype = "multipart/form-data", @class = "kt-form kt-form--label-right" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="kt-portlet__body">
+                    <div class="form-group form-group-last">
+                        @if (!string.IsNullOrEmpty(TempData["Message"] as string))
+                        {
+                            <div class="@("alert " + TempData["ResultClass"] as string) fade show" role="alert">
+                                <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                                <div class="alert-text">@(Html.Raw(TempData["Message"] as string))</div>
+                                <div class="alert-close">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true"><i class="la la-close"></i></span>
+                                    </button>
+                                </div>
+                            </div>
+                        }
+                        <div class="row">
+                            <div class="col">
+                                <div class="alert alert-light alert-elevate fade show" role="alert">
+                                    <div class="alert-icon"><i class="flaticon2-bell kt-font-brand"></i></div>
+                                    <div class="alert-text">
+                                        Sipariş eklemek istediğiniz müşterinin sistemde kaydı olmalıdır. Eğer yoksa eklemek için <a href="/admin/customer/add">buraya tıklayın.</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <div class="col-10 ml-auto">
+                            <h3 class="m-form__section">Mağaza Bilgisi</h3>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="ShopID" class="col-2 col-form-label"><font color="red">*</font> Mağaza Adı</label>
+                        <div class="col-10">
+                            @Html.DropDownListFor(m => Model.ShopID, ViewBag.Shops as SelectList, "Seçiniz", new { @class = "selectpicker form-control", data_live_search = "true", id = "ShopID", required = "" })
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group m-form__group row">
+                        <div class="col-10 ml-auto">
+                            <h3 class="m-form__section">Müşteri Bilgisi</h3>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="ShopID" class="col-2 col-form-label"><font color="red">*</font> Müşteri</label>
+                        <div class="col-10">
+                            @Html.DropDownListFor(m => Model.CustomerID, (IEnumerable<SelectListItem>)ViewBag.Customers, "Seçiniz (Ad Soyad - Tel)", new { @class = "selectpicker form-control", data_live_search = "true", id = "CustomerID", required = "" })
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group m-form__group row">
+                        <div class="col-10 ml-auto">
+                            <h3 class="m-form__section">Ürün Bilgisi</h3>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="ShopID" class="col-2 col-form-label"><font color="red">*</font> Ürün Adı</label>
+                        <div class="col-10">
+                            @Html.DropDownListFor(m => Model.ProductID, ViewBag.Products as SelectList, "Seçiniz", new { @class = "selectpicker form-control", data_live_search = "true", id = "ProductID", required = "" })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="Name" class="col-2 col-form-label"><font color="red">*</font> Sipariş Adeti</label>
+                        <div class="col-10">
+                            @Html.TextBoxFor(m => Model.Number, new { id = "Number", name = "Number", @class = "form-control", type = "number", required = "", Value = 1 })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="ShopID" class="col-2 col-form-label"><font color="red">*</font> Sipariş Durumu</label>
+                        <div class="col-10">
+                            @Html.DropDownListFor(m => Model.OrderStatusID, ViewBag.OrderStatuses as SelectList, "Seçiniz", new { @class = "selectpicker form-control", data_live_search = "true", id = "OrderStatusID", required = "" })
+                        </div>
+                    </div>
+
+                </div>
+                <div class="kt-portlet__foot">
+                    <div class="kt-form__actions">
+                        <div class="row">
+                            <div class="col-2">
+                            </div>
+                            <div class="col-10">
+                                <button type="submit" class="btn btn-success">Ekle</button>
+                                <a href="/admin/order/index" class="btn btn-warning">Geri</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+        <!--end::Portlet-->
+    </div>
+
+</div>
+
+@section scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.10/js/bootstrap-select.min.js" integrity="sha256-FXzZGmaRFZngOjUKy3lWZJq/MflaMpffBbu3lPT0izE=" crossorigin="anonymous"></script>
+}
+

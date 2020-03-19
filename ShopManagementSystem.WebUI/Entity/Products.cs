@@ -19,6 +19,7 @@ namespace ShopManagementSystem.WebUI.Entity
         {
             this.ProductGallery = new HashSet<ProductGallery>();
             this.ProductCategories = new HashSet<ProductCategories>();
+            this.Orders = new HashSet<Orders>();
         }
     
         public int ID { get; set; }
@@ -46,5 +47,7 @@ namespace ShopManagementSystem.WebUI.Entity
         public virtual WarrantyPeriods WarrantyPeriods { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductCategories> ProductCategories { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Orders> Orders { get; set; }
     }
 }

@@ -1,0 +1,7 @@
+﻿@model Orders
+<p><strong>@Html.Raw(Model.Customers.Name + " " + Model.Customers.Surname)  </strong> isimli müşteriye ait <strong>@Html.Raw(Model.OrderDate.ToShortDateString())</strong> siparişi silmek istediğinize emin misiniz?</p><br />
+<div class="modal-footer">
+    <a class="btn btn-primary" href="/admin/order/remove/@Model.ID"><i class="flaticon-delete"></i>Onayla</a>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+</div>
+

@@ -1,4 +1,5 @@
 ﻿using ShopManagementSystem.WebUI.Entity;
+using ShopManagementSystem.WebUI.Models;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -10,6 +11,7 @@ namespace ShopManagementSystem.WebUI.Repository.Abstract
         Shops GetByEmail(string email);
         Shops GetByUsernameAndPassword(string username, string password);
         bool HasSameRecords(Shops entity);
+        bool HasSameRecords(CreateAccountModel entity);
         string CreateAuthenticationCode();
         bool CheckRelatedRecords(int id);
 

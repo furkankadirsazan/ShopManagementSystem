@@ -13,7 +13,7 @@ using System.Web.Security;
 
 namespace ShopManagementSystem.WebUI.Areas.Admin.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin,Shop")]
     public class ProductController : BaseController
     {
         private readonly IUnitOfWork uow;
@@ -27,6 +27,45 @@ namespace ShopManagementSystem.WebUI.Areas.Admin.Controllers
             int shopID = (int)ViewData["ShopID"];
             return (ViewData["ShopRole"] as string == "Admin") ? View(uow.Products.GetAll().ToList()) :
             View(uow.Products.Find(a => a.ShopID == shopID).ToList());
+        }
+
+
+        [Log]
+        public ActionResult Remove(int? id)
+        {
+            if (id == null) return RedirectToAction("Index", "Product");
+            try
+            {
+                var product = uow.Products.Get(Convert.ToInt32(id));
+                if (product != null)
+                {
+                    if (uow.Products.CheckRelatedRecords(product.ID))
+                    {
+                        TempData["ResultClass"] = AlertType.Warning;
+                        TempData["Message"] = string.Format(WarningMessages.HasRelatedRecord, "Sipariş veya Ürün Galerisi", "bu ürüne ait kayıtlar");
+                        return RedirectToAction("Index", "Product");
+                    }
+
+                    uow.Products.Delete(product);
+                    uow.SaveChanges();
+
+                    TempData["ResultClass"] = AlertType.Success;
+                    TempData["Message"] = SuccessMessages.Success;
+                    return RedirectToAction("Index", "Product");
+                }
+                else
+                {
+                    TempData["ResultClass"] = AlertType.Danger;
+                    TempData["Message"] = ExceptionMessages.EmptyEntity;
+                    return RedirectToAction("Index", "Product");
+                }
+            }
+            catch (Exception)
+            {
+                TempData["ResultClass"] = AlertType.Danger;
+                TempData["Message"] = ExceptionMessages.UnidentifiedError;
+                return RedirectToAction("Index", "Product");
+            }
         }
 
         public ActionResult Add()
@@ -77,7 +116,7 @@ namespace ShopManagementSystem.WebUI.Areas.Admin.Controllers
                                 else
                                 {
                                     TempData["ResultClass"] = AlertType.Warning;
-                                    TempData["Message"] = WarningMessages.EmptyImpassable;
+                                    TempData["Message"] = string.Format(WarningMessages.EmptyImpassable,"Fotoğraf");
                                     return View();
                                 }
                             }
@@ -121,7 +160,7 @@ namespace ShopManagementSystem.WebUI.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Log]
-        public ActionResult Edit(Products entity)
+        public ActionResult Edit(Products entity, IEnumerable<HttpPostedFileBase> upload)
         {
             if (ModelState.IsValid)
             {
@@ -129,29 +168,58 @@ namespace ShopManagementSystem.WebUI.Areas.Admin.Controllers
                 {
                     try
                     {
-                        uow.Products.Edit(entity);
-                        uow.SaveChanges();
-                        TempData["ResultClass"] = AlertType.Success;
-                        TempData["Message"] = SuccessMessages.Success;
-                        return RedirectToAction("Edit", "Products", new { id = entity.ID });
+                        if (upload != null)
+                        {
+                            foreach (var file in upload)
+                            {
+                                if (file != null && file.ContentLength > 0)
+                                {
+                                    var fileuploadmodel = SetUploadFileName(file.FileName, Path.GetExtension(file.FileName));
+                                    file.SaveAs(Server.MapPath("~" + fileuploadmodel.Path));
+
+                                    entity.ImagePath = fileuploadmodel.Path;
+                                    entity.ThumbNailImagePath = fileuploadmodel.Path;
+                                    entity.FileName = fileuploadmodel.FileName;
+
+                                    uow.Products.Edit(entity);
+                                    uow.SaveChanges();
+
+                                    TempData["ResultClass"] = AlertType.Success;
+                                    TempData["Message"] = SuccessMessages.Success;
+                                    return RedirectToAction("Edit", "Product", new { id = entity.ID });
+                                }
+                                else
+                                {
+                                    var tmpproduct = uow.Products.Find(a => a.ID == entity.ID).FirstOrDefault();
+                                    entity.ImagePath = tmpproduct.ImagePath;
+                                    entity.ThumbNailImagePath = tmpproduct.ThumbNailImagePath;
+                                    entity.FileName = tmpproduct.FileName;
+                                    uow.SaveChanges();
+                                    TempData["ResultClass"] = AlertType.Success;
+                                    TempData["Message"] = SuccessMessages.Success;
+                                    return RedirectToAction("Edit", "Product", new { id = entity.ID });
+                                }
+                            }
+                        }                                    
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
+                        var e = ex.Message;
                         TempData["ResultClass"] = AlertType.Danger;
                         TempData["Message"] = ExceptionMessages.UnidentifiedError;
-                        return RedirectToAction("Edit", "Products", new { id = entity.ID });
+                        return RedirectToAction("Edit", "Product", new { id = entity.ID });
                     }
                 }
                 else
                 {
                     TempData["ResultClass"] = AlertType.Danger;
                     TempData["Message"] = ExceptionMessages.EmptyEntity;
-                    return RedirectToAction("Index", "Products");
+                    return RedirectToAction("Index", "Product");
                 }
             }
             TempData["ResultClass"] = AlertType.Danger;
             TempData["Message"] = ExceptionMessages.EmptyEntity;
-            return RedirectToAction("Index", "Products");
+            return RedirectToAction("Index", "Product");
         }
 
         [HttpGet]
@@ -168,13 +236,8 @@ namespace ShopManagementSystem.WebUI.Areas.Admin.Controllers
 
             else return RedirectToAction("Index", "Product");
         }
-
-      
-
         [HttpPost]
         public ActionResult RemoveProductModal(int? id) => PartialView(uow.Products.Get((int)id));
-
-
         protected void SetViewBags() {
             int shopID = (int)ViewData["ShopID"];
             var userrole = ViewData["ShopRole"] as string;
@@ -198,7 +261,6 @@ namespace ShopManagementSystem.WebUI.Areas.Admin.Controllers
                 SetViewBags();
             }           
         }
-
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
             if (User.Identity.Name != null)

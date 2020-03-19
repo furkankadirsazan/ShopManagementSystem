@@ -84,6 +84,45 @@ namespace ShopManagementSystem.WebUI.Extensions.Mail.Concrete
                     }
                 }
             }
+
+        }
+
+        public void SendForSignUp(string ReceiverEmail, string Title)
+        {
+            var senderEmail = MailStrings.SenderEmail;
+            var receiverEmail = ReceiverEmail.ToLower();
+            var mailTitle = System.String.Format(MailStrings.MailTitle, "İdealiz Mağaza Açma Başvurunuz");
+
+            var senderName = MailStrings.SenderName;
+            var fromAddress = new MailAddress(senderEmail);
+            var toAddress = new MailAddress(receiverEmail);
+            var subject = System.String.Format(MailStrings.Subject, mailTitle, senderName);
+            var body = System.String.Format(MailStrings.CreateAccountBody, Title);
+
+            using (var smtp = new SmtpClient
+            {
+                Host = MailStrings.MailServer,
+                Port = MailStrings.Port,
+                Timeout = MailStrings.Timeout,
+                EnableSsl = MailStrings.IsSecure,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = MailStrings.IsUseDefaultCredentials,
+                Credentials = new NetworkCredential(fromAddress.Address, MailStrings.MailPassword)
+            })
+            {
+                using (var message = new MailMessage(fromAddress, toAddress) { Subject = subject, Body = body, IsBodyHtml = MailStrings.IsBodyHtml })
+                {
+                    try
+                    {
+                        smtp.Send(message);
+                    }
+                    catch
+                    {
+                        throw new NotImplementedException();
+                    }
+                }
+            }
+
         }
     }
 }

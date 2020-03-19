@@ -4741,7 +4741,7 @@
     <Content Include="Content\Iconpicker\README.md" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Admin\Views\Security\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\MasterSecurity\Login.cshtml" />
     <Content Include="Content\AdminTemplate\assets\vendors\general\summernote\.editorconfig" />
     <Content Include="Content\AdminTemplate\assets\vendors\general\summernote\.eslintrc" />
     <Content Include="Content\AdminTemplate\assets\vendors\general\summernote\.github\CODE_OF_CONDUCT.md" />
@@ -4859,11 +4859,22 @@
     <Content Include="Areas\Admin\Views\Product\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\RemoveOrderModal.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\RemoveCustomerModal.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Customer\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Account\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\FunctionsJs\ajax.contactform.js" />
     <Content Include="Scripts\FunctionsJs\ajax.forgetpassword.js" />
     <Content Include="Scripts\FunctionsJs\ajax.login.js" />
-    <Content Include="Scripts\FunctionsJs\ajax.studentcreateaccount.js" />
+    <Content Include="Scripts\FunctionsJs\ajax.createaccount.js" />
     <Content Include="Scripts\FunctionsJs\ajax.studentforgetpassword.js" />
     <Content Include="Scripts\FunctionsJs\ajax.studentlogin.js" />
     <Content Include="Scripts\FunctionsJs\jquery.searchintable.js" />
@@ -4890,6 +4901,10 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <None Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Uploads\Banners\default.jpg" />
+    <Content Include="Uploads\Logos\default.jpg" />
+    <Content Include="Uploads\Products\4a7441dc-fc47-4fc3-b596-43cc51f210c2.jpg" />
+    <Content Include="Uploads\Products\dc445e2e-0bc0-4c7c-a166-f0f55e2ed5a0.jpg" />
     <Content Include="Web.config" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
@@ -4911,7 +4926,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\OutOfStockStatusController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\MasterSecurityController.cs" />
@@ -4919,9 +4937,13 @@
     <Compile Include="Areas\Admin\Controllers\WarrantyPeriodController.cs" />
     <Compile Include="Areas\Admin\Models\FileUploadModel.cs" />
     <Compile Include="Areas\Admin\Models\SettingModel.cs" />
+    <Compile Include="Areas\Admin\Models\ShopAccountModel.cs" />
     <Compile Include="Areas\Admin\Models\ShopLoginModel.cs" />
     <Compile Include="Areas\Admin\Models\UserLoginModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\CustomerViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\OrderViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\ShopViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\StatisticViewModel.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomePageController.cs" />
@@ -4932,10 +4954,19 @@
     <Compile Include="Entity\Counties.cs">
       <DependentUpon>ShopManagementDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entity\Customers.cs">
+      <DependentUpon>ShopManagementDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entity\ELMAH_Error.cs">
       <DependentUpon>ShopManagementDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\Logs.cs">
+      <DependentUpon>ShopManagementDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Orders.cs">
+      <DependentUpon>ShopManagementDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\OrderStatuses.cs">
       <DependentUpon>ShopManagementDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Entity\OutOfStockStatuses.cs">
@@ -5010,18 +5041,23 @@
     <Compile Include="Extensions\String\MailStrings.cs" />
     <Compile Include="Extensions\String\StringExtension.cs" />
     <Compile Include="Extensions\String\SuccessMessages.cs" />
+    <Compile Include="Extensions\String\SystemStrings.cs" />
     <Compile Include="Extensions\String\UploadStrings.cs" />
     <Compile Include="Extensions\String\WarningMessages.cs" />
     <Compile Include="Extensions\Url\UrlExtension.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CreateAccountModel.cs" />
     <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Abstract\ICategoryRepository.cs" />
     <Compile Include="Repository\Abstract\ICountyRepository.cs" />
+    <Compile Include="Repository\Abstract\ICustomerRepository.cs" />
     <Compile Include="Repository\Abstract\IGenericRepository.cs" />
     <Compile Include="Repository\Abstract\ILogRepository.cs" />
+    <Compile Include="Repository\Abstract\IOrderRepository.cs" />
+    <Compile Include="Repository\Abstract\IOrderStatusRepository.cs" />
     <Compile Include="Repository\Abstract\IOutOfStockStatusRepository.cs" />
     <Compile Include="Repository\Abstract\IProductCategoryRepository.cs" />
     <Compile Include="Repository\Abstract\IProductGalleryRepository.cs" />
@@ -5035,7 +5071,10 @@
     <Compile Include="Repository\Abstract\IUnitOfWork.cs" />
     <Compile Include="Repository\Abstract\IWarrantyPeriodRepository.cs" />
     <Compile Include="Repository\Concrete\EntityFramework\EfCountyRepository.cs" />
+    <Compile Include="Repository\Concrete\EntityFramework\EfCustomerRepository.cs" />
     <Compile Include="Repository\Concrete\EntityFramework\EfLogRepository.cs" />
+    <Compile Include="Repository\Concrete\EntityFramework\EfOrderRepository.cs" />
+    <Compile Include="Repository\Concrete\EntityFramework\EfOrderStatusRepository.cs" />
     <Compile Include="Repository\Concrete\EntityFramework\EfOutOfStockStatusRepository.cs" />
     <Compile Include="Repository\Concrete\EntityFramework\EfProductGalleryRepository.cs" />
     <Compile Include="Repository\Concrete\EntityFramework\EfProductRepository.cs" />
@@ -5059,6 +5098,9 @@
     <Content Include="Views\Error\Error403.cshtml" />
     <Content Include="Views\Error\Error500.cshtml" />
     <Content Include="Views\Security\Login.cshtml" />
+    <Content Include="Views\Security\CreateAccount.cshtml" />
+    <Content Include="Views\Shared\_UserInfo.cshtml" />
+    <Content Include="Views\Shared\_UserAvatar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -5068,8 +5110,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\AccountEdit\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
-    <Folder Include="Uploads\Products\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>

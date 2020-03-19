@@ -15,6 +15,21 @@
     <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
     <Property Name="ProvinceID" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShopID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="AddedDate" Type="datetime" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProvinceID" Type="int" Nullable="false" />
+    <Property Name="CountyID" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="ELMAH_Error">
     <Key>
       <PropertyRef Name="ErrorId" />
@@ -41,6 +56,28 @@
     <Property Name="UrlAccessed" Type="nvarchar(max)" />
     <Property Name="ExecutionMs" Type="bigint" />
     <Property Name="AddedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ShopID" Type="int" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="CustomerID" Type="int" Nullable="false" />
+    <Property Name="OrderStatusID" Type="int" Nullable="false" />
+    <Property Name="OrderDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime" Nullable="false" />
+    <Property Name="Number" Type="int" Nullable="false" />
+    <Property Name="IsInDopingo" Type="bit" Nullable="false" />
+    <Property Name="TotalPrice" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderStatuses">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="OutOfStockStatuses">
     <Key>
@@ -126,6 +163,8 @@
     <Property Name="Email" Type="nvarchar" MaxLength="200" Nullable="false" />
     <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="Title" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BannerImagePath" Type="nvarchar(max)" />
+    <Property Name="LogoPath" Type="nvarchar(max)" />
     <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
     <Property Name="TaxNumber" Type="nvarchar" MaxLength="10" Nullable="false" />
     <Property Name="TaxAdministration" Type="nvarchar(max)" Nullable="false" />
@@ -133,6 +172,8 @@
     <Property Name="AuthenticationCode" Type="nvarchar" MaxLength="200" />
     <Property Name="IsAuthenticated" Type="bit" Nullable="false" />
     <Property Name="IsRemember" Type="bit" />
+    <Property Name="RegistrationDate" Type="datetime" />
+    <Property Name="Point" Type="int" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -158,6 +199,7 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Value" Type="float" Nullable="false" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -188,6 +230,90 @@
       </Principal>
       <Dependent Role="Counties">
         <PropertyRef Name="ProvinceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customers_Counties">
+    <End Role="Counties" Type="Self.Counties" Multiplicity="1" />
+    <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Counties">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Customers">
+        <PropertyRef Name="CountyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customers_Provinces">
+    <End Role="Provinces" Type="Self.Provinces" Multiplicity="1" />
+    <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provinces">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Customers">
+        <PropertyRef Name="ProvinceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customers_Shops">
+    <End Role="Shops" Type="Self.Shops" Multiplicity="1" />
+    <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shops">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Customers">
+        <PropertyRef Name="ShopID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_OrderStatuses">
+    <End Role="OrderStatuses" Type="Self.OrderStatuses" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderStatuses">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="OrderStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Shops">
+    <End Role="Shops" Type="Self.Shops" Multiplicity="1" />
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shops">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="ShopID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -350,8 +476,11 @@
   <EntityContainer Name="ShopManagementSystemModelStoreContainer">
     <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Counties" EntityType="Self.Counties" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ELMAH_Error" EntityType="Self.ELMAH_Error" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Logs" EntityType="Self.Logs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderStatuses" EntityType="Self.OrderStatuses" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="OutOfStockStatuses" EntityType="Self.OutOfStockStatuses" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductCategories" EntityType="Self.ProductCategories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductGallery" EntityType="Self.ProductGallery" Schema="dbo" store:Type="Tables" />
@@ -368,6 +497,34 @@
     <AssociationSet Name="FK_Counties_Provinces" Association="Self.FK_Counties_Provinces">
       <End Role="Provinces" EntitySet="Provinces" />
       <End Role="Counties" EntitySet="Counties" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customers_Counties" Association="Self.FK_Customers_Counties">
+      <End Role="Counties" EntitySet="Counties" />
+      <End Role="Customers" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customers_Provinces" Association="Self.FK_Customers_Provinces">
+      <End Role="Provinces" EntitySet="Provinces" />
+      <End Role="Customers" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customers_Shops" Association="Self.FK_Customers_Shops">
+      <End Role="Shops" EntitySet="Shops" />
+      <End Role="Customers" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Customers" Association="Self.FK_Orders_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_OrderStatuses" Association="Self.FK_Orders_OrderStatuses">
+      <End Role="OrderStatuses" EntitySet="OrderStatuses" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Products" Association="Self.FK_Orders_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Shops" Association="Self.FK_Orders_Shops">
+      <End Role="Shops" EntitySet="Shops" />
+      <End Role="Orders" EntitySet="Orders" />
     </AssociationSet>
     <AssociationSet Name="FK_ProductCategories_Categories" Association="Self.FK_ProductCategories_Categories">
       <End Role="Categories" EntitySet="Categories" />

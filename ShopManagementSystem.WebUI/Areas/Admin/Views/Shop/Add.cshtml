@@ -48,7 +48,7 @@
                     </div>
                     <div class="form-group m-form__group row">
                         <div class="col-10 ml-auto">
-                            <h3 class="m-form__section">Hesap Bilgileri</h3>
+                            <h3 class="m-form__section">Kullanıcı Bilgileri</h3>
                         </div>
                     </div>
 
@@ -97,7 +97,7 @@
                     <div class="form-group row">
                         <label for="TaxAdministration" class="col-2 col-form-label"><font color="red">*</font> Vergi Dairesi</label>
                         <div class="col-10">
-                            @Html.TextBoxFor(m => Model.TaxAdministration, new { id = "TaxAdministration", name = "TaxAdministration", @class = "form-control", type = "text", placeholder = "Kayseri Vergi Dairesi" })
+                            @Html.TextBoxFor(m => Model.TaxAdministration, new { id = "TaxAdministration", name = "TaxAdministration", @class = "form-control", type = "text", placeholder = "Kayseri Vergi Dairesi", required = "" })
                         </div>
                     </div>
 
@@ -105,7 +105,8 @@
                         <label for="TaxNumber" class="col-2 col-form-label"><font color="red">*</font> Vergi No</label>
                         <div class="col-10">
                             @Html.TextBoxFor(m => Model.TaxNumber, new { id = "TaxNumber", name = "TaxNumber", @class = "form-control", type = "text",
-                           pattern = "[0-9]{10}", title = "Bu alan sadece rakam olmalı ve maksimum 10 karakter içermelidir."
+                           pattern = "[0-9]{10}", title = "Bu alan sadece rakam olmalı ve maksimum 10 karakter içermelidir.",
+                           required = ""
                        })
                         </div>
                     </div>
@@ -136,7 +137,7 @@
                     <div class="form-group row">
                         <label for="Address" class="col-2 col-form-label"><font color="red">*</font> Adres</label>
                         <div class="col-10">
-                            @Html.TextAreaFor(m => Model.Address, new { id = "Address", name = "Address", @class = "form-control", type = "text" })
+                            @Html.TextAreaFor(m => Model.Address, new { id = "Address", name = "Address", @class = "form-control", type = "text", required = "" })
                         </div>
                     </div>
                     <div class="form-group row">
@@ -148,7 +149,7 @@
                     <div class="form-group row">
                         <label for="Phone" class="col-2 col-form-label"><font color="red">*</font> Telefon</label>
                         <div class="col-10">
-                            @Html.TextBoxFor(m => Model.Phone, new { id = "Phone", name = "Phone", @class = "form-control", type = "number" })
+                            @Html.TextBoxFor(m => Model.Phone, new { id = "Phone", name = "Phone", @class = "form-control", type = "number", required = "" })
                         </div>
                     </div>                         
                     <div class="form-group row">

@@ -1,0 +1,8 @@
+﻿@model ProductCategories
+<p><strong>@Html.Raw(Model.Shops.Title + " mağazasına ait " + Model.Products.Name) </strong> ürününün kategori bilgisini silmek istediğinize emin misiniz?</p><br />
+<div class="modal-footer">
+    <a class="btn btn-primary" href="/admin/productcategory/remove/@Model.ID"><i class="flaticon-delete"></i>Onayla</a>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+</div>
+
+

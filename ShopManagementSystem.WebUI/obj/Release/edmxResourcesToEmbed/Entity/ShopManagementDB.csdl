@@ -1,0 +1,624 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ShopManagementSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Counties">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProvinceID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Provinces" Relationship="Self.FK_Counties_Provinces" FromRole="Counties" ToRole="Provinces" />
+    <NavigationProperty Name="Shops" Relationship="ShopManagementSystemModel.FK_Shops_Counties" FromRole="Counties" ToRole="Shops" />
+    <NavigationProperty Name="Customers" Relationship="ShopManagementSystemModel.FK_Customers_Counties" FromRole="Counties" ToRole="Customers" />
+  </EntityType>
+  <EntityType Name="ELMAH_Error">
+    <Key>
+      <PropertyRef Name="ErrorId" />
+    </Key>
+    <Property Name="ErrorId" Type="Guid" Nullable="false" />
+    <Property Name="Application" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Host" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Source" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="User" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusCode" Type="Int32" Nullable="false" />
+    <Property Name="TimeUtc" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Sequence" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AllXml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Logs">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="IPAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UrlAccessed" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ExecutionMs" Type="Int64" />
+    <Property Name="AddedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="OutOfStockStatuses">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Products_OutOfStockStatuses" FromRole="OutOfStockStatuses" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="ProductGallery">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShopID" Type="Int32" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="ImagePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_ProductGallery_Products" FromRole="ProductGallery" ToRole="Products" />
+    <NavigationProperty Name="Shops" Relationship="Self.FK_ProductGallery_Shops" FromRole="ProductGallery" ToRole="Shops" />
+    <Property Name="FileName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShopID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProductCode" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="TaxDescriptionID" Type="Int32" Nullable="false" />
+    <Property Name="Number" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="StockHoldingUnit" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="OutOfStockStatusID" Type="Int32" Nullable="false" />
+    <Property Name="IsInStock" Type="Boolean" Nullable="false" />
+    <Property Name="WarrantyPeriodID" Type="Int32" Nullable="false" />
+    <Property Name="ImagePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ThumbNailImagePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="OutOfStockStatuses" Relationship="Self.FK_Products_OutOfStockStatuses" FromRole="Products" ToRole="OutOfStockStatuses" />
+    <NavigationProperty Name="ProductGallery" Relationship="Self.FK_ProductGallery_Products" FromRole="Products" ToRole="ProductGallery" />
+    <NavigationProperty Name="Shops" Relationship="Self.FK_Products_Shops" FromRole="Products" ToRole="Shops" />
+    <NavigationProperty Name="TaxDescriptions" Relationship="Self.FK_Products_TaxDescriptions" FromRole="Products" ToRole="TaxDescriptions" />
+    <NavigationProperty Name="WarrantyPeriods" Relationship="Self.FK_Products_WarrantyPeriods" FromRole="Products" ToRole="WarrantyPeriods" />
+    <Property Name="IsInDopingo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ProductCategories" Relationship="ShopManagementSystemModel.FK_ProductCategories_Products" FromRole="Products" ToRole="ProductCategories" />
+    <Property Name="FileName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Orders" Relationship="ShopManagementSystemModel.FK_Orders_Products" FromRole="Products" ToRole="Orders" />
+  </EntityType>
+  <EntityType Name="Provinces">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Counties" Relationship="Self.FK_Counties_Provinces" FromRole="Provinces" ToRole="Counties" />
+    <NavigationProperty Name="Shops" Relationship="Self.FK_Shops_Provinces" FromRole="Provinces" ToRole="Shops" />
+    <NavigationProperty Name="Customers" Relationship="ShopManagementSystemModel.FK_Customers_Provinces" FromRole="Provinces" ToRole="Customers" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Shops" Relationship="Self.FK_Shops_Roles" FromRole="Roles" ToRole="Shops" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Roles" FromRole="Roles" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Settings">
+    <Key>
+      <PropertyRef Name="Skey" />
+    </Key>
+    <Property Name="Skey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Shops">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="ProvinceID" Type="Int32" Nullable="false" />
+    <Property Name="CountyID" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TaxNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TaxAdministration" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ShopWebsite" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="AuthenticationCode" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="IsAuthenticated" Type="Boolean" Nullable="false" />
+    <Property Name="IsRemember" Type="Boolean" />
+    <NavigationProperty Name="ProductGallery" Relationship="Self.FK_ProductGallery_Shops" FromRole="Shops" ToRole="ProductGallery" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Products_Shops" FromRole="Shops" ToRole="Products" />
+    <NavigationProperty Name="Provinces" Relationship="Self.FK_Shops_Provinces" FromRole="Shops" ToRole="Provinces" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK_Shops_Roles" FromRole="Shops" ToRole="Roles" />
+    <NavigationProperty Name="Counties" Relationship="ShopManagementSystemModel.FK_Shops_Counties" FromRole="Shops" ToRole="Counties" />
+    <NavigationProperty Name="ProductCategories" Relationship="ShopManagementSystemModel.FK_ProductCategories_Shops" FromRole="Shops" ToRole="ProductCategories" />
+    <Property Name="BannerImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="RegistrationDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Orders" Relationship="ShopManagementSystemModel.FK_Orders_Shops" FromRole="Shops" ToRole="Orders" />
+    <Property Name="LogoPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Point" Type="Int32" />
+    <NavigationProperty Name="Customers" Relationship="ShopManagementSystemModel.FK_Customers_Shops" FromRole="Shops" ToRole="Customers" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="SystemSettings">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Value" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TaxDescriptions">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Products_TaxDescriptions" FromRole="TaxDescriptions" ToRole="Products" />
+    <Property Name="Value" Type="Double" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsRemember" Type="Boolean" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK_Users_Roles" FromRole="Users" ToRole="Roles" />
+  </EntityType>
+  <EntityType Name="WarrantyPeriods">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Products_WarrantyPeriods" FromRole="WarrantyPeriods" ToRole="Products" />
+  </EntityType>
+  <Association Name="FK_Counties_Provinces">
+    <End Role="Provinces" Type="Self.Provinces" Multiplicity="1" />
+    <End Role="Counties" Type="Self.Counties" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provinces">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Counties">
+        <PropertyRef Name="ProvinceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_OutOfStockStatuses">
+    <End Role="OutOfStockStatuses" Type="Self.OutOfStockStatuses" Multiplicity="1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OutOfStockStatuses">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="OutOfStockStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductGallery_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="1" />
+    <End Role="ProductGallery" Type="Self.ProductGallery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductGallery">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductGallery_Shops">
+    <End Role="Shops" Type="Self.Shops" Multiplicity="1" />
+    <End Role="ProductGallery" Type="Self.ProductGallery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shops">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductGallery">
+        <PropertyRef Name="ShopID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_Shops">
+    <End Role="Shops" Type="Self.Shops" Multiplicity="1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shops">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="ShopID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_TaxDescriptions">
+    <End Role="TaxDescriptions" Type="Self.TaxDescriptions" Multiplicity="1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaxDescriptions">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="TaxDescriptionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_WarrantyPeriods">
+    <End Role="WarrantyPeriods" Type="Self.WarrantyPeriods" Multiplicity="1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WarrantyPeriods">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="WarrantyPeriodID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Shops_Provinces">
+    <End Role="Provinces" Type="Self.Provinces" Multiplicity="1" />
+    <End Role="Shops" Type="Self.Shops" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provinces">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Shops">
+        <PropertyRef Name="ProvinceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Shops_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Shops" Type="Self.Shops" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Shops">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ShopManagementSystemEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Counties" EntityType="Self.Counties" />
+    <EntitySet Name="ELMAH_Error" EntityType="Self.ELMAH_Error" />
+    <EntitySet Name="Logs" EntityType="Self.Logs" />
+    <EntitySet Name="OutOfStockStatuses" EntityType="Self.OutOfStockStatuses" />
+    <EntitySet Name="ProductGallery" EntityType="Self.ProductGallery" />
+    <EntitySet Name="Products" EntityType="Self.Products" />
+    <EntitySet Name="Provinces" EntityType="Self.Provinces" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" />
+    <EntitySet Name="Settings" EntityType="Self.Settings" />
+    <EntitySet Name="Shops" EntityType="Self.Shops" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="SystemSettings" EntityType="Self.SystemSettings" />
+    <EntitySet Name="TaxDescriptions" EntityType="Self.TaxDescriptions" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <EntitySet Name="WarrantyPeriods" EntityType="Self.WarrantyPeriods" />
+    <AssociationSet Name="FK_Counties_Provinces" Association="Self.FK_Counties_Provinces">
+      <End Role="Provinces" EntitySet="Provinces" />
+      <End Role="Counties" EntitySet="Counties" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_OutOfStockStatuses" Association="Self.FK_Products_OutOfStockStatuses">
+      <End Role="OutOfStockStatuses" EntitySet="OutOfStockStatuses" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductGallery_Products" Association="Self.FK_ProductGallery_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductGallery" EntitySet="ProductGallery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductGallery_Shops" Association="Self.FK_ProductGallery_Shops">
+      <End Role="Shops" EntitySet="Shops" />
+      <End Role="ProductGallery" EntitySet="ProductGallery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_Shops" Association="Self.FK_Products_Shops">
+      <End Role="Shops" EntitySet="Shops" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_TaxDescriptions" Association="Self.FK_Products_TaxDescriptions">
+      <End Role="TaxDescriptions" EntitySet="TaxDescriptions" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_WarrantyPeriods" Association="Self.FK_Products_WarrantyPeriods">
+      <End Role="WarrantyPeriods" EntitySet="WarrantyPeriods" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Shops_Provinces" Association="Self.FK_Shops_Provinces">
+      <End Role="Provinces" EntitySet="Provinces" />
+      <End Role="Shops" EntitySet="Shops" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Shops_Roles" Association="Self.FK_Shops_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Shops" EntitySet="Shops" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_Roles" Association="Self.FK_Users_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Shops_Counties" Association="ShopManagementSystemModel.FK_Shops_Counties">
+      <End Role="Counties" EntitySet="Counties" />
+      <End Role="Shops" EntitySet="Shops" />
+    </AssociationSet>
+    <EntitySet Name="Categories" EntityType="ShopManagementSystemModel.Categories" />
+    <EntitySet Name="ProductCategories" EntityType="ShopManagementSystemModel.ProductCategories" />
+    <AssociationSet Name="FK_ProductCategories_Categories" Association="ShopManagementSystemModel.FK_ProductCategories_Categories">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="ProductCategories" EntitySet="ProductCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductCategories_Products" Association="ShopManagementSystemModel.FK_ProductCategories_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductCategories" EntitySet="ProductCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductCategories_Shops" Association="ShopManagementSystemModel.FK_ProductCategories_Shops">
+      <End Role="Shops" EntitySet="Shops" />
+      <End Role="ProductCategories" EntitySet="ProductCategories" />
+    </AssociationSet>
+    <EntitySet Name="Orders" EntityType="ShopManagementSystemModel.Orders" />
+    <AssociationSet Name="FK_Orders_Products" Association="ShopManagementSystemModel.FK_Orders_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Shops" Association="ShopManagementSystemModel.FK_Orders_Shops">
+      <End Role="Shops" EntitySet="Shops" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <EntitySet Name="Customers" EntityType="ShopManagementSystemModel.Customers" />
+    <EntitySet Name="OrderStatuses" EntityType="ShopManagementSystemModel.OrderStatuses" />
+    <AssociationSet Name="FK_Orders_Customers" Association="ShopManagementSystemModel.FK_Orders_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_OrderStatuses" Association="ShopManagementSystemModel.FK_Orders_OrderStatuses">
+      <End Role="OrderStatuses" EntitySet="OrderStatuses" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customers_Counties" Association="ShopManagementSystemModel.FK_Customers_Counties">
+      <End Role="Counties" EntitySet="Counties" />
+      <End Role="Customers" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customers_Provinces" Association="ShopManagementSystemModel.FK_Customers_Provinces">
+      <End Role="Provinces" EntitySet="Provinces" />
+      <End Role="Customers" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customers_Shops" Association="ShopManagementSystemModel.FK_Customers_Shops">
+      <End Role="Shops" EntitySet="Shops" />
+      <End Role="Customers" EntitySet="Customers" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_Shops_Counties">
+    <End Type="ShopManagementSystemModel.Counties" Role="Counties" Multiplicity="1" />
+    <End Type="ShopManagementSystemModel.Shops" Role="Shops" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Counties">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Shops">
+        <PropertyRef Name="CountyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ProductCategories" Relationship="ShopManagementSystemModel.FK_ProductCategories_Categories" FromRole="Categories" ToRole="ProductCategories" />
+  </EntityType>
+  <EntityType Name="ProductCategories">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShopID" Type="Int32" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Categories" Relationship="ShopManagementSystemModel.FK_ProductCategories_Categories" FromRole="ProductCategories" ToRole="Categories" />
+    <NavigationProperty Name="Products" Relationship="ShopManagementSystemModel.FK_ProductCategories_Products" FromRole="ProductCategories" ToRole="Products" />
+    <NavigationProperty Name="Shops" Relationship="ShopManagementSystemModel.FK_ProductCategories_Shops" FromRole="ProductCategories" ToRole="Shops" />
+  </EntityType>
+  <Association Name="FK_ProductCategories_Categories">
+    <End Type="ShopManagementSystemModel.Categories" Role="Categories" Multiplicity="1" />
+    <End Type="ShopManagementSystemModel.ProductCategories" Role="ProductCategories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductCategories">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductCategories_Products">
+    <End Type="ShopManagementSystemModel.Products" Role="Products" Multiplicity="1" />
+    <End Type="ShopManagementSystemModel.ProductCategories" Role="ProductCategories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductCategories">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductCategories_Shops">
+    <End Type="ShopManagementSystemModel.Shops" Role="Shops" Multiplicity="1" />
+    <End Type="ShopManagementSystemModel.ProductCategories" Role="ProductCategories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shops">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProductCategories">
+        <PropertyRef Name="ShopID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShopID" Type="Int32" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Number" Type="Int32" Nullable="false" />
+    <Property Name="IsInDopingo" Type="Boolean" Nullable="false" />
+    <Property Name="TotalPrice" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Products" Relationship="ShopManagementSystemModel.FK_Orders_Products" FromRole="Orders" ToRole="Products" />
+    <NavigationProperty Name="Shops" Relationship="ShopManagementSystemModel.FK_Orders_Shops" FromRole="Orders" ToRole="Shops" />
+    <Property Name="OrderStatusID" Type="Int32" Nullable="false" />
+    <Property Name="UpdateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CustomerID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Customers" Relationship="ShopManagementSystemModel.FK_Orders_Customers" FromRole="Orders" ToRole="Customers" />
+    <NavigationProperty Name="OrderStatuses" Relationship="ShopManagementSystemModel.FK_Orders_OrderStatuses" FromRole="Orders" ToRole="OrderStatuses" />
+  </EntityType>
+  <Association Name="FK_Orders_Products">
+    <End Type="ShopManagementSystemModel.Products" Role="Products" Multiplicity="1" />
+    <End Type="ShopManagementSystemModel.Orders" Role="Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Shops">
+    <End Type="ShopManagementSystemModel.Shops" Role="Shops" Multiplicity="1" />
+    <End Type="ShopManagementSystemModel.Orders" Role="Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shops">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="ShopID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ShopID" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Surname" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AddedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Orders" Relationship="ShopManagementSystemModel.FK_Orders_Customers" FromRole="Customers" ToRole="Orders" />
+    <Property Name="Address" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ProvinceID" Type="Int32" Nullable="false" />
+    <Property Name="CountyID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Counties" Relationship="ShopManagementSystemModel.FK_Customers_Counties" FromRole="Customers" ToRole="Counties" />
+    <NavigationProperty Name="Provinces" Relationship="ShopManagementSystemModel.FK_Customers_Provinces" FromRole="Customers" ToRole="Provinces" />
+    <NavigationProperty Name="Shops" Relationship="ShopManagementSystemModel.FK_Customers_Shops" FromRole="Customers" ToRole="Shops" />
+  </EntityType>
+  <EntityType Name="OrderStatuses">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Orders" Relationship="ShopManagementSystemModel.FK_Orders_OrderStatuses" FromRole="OrderStatuses" ToRole="Orders" />
+  </EntityType>
+  <Association Name="FK_Orders_Customers">
+    <End Type="ShopManagementSystemModel.Customers" Role="Customers" Multiplicity="1" />
+    <End Type="ShopManagementSystemModel.Orders" Role="Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_OrderStatuses">
+    <End Type="ShopManagementSystemModel.OrderStatuses" Role="OrderStatuses" Multiplicity="1" />
+    <End Type="ShopManagementSystemModel.Orders" Role="Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderStatuses">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="OrderStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customers_Counties">
+    <End Type="ShopManagementSystemModel.Counties" Role="Counties" Multiplicity="1" />
+    <End Type="ShopManagementSystemModel.Customers" Role="Customers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Counties">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Customers">
+        <PropertyRef Name="CountyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customers_Provinces">
+    <End Type="ShopManagementSystemModel.Provinces" Role="Provinces" Multiplicity="1" />
+    <End Type="ShopManagementSystemModel.Customers" Role="Customers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Provinces">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Customers">
+        <PropertyRef Name="ProvinceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customers_Shops">
+    <End Type="ShopManagementSystemModel.Shops" Role="Shops" Multiplicity="1" />
+    <End Type="ShopManagementSystemModel.Customers" Role="Customers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Shops">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Customers">
+        <PropertyRef Name="ShopID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

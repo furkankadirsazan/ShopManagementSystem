@@ -12,8 +12,7 @@
             </h3>
         </div>
     </div>
-    <div class="kt-portlet__body">
-
+    <div class="kt-portlet__body">       
         <!--begin::Section-->
         <div class="kt-section">
             @if (!string.IsNullOrEmpty(TempData["Message"] as string))
@@ -41,6 +40,10 @@
                                     <th>Fotoğraf</th>
                                     <th>Ürün Adı</th>
                                     <th>Mağaza</th>
+                                    @if (ViewData["UserRole"] as string == "Admin")
+                                    {
+                                        <th>Dopigo<br />Durumu</th>
+                                    }
                                     <th>İşlemler</th>
                                 </tr>
                             </thead>
@@ -49,11 +52,31 @@
                                 {
                                     <tr>
                                         <td>@(item.ID)</td>
-                                        <td><img src="@item.ImagePath" height="50"/></td>
+                                        <td><img src="@item.ImagePath" height="50" /></td>
                                         <td>@(item.Name)</td>
                                         <td>@(item.Shops.Title)</td>
+                                        @if (ViewData["UserRole"] as string == "Admin")
+                                        {
+                                            <td>
+                                                @if (item.IsInDopingo)
+                                                {
+                                                    <span><span class="kt-badge kt-badge--success kt-badge--dot"></span>&nbsp;<span class="kt-font-bold kt-font-success"> Girildi </span></span>
+                                                }
+                                                else
+                                                {
+                                                    <span><span class="kt-badge kt-badge--danger kt-badge--dot"></span>&nbsp;<span class="kt-font-bold kt-font-danger"> Girilmedi </span></span>
+                                                }
+                                            </td>
+                                        }
+
                                         <td>
-                                            <a class="btn btn-primary btn-icon" href="/admin/product/edit/@item.ID" title="Düzenle"><i class="flaticon-edit-1"></i></a>
+                                            <a class="btn btn-warning btn-icon" href="/admin/productcategory/index?productId=@item.ID&shopId=@item.ShopID" title="Kategoriler"><i class="flaticon-add-label-button"></i></a>
+                                            <a class="btn btn-primary btn-icon" href="/admin/productgallery/index?productId=@item.ID&shopId=@item.ShopID" title="Galeri"><i class="flaticon-photo-camera"></i></a>
+                                            <a class="btn btn-brand btn-icon" href="/admin/product/edit/@item.ID" title="Düzenle"><i class="flaticon-edit-1"></i></a>
+                                            @if (ViewData["UserRole"] as string == "Admin")
+                                            {
+                                                <a class="btn btn-success btn-icon" href="/admin/product/changedopingostatus/@item.ID" title="Dopigo Durum Değiştir"><i class="flaticon-refresh"></i></a>
+                                            }
                                             <a class="btn btn-danger btn-icon view" href="#" data-toggle="modal" data-target="/admin/product/removeproductmodal/@item.ID" title="Sil"><font color="white"><i class="flaticon-delete"></i></font></a>
                                         </td>
                                     </tr>

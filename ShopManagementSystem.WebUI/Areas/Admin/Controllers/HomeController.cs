@@ -80,6 +80,8 @@ namespace ShopManagementSystem.WebUI.Areas.Admin.Controllers
 
             vm.OrdersTotal = (userrole == "Admin") ? uow.Orders.GetAll().Count() : uow.Orders.Find(a => a.ShopID == shopID).Count();
 
+            vm.TotalProducts = (userrole == "Admin") ? uow.Products.GetAll().Count() : uow.Products.Find(a => a.ShopID == shopID).Count();
+
             return View(vm);
         }
         public ActionResult Faq()

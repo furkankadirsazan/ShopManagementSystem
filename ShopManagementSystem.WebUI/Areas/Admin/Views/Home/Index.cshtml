@@ -3,37 +3,204 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+<style>
+    a {
+        color: #000000;
+        text-decoration: none;
+        background-color: transparent;
+    }
 
-<div class="row">
-    <div class="col-xl-12">
-        <div class="card">
-            <div class="card-body">
+    .kt-timeline-v2 .kt-timeline-v2__items .kt-timeline-v2__item .kt-timeline-v2__item-text {
+        padding-left: 7.35rem;
+    }
 
-                <h4 class="card-title"><i class="flaticon2-website"></i> Genel Duyurular ve Teknik Destek </h4>
-                @*<p class="card-text" style="font-size:15px;">
-                    <span class="kt-badge kt-badge--brand kt-badge--inline">BİLGİLENDİRME</span> Duyuru deneme 1.</br></br>
-                    <center><span id="dots" style="font-size:15px;"></span></center>
-                    <span id="more" style="display:none;font-size:15px;">
-                        <span class="kt-badge kt-badge--warning kt-badge--inline">BİLGİLENDİRME</span> Duyuru deneme 2.</br></br>
-                    </span>
-                </p>*@
-                <a href="mailto:bilgi@kentmedia.com.tr" class="btn btn-warning"><i class="fas fa-envelope"></i> Teknik Destek</a>
-                <a href="tel:08507066088" class="btn btn-primary"><i class="fas fa-headphones"></i> Müşteri Hizmetleri</a>
-                @*<button onclick="myFunction()" id="myBtn" class="btn btn-success">Eski Duyuruları Göster</button>*@
+    .kt-timeline-v2:before {
+        left: 7.60rem;
+    }
+        .kt-timeline-v2 .kt-timeline-v2__items .kt-timeline-v2__item .kt-timeline-v2__item-cricle {
+            left: 6.87rem;
+            border-radius: 50%;
+            border: 0.89rem solid white;
+            z-index: 1;
+            top: 0.2rem;
+            position: relative;
+        }
+
+            .kt-timeline-v2 .kt-timeline-v2__items .kt-timeline-v2__item .kt-timeline-v2__item-cricle > i {
+                font-size: 1.78rem;
+                top: -0.93rem;
+                left: -0.57rem;
+                position: absolute;
+            }
+</style>
+
+<div class="row ui-sortable" id="kt_sortable_portlets">
+    <div class="col-lg-6">
+        <div class="kt-portlet kt-portlet--height-fluid">
+            <div class="kt-portlet__body">
+                <div class="kt-widget kt-widget--user-profile-3">
+                    <div class="kt-widget__top">
+                        <div class="kt-widget__pic kt-widget__pic--success kt-font-success kt-font-boldest kt-font-light">
+                            <h1>@Html.Raw((!string.IsNullOrEmpty(ViewData["FullName"].ToString())) ? ViewData["FullName"].ToString().Substring(0, 1).ToUpper() : "G")</h1>
+                        </div>
+                        <div class="kt-widget__content">
+                            <div class="kt-widget__head">
+                                <a class="kt-widget__username">@Html.Raw((!string.IsNullOrEmpty(ViewData["FullName"].ToString())) ? ViewData["FullName"].ToString().ToUpper() : "Giriş Yapmayan Kullanıcı")</a>
+                            </div>
+                            <div class="kt-widget__subhead">
+                                <a href="/admin/account/index" class="btn btn-success btn-sm"> <font color="white">Mağaza Profili</font></a>
+                            </div>
+                            <div class="kt-widget__info">
+                                <div class="kt-widget__desc">İdeal Mağaza Yönetim Sistemi'ne Hoşgeldiniz. Soru, görüş ve talepleriniz için aşağıdaki iletişim kanallarından bize ulaşabilirsiniz.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="kt-widget__bottom">
+                        <div class="kt-widget__item">
+                            <div class="kt-widget__icon">
+                                <i class="flaticon2-phone"></i>
+                            </div>
+                            <div class="kt-widget__details">
+                                <span class="kt-widget__title"></span>
+                                <span class="kt-widget__value">Müşteri Hizmetleri</span>
+                                <span class="kt-widget__value">
+                                    <a href="tel:03522361646" class="kt-widget__value kt-font-brand"> Şimdi Ara</a>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="kt-widget__item">
+                            <div class="kt-widget__icon">
+                                <i class="flaticon-whatsapp"></i>
+                            </div>
+                            <div class="kt-widget__details">
+                                <span class="kt-widget__title"></span>
+                                <span class="kt-widget__value">Whatsapp</span>
+                                <span class="kt-widget__value">
+                                    <a href="https://api.whatsapp.com/send?phone=905425910039" class="kt-widget__value kt-font-brand">Bize Yazın </a>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="kt-widget__item">
+                            <div class="kt-widget__icon">
+                                <i class="flaticon2-envelope"></i>
+                            </div>
+                            <div class="kt-widget__details">
+                                <span class="kt-widget__title"></span>
+                                <span class="kt-widget__value">Teknik Destek</span>
+                                <span class="kt-widget__value">
+                                    <a href="mailto:info@idealiz.biz" class="kt-widget__value kt-font-brand">Mail Gönder </a>
+                                </span>
+                            </div>
+                        </div>
+
+                        
+
+
+                    </div>
+                </div>
             </div>
         </div>
-    </div>    
-</div>
-<br />
-<div class="row ui-sortable" id="kt_sortable_portlets">
-    
+    </div>
+    <div class="col-lg-6">
+        <div class="kt-portlet kt-portlet--height-fluid">
+            <div class="kt-portlet__head">
+                <div class="kt-portlet__head-label">
+                    <div class="kt-portlet__head-title">
+                        <i class="fa fa-bullhorn"></i> Duyurular ve Güncellemeler
+                    </div>
+                </div>
+                <div class="kt-portlet__head-toolbar"></div>
+            </div>
+            <div class="kt-portlet__body">
+                <div style="height: 225px; overflow: auto;">
+                    <div class="kt-timeline-v2">
+                        <div class="kt-timeline-v2__items kt-padding-top-25 kt-padding-bottom-30">
+                            <div class="kt-timeline-v2__item">
+                                <span class="kt-timeline-v2__item-time">22.04.2020</span>
+                                <div class="kt-timeline-v2__item-cricle">
+                                    <i class="fa fa-genderless kt-font-success"></i>
+                                </div>
+                                <div class="kt-timeline-v2__item-text kt-padding-top-5">
+                                    V(1.2) yayınlandı.
+                                </div>
+                            </div>
+                            <div class="kt-timeline-v2__item">
+                                <span class="kt-timeline-v2__item-time">22.04.2020</span>
+                                <div class="kt-timeline-v2__item-cricle">
+                                    <i class="fa fa-genderless kt-font-warning"></i>
+                                </div>
+                                <div class="kt-timeline-v2__item-text kt-padding-top-5">
+                                    ÜRÜN YÖNETİMİ - DOPİGO DURUMU =&gt; Dopigo Durumu alanı ürün yönetimine eklendi.
+                                </div>
+                            </div>
+                            <div class="kt-timeline-v2__item">
+                                <span class="kt-timeline-v2__item-time">21.04.2020</span>
+                                <div class="kt-timeline-v2__item-cricle">
+                                    <i class="fa fa-genderless kt-font-danger"></i>
+                                </div>
+                                <div class="kt-timeline-v2__item-text kt-padding-top-5">
+                                    SİPARİŞ YÖNETİMİ - SİPARİŞ =&gt; Mağazalar siparişlerinin durumlarını değiştirebilir.
+                                </div>
+                            </div>
+                            <div class="kt-timeline-v2__item">
+                                <span class="kt-timeline-v2__item-time">21.04.2020</span>
+                                <div class="kt-timeline-v2__item-cricle">
+                                    <i class="fa fa-genderless kt-font-brand"></i>
+                                </div>
+                                <div class="kt-timeline-v2__item-text kt-padding-top-5">
+                                    SİPARİŞ YÖNETİMİ - SİPARİŞ =&gt; Mağazalar yeni siparişleri geldiğinde
+                                    otomatik olarak bilgilendirme maili almaktadır.
+                                </div>
+                            </div>
+                            <div class="kt-timeline-v2__item">
+                                <span class="kt-timeline-v2__item-time">20.04.2020</span>
+                                <div class="kt-timeline-v2__item-cricle">
+                                    <i class="fa fa-genderless kt-font-success"></i>
+                                </div>
+                                <div class="kt-timeline-v2__item-text kt-padding-top-5">
+                                    SİPARİŞ YÖNETİMİ - SİPARİŞ =&gt; Listelemeye ürünlerin küçük fotoları da eklendi.
+                                </div>
+                            </div>
+                            <div class="kt-timeline-v2__item">
+                                <span class="kt-timeline-v2__item-time">20.04.2020</span>
+                                <div class="kt-timeline-v2__item-cricle">
+                                    <i class="fa fa-genderless kt-font-warning"></i>
+                                </div>
+                                <div class="kt-timeline-v2__item-text kt-padding-top-5">
+                                    ANASAYFA - İSTATİSTİKLER =&gt; İstatistik verilerine kendileriyle ilgili alanların linki verildi.
+                                </div>
+                            </div>
+                            <div class="kt-timeline-v2__item">
+                                <span class="kt-timeline-v2__item-time">06.03.2020</span>
+                                <div class="kt-timeline-v2__item-cricle">
+                                    <i class="fa fa-genderless kt-font-danger"></i>
+                                </div>
+                                <div class="kt-timeline-v2__item-text kt-padding-top-5">
+                                    SSL SERTİFİKASI kuruldu.
+                                </div>
+                            </div>
+                            <div class="kt-timeline-v2__item">
+                                <span class="kt-timeline-v2__item-time">05.03.2020</span>
+                                <div class="kt-timeline-v2__item-cricle">
+                                    <i class="fa fa-genderless kt-font-primary"></i>
+                                </div>
+                                <div class="kt-timeline-v2__item-text kt-padding-top-5">
+                                    V(1.1) yayınlandı.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="col-lg-12">
         <!--begin::Portlet-->
         <div class="kt-portlet kt-portlet--sortable">
             <div class="kt-portlet__head ui-sortable-handle">
                 <div class="kt-portlet__head-label">
                     <h3 class="kt-portlet__head-title">
-                        SİPARİŞ İSTATİSTİKLERİ
+                        <i class="fa fa-chart-line"></i> İstatistikler
                     </h3>
                 </div>
                 <div class="kt-portlet__head-toolbar">
@@ -51,7 +218,7 @@
                             <div class="kt-widget24__details">
                                 <div class="kt-widget24__info">
                                     <h4 class="kt-widget24__title">
-                                        Bekleyen
+                                        <a href="/admin/order">Bekleyen</a>
                                     </h4>
                                     <span class="kt-widget24__desc">
                                         Sipariş Sayısı
@@ -72,7 +239,7 @@
                             <div class="kt-widget24__details">
                                 <div class="kt-widget24__info">
                                     <h4 class="kt-widget24__title">
-                                       İşleme Alınmış
+                                        <a href="/admin/order">İşleme Alınmış</a>
                                     </h4>
                                     <span class="kt-widget24__desc">
                                         Sipariş Sayısı
@@ -93,7 +260,7 @@
                             <div class="kt-widget24__details">
                                 <div class="kt-widget24__info">
                                     <h4 class="kt-widget24__title">
-                                        Kargoya Verilmiş
+                                        <a href="/admin/order">Kargoya Verilmiş</a>
                                     </h4>
                                     <span class="kt-widget24__desc">
                                         Sipariş Sayısı
@@ -114,7 +281,7 @@
                             <div class="kt-widget24__details">
                                 <div class="kt-widget24__info">
                                     <h4 class="kt-widget24__title">
-                                        Teslim Edilmiş
+                                        <a href="/admin/order">Teslim Edilmiş</a>
                                     </h4>
                                     <span class="kt-widget24__desc">
                                         Sipariş Sayısı
@@ -135,14 +302,14 @@
                             <div class="kt-widget24__details">
                                 <div class="kt-widget24__info">
                                     <h4 class="kt-widget24__title">
-                                        İptal Edilmiş
+                                        <a href="/admin/order">İptal/İade Edilmiş</a>
                                     </h4>
                                     <span class="kt-widget24__desc">
                                         Sipariş Sayısı
                                     </span>
                                 </div>
                                 <span class="kt-widget24__stats kt-font-danger">
-                                    @Model.OrdersInCancelled
+                                    @(Model.OrdersInCancelled + Model.OrdersInReturnBack)
                                 </span>
                             </div>
                         </div>
@@ -156,28 +323,7 @@
                             <div class="kt-widget24__details">
                                 <div class="kt-widget24__info">
                                     <h4 class="kt-widget24__title">
-                                        İade Edilen
-                                    </h4>
-                                    <span class="kt-widget24__desc">
-                                        Sipariş Sayısı
-                                    </span>
-                                </div>
-                                <span class="kt-widget24__stats kt-font-danger">
-                                    @(Model.OrdersInReturnBack)
-                                </span>
-                            </div>
-                        </div>
-
-                        <!--end::New Users-->
-                    </div>
-                    <div class="col-md-12 col-lg-6 col-xl-3">
-
-                        <!--begin::New Users-->
-                        <div class="kt-widget24">
-                            <div class="kt-widget24__details">
-                                <div class="kt-widget24__info">
-                                    <h4 class="kt-widget24__title">
-                                        Teslim Edilemeyen
+                                        <a href="/admin/order">Teslim Edilemeyen</a>
                                     </h4>
                                     <span class="kt-widget24__desc">
                                         Sipariş Sayısı
@@ -191,8 +337,8 @@
 
                         <!--end::New Users-->
                     </div>
-                   
-                   
+
+
                     <div class="col-md-12 col-lg-6 col-xl-3">
 
                         <!--begin::New Orders-->
@@ -200,7 +346,7 @@
                             <div class="kt-widget24__details">
                                 <div class="kt-widget24__info">
                                     <h4 class="kt-widget24__title">
-                                        Toplam
+                                        <a href="/admin/order">Toplam</a>
                                     </h4>
                                     <span class="kt-widget24__desc">
                                         Sipariş Sayısı
@@ -214,6 +360,27 @@
 
                         <!--end::New Orders-->
                     </div>
+                    <div class="col-md-12 col-lg-6 col-xl-3">
+
+                        <!--begin::New Users-->
+                        <div class="kt-widget24">
+                            <div class="kt-widget24__details">
+                                <div class="kt-widget24__info">
+                                    <h4 class="kt-widget24__title">
+                                        <a href="/admin/product">Toplam</a>
+                                    </h4>
+                                    <span class="kt-widget24__desc">
+                                        Ürün Sayısı
+                                    </span>
+                                </div>
+                                <span class="kt-widget24__stats kt-font-primary">
+                                    @(Model.TotalProducts)
+                                </span>
+                            </div>
+                        </div>
+
+                        <!--end::New Users-->
+                    </div>
                 </div>
             </div>
         </div>
@@ -224,26 +391,6 @@
     </div>
 
 </div>
+<div class="row">
 
-
-    @section scripts{
-        <script>
-            function myFunction() {
-                var dots = document.getElementById("dots");
-                var moreText = document.getElementById("more");
-                var btnText = document.getElementById("myBtn");
-
-                if (dots.style.display === "none") {
-                    dots.style.display = "inline";
-                    btnText.innerHTML = 'Eski Duyuruları Göster';
-                    moreText.style.display = "none";
-                } else {
-                    dots.style.display = "none";
-                    btnText.innerHTML = 'Eski Duyuruları Gizle';
-                    moreText.style.display = "inline";
-                }
-            };
-
-        </script>
-
-    }
+</div>

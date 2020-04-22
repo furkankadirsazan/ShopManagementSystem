@@ -107,7 +107,6 @@ namespace ShopManagementSystem.WebUI.Areas.Admin.Controllers
                             entity.AuthenticationCode = null;
                             entity.BannerImagePath = UploadStrings.ShopDefaultBannerFilePath;
                             entity.LogoPath = UploadStrings.ShopDefaultLogoFilePath;
-                            entity.Point = 0;
                             entity.RegistrationDate = DateTime.Now;
                             uow.Shops.Add(entity);
                             uow.SaveChanges();

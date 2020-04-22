@@ -1,0 +1,215 @@
+﻿@model Shops
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+
+
+        <!--begin::Portlet-->
+        <div class="kt-portlet">
+            <div class="kt-portlet__head">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title" style="font-size:15px;">
+                        Mağaza Detayları <button type="button" class="btn btn-primary btn-icon" id="btn"><i class="fa fa-print" title="Yazdır"></i> </button>
+                    </h3>
+                </div>
+            </div>
+
+            <!--begin::Form-->
+
+            @using (Html.BeginForm("Details", "Shop", FormMethod.Post, new { enctype = "multipart/form-data", @class = "kt-form kt-form--label-right" }))
+            {
+                <div class="kt-portlet__body" id="printContent">
+                    <div class="form-group form-group-last">
+                        @if (!string.IsNullOrEmpty(TempData["Message"] as string))
+                        {
+                            <div class="@("alert " + TempData["ResultClass"] as string) fade show" role="alert">
+                                <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                                <div class="alert-text">@(Html.Raw(TempData["Message"] as string))</div>
+                                <div class="alert-close">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true"><i class="la la-close"></i></span>
+                                    </button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="form-group m-form__group row">
+                        <div class="col-10 ml-auto">
+                            <h3 class="m-form__section">Kullanıcı Bilgileri</h3>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="RoleID" class="col-2 col-form-label" style="font-size:15px;"> Yetki</label>
+                        <div class="col-10">
+                            <label class="form-control" style="text-align:left;font-size:15px;">@Model.Roles.DisplayName</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Username" class="col-2 col-form-label" style="font-size:15px;">Kullanıcı Adı</label>
+                        <div class="col-10">
+                            <label class="form-control" style="text-align:left;font-size:15px;">@Model.Username</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Password" class="col-2 col-form-label" style="font-size:15px;"> Şifre</label>
+                        <div class="col-10">
+                            <label class="form-control" style="text-align:left;font-size:15px;">@Model.Password</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Name" class="col-2 col-form-label" style="font-size:15px;"> Yetkili Adı</label>
+                        <div class="col-10">
+                            <label class="form-control" style="text-align:left;font-size:15px;">@Model.Name</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Surname" class="col-2 col-form-label" style="font-size:15px;"> Yetkili Soyadı</label>
+                        <div class="col-10">
+                            <label class="form-control" style="text-align:left;font-size:15px;">@Model.Surname</label>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group m-form__group row">
+                        <div class="col-10 ml-auto">
+                            <h3 class="m-form__section">Mağaza Bilgileri</h3>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Title" class="col-2 col-form-label" style="font-size:15px;"> Mağaza Ünvanı</label>
+                        <div class="col-10">
+                            <label class="form-control" style="text-align:left;font-size:15px;">@Model.Title</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="TaxAdministration" class="col-2 col-form-label" style="font-size:15px;"><font color="red">*</font> Vergi Dairesi</label>
+                        <div class="col-10">
+                            <label class="form-control" style="text-align:left;font-size:15px;">@Model.TaxAdministration</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="TaxNumber" class="col-2 col-form-label" style="font-size:15px;"> Vergi No</label>
+                        <div class="col-10">
+                            <label class="form-control" style="text-align:left;font-size:15px;">@Model.TaxNumber</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="ShopWebsite" class="col-2 col-form-label" style="font-size:15px;"> Mağaza Websitesi</label>
+                        <div class="col-10">
+                            <label class="form-control" style="text-align:left;font-size:15px;">@Model.ShopWebsite</label>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="form-group m-form__group row">
+                        <div class="col-10 ml-auto">
+                            <h3 class="m-form__section">İletişim Bilgileri</h3>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="ProvinceID" class="col-2 col-form-label" style="font-size:15px;"> İl</label>
+                        <div class="col-10">
+                            <label class="form-control" style="text-align:left;font-size:15px;">@Model.Provinces.Name</label>
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="CountyID" class="col-2 col-form-label" style="font-size:15px;"> İlçe</label>
+                        <div class="col-10">
+                            <label class="form-control" style="text-align:left;font-size:15px;">@Model.Counties.Name</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Address" class="col-2 col-form-label" style="font-size:15px;"> Adres</label>
+                        <div class="col-10">
+                            <label class="form-control" style="text-align:left;font-size:15px;">@Model.Address</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Email" class="col-2 col-form-label" style="font-size:15px;"> Email</label>
+                        <div class="col-10">
+                            <label class="form-control" style="text-align:left;font-size:15px;">@Model.Email</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="Phone" class="col-2 col-form-label" style="font-size:15px;"><font color="red">*</font> Telefon</label>
+                        <div class="col-10">
+                            <label class="form-control" style="text-align:left;font-size:15px;">@Model.Phone</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="IsCheckhedDocuments" class="col-2 col-form-label" style="font-size:15px;">Hesap Onayı</label>
+                        <div class="col-10">
+                            <label class="form-control" style="text-align:left;font-size:15px;">@((Model.IsAuthenticated) ? Html.Raw("Onaylı Hesap") : Html.Raw("Onaylanmamış Hesap"))</label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="IsCheckhedDocuments" class="col-2 col-form-label" style="font-size:15px;">Başvuru Tarihi</label>
+                        <div class="col-10">
+                            <label class="form-control" style="text-align:left;font-size:15px;">@(Convert.ToDateTime(Model.RegistrationDate).ToShortDateString())</label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="kt-portlet__foot">
+                    <div class="kt-form__actions">
+                        <div class="row">
+                            <div class="col-2">
+                            </div>
+                            <div class="col-10">
+                                <a href="/admin/shop/index" class="btn btn-warning" style="font-size:15px;">Geri</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+        <!--end::Portlet-->
+    </div>
+
+</div>
+
+
+@section scripts{
+
+    <script src="~/Scripts/FunctionsJs/printThis.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.js" integrity="sha256-+VCjCLUkzOOnKtJ0s04D3mcyypeENTag5Xivs9hQVKs=" crossorigin="anonymous"></script>
+    <script>
+
+         $("#btn").click(function () {
+             $("#printContent").printThis({
+                 header: '<center><h1>' + '@Model.Title' + ' Mağaza Bilgileri' + '</h1></center></br>'
+             });
+         });
+    </script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

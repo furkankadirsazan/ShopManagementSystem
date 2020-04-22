@@ -28,7 +28,37 @@ namespace ShopManagementSystem.WebUI.Areas.Admin.Controllers
             return (ViewData["ShopRole"] as string == "Admin") ? View(uow.Products.GetAll().ToList()) :
             View(uow.Products.Find(a => a.ShopID == shopID).ToList());
         }
+        [Log]
+        public ActionResult ChangeDopingoStatus(int? id)
+        {
+            if (id == null) return RedirectToAction("Index", "Product");
+            try
+            {
+                var product = uow.Products.Get(Convert.ToInt32(id));
+                if (product != null)
+                {
+                    product.IsInDopingo = !product.IsInDopingo;
+                    uow.Products.Edit(product);
+                    uow.SaveChanges();
 
+                    TempData["ResultClass"] = AlertType.Success;
+                    TempData["Message"] = SuccessMessages.Success;
+                    return RedirectToAction("Index", "Product");
+                }
+                else
+                {
+                    TempData["ResultClass"] = AlertType.Danger;
+                    TempData["Message"] = ExceptionMessages.EmptyEntity;
+                    return RedirectToAction("Index", "Product");
+                }
+            }
+            catch (Exception)
+            {
+                TempData["ResultClass"] = AlertType.Danger;
+                TempData["Message"] = ExceptionMessages.UnidentifiedError;
+                return RedirectToAction("Index", "Product");
+            }
+        }
 
         [Log]
         public ActionResult Remove(int? id)
@@ -98,7 +128,7 @@ namespace ShopManagementSystem.WebUI.Areas.Admin.Controllers
                             {
                                 if (file != null && file.ContentLength > 0)
                                 {
-                                    var fileuploadmodel = SetUploadFileName(file.FileName, Path.GetExtension(file.FileName));
+                                    var fileuploadmodel = SetUploadFileName(file.FileName, Path.GetExtension(file.FileName), UploadStrings.ProductImageFilePath);
                                     file.SaveAs(Server.MapPath("~"+fileuploadmodel.Path));
 
                                     entity.IsInDopingo = false;
@@ -174,7 +204,7 @@ namespace ShopManagementSystem.WebUI.Areas.Admin.Controllers
                             {
                                 if (file != null && file.ContentLength > 0)
                                 {
-                                    var fileuploadmodel = SetUploadFileName(file.FileName, Path.GetExtension(file.FileName));
+                                    var fileuploadmodel = SetUploadFileName(file.FileName, Path.GetExtension(file.FileName), UploadStrings.ProductImageFilePath);
                                     file.SaveAs(Server.MapPath("~" + fileuploadmodel.Path));
 
                                     entity.ImagePath = fileuploadmodel.Path;
@@ -202,9 +232,8 @@ namespace ShopManagementSystem.WebUI.Areas.Admin.Controllers
                             }
                         }                                    
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
-                        var e = ex.Message;
                         TempData["ResultClass"] = AlertType.Danger;
                         TempData["Message"] = ExceptionMessages.UnidentifiedError;
                         return RedirectToAction("Edit", "Product", new { id = entity.ID });

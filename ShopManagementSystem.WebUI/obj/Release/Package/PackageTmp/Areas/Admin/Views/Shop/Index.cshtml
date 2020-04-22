@@ -1,0 +1,177 @@
+﻿@model ShopViewModel
+@{
+    ViewBag.Title = "Index";
+}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h3 class="kt-portlet__head-title">
+                Mağaza Yönetimi
+            </h3>
+        </div>
+    </div>
+    <div class="kt-portlet__body">
+
+        <!--begin::Section-->
+        <div class="kt-section">
+            @if (!string.IsNullOrEmpty(TempData["Message"] as string))
+            {
+                <div class="@("alert " + TempData["ResultClass"] as string) fade show" role="alert">
+                    <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                    <div class="alert-text">@(Html.Raw(TempData["Message"] as string))</div>
+                    <div class="alert-close">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true"><i class="la la-close"></i></span>
+                        </button>
+                    </div>
+                </div>
+            }
+            <a class="btn btn-brand" href="/admin/shop/add"><i class="flaticon2-plus-1"></i>Yeni Mağaza Ekle</a>
+            @using (Html.BeginForm("Index", "Shop", FormMethod.Post))
+            {
+                <div class="kt-section__content">
+                    <div class="table-responsive">
+                        <br />
+                        <table class="table table-bordered results display" id="tblLocations">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Tam Adı</th>
+                                    <th>Mağaza Ünvanı</th>
+                                    <th>Vergi No</th>
+                                    <th>Email</th>
+                                    <th>Telefon</th>
+                                    <th>Başvuru Tarihi</th>
+                                    <th>Yetki</th>
+                                    <th>Onay Durumu</th>
+                                    <th>İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Shops)
+                                {
+                                    <tr>
+                                        <td>@item.ID</td>
+                                        <td>@(item.Name + " " + item.Surname)</td>
+                                        <td>@item.Title</td>
+                                        <td>@item.TaxNumber</td>
+                                        <td>@item.Email</td>
+                                        <td>@item.Phone</td>
+                                        <td><span><span class="kt-badge kt-badge--warning kt-badge--dot"></span>&nbsp;<span class="kt-font-bold kt-font-warning"> @Convert.ToDateTime(item.RegistrationDate).ToShortDateString()</span></span></td>
+                                        <td><span><span class="kt-badge kt-badge--info kt-badge--dot"></span>&nbsp;<span class="kt-font-bold kt-font-info"> @item.Roles.DisplayName</span></span></td>
+                                        <td>
+                                            @if (item.IsAuthenticated)
+                                            {
+                                                <span><span class="kt-badge kt-badge--success kt-badge--dot"></span>&nbsp;<span class="kt-font-bold kt-font-success"> Onaylı</span></span>
+                                            }
+                                            else
+                                            {
+                                                <span><span class="kt-badge kt-badge--danger kt-badge--dot"></span>&nbsp;<span class="kt-font-bold kt-font-danger"> Onaysız</span></span>
+                                            }
+                                        </td>
+                                        
+                                        <td>
+                                            @if (item != Model.Shops.First())
+                                            {
+                                                <a class="btn btn-primary btn-icon" href="/admin/shop/edit/@item.ID" title="Düzenle"><i class="flaticon-edit-1"></i></a>
+                                                <a class="btn btn-warning btn-icon" href="/admin/shop/details/@item.ID" title="Detaylar"><i class="flaticon-eye"></i></a>
+                                                <a class="btn btn-danger btn-icon view" href="#" data-toggle="modal" data-target="/admin/shop/removeshopmodal/@item.ID" title="Sil"><font color="white"><i class="flaticon-delete"></i></font></a>
+                                            }
+                                            else
+                                            {
+                                                <code>Bu mağazaya işlem yapılamaz</code>
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+            }
+        </div>
+        <div class="modal fade" id="modelView" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">İşlem Onayı</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form method="post">
+                        <div class="modal-body">
+                           
+                        </div>
+                       
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <!--end::Section-->
+    </div>
+
+    <!--end::Form-->
+</div>
+
+
+
+@section scripts{
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+            integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/themes/smoothness/jquery-ui.css" />
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+    <script>
+        jQuery.fn.DataTable.ext.type.search.string = function (sVal) {
+            var letters = { "İ": "i", "I": "ı", "i": "İ", "ı": "I" };
+            return sVal.replace(/(([İI]))/g, function (letter) { return letters[letter]; });
+        };
+        $(document).ready(function () {
+            $('#tblLocations').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+                },
+                "pageLength": 25,
+                "scrollX": true
+            });
+        });
+        $('#tblLocations input').keyup(function () {
+            table
+                .search(
+                jQuery.fn.DataTable.ext.type.search.string(this.value)
+                )
+                .draw();
+        });
+
+        $(function () {
+            // a tagimizde bulunan .view classımıza click olduğunda
+            $("body").on("click", ".view", function () {
+                //data-target dan url mizi al
+                var url = $(this).data("target");
+                //bu urlimizi post et
+                $.post(url, function (data) { })
+                    //eğer işlemimiz başarılı bir şekilde gerçekleşirse
+                    .done(function (data) {
+                        //gelen datayı .modal-body mizin içerise html olarak ekle
+                        $("#modelView .modal-body").html(data);
+                        //sonra da modalimizi göster
+                        $("#modelView").modal("show");
+                    })
+                    //eğer işlem başarısız olursa
+                    .fail(function () {
+                        //modalımızın bodysine Error! yaz
+                        $("#modelView .modal-body").text("Bilgiler yüklenirken hata oluştu!");
+                        //sonra da modalimizi göster
+                        $("#modelView").modal("show");
+                    })
+
+            });
+        })
+    </script>
+}

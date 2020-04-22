@@ -1,0 +1,7 @@
+﻿@model Products
+<p><strong>@Html.Raw(Model.Name)  </strong> isimli ürünü silmek istediğinize emin misiniz?</p><br />
+<div class="modal-footer">
+    <a class="btn btn-primary" href="/admin/product/remove/@Model.ID"><i class="flaticon-delete"></i>Onayla</a>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+</div>
+

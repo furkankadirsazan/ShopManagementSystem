@@ -1,0 +1,9 @@
+﻿@model ProductGallery
+<p><strong>@Html.Raw(Model.Shops.Title + " mağazasına ait " + Model.Products.Name) </strong> ürününün ilgili fotoğrafını silmek istediğinize emin misiniz?</p><br />
+<div class="modal-footer">
+    <a class="btn btn-primary" href="/admin/productgallery/remove/@Model.ID"><i class="flaticon-delete"></i>Onayla</a>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+</div>
+
+
+

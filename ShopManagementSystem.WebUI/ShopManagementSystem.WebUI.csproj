@@ -4870,6 +4870,17 @@
     <Content Include="Areas\Admin\Views\Customer\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Customer\Add.cshtml" />
     <Content Include="Areas\Admin\Views\Account\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\RemoveCategoryModal.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductCategory\RemoveProductCategoryModal.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGallery\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGallery\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductGallery\RemoveProductGalleryModal.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\FunctionsJs\ajax.contactform.js" />
     <Content Include="Scripts\FunctionsJs\ajax.forgetpassword.js" />
@@ -4886,6 +4897,11 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.blockUI.js" />
+    <Content Include="Scripts\jquery.form.js" />
+    <Content Include="Scripts\jquery.MetaData.js" />
+    <Content Include="Scripts\jquery.MultiFile.js" />
+    <Content Include="Scripts\jquery.MultiFile.pack.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -4905,7 +4921,9 @@
     <Content Include="Uploads\Logos\default.jpg" />
     <Content Include="Uploads\Products\4a7441dc-fc47-4fc3-b596-43cc51f210c2.jpg" />
     <Content Include="Uploads\Products\dc445e2e-0bc0-4c7c-a166-f0f55e2ed5a0.jpg" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
@@ -4927,12 +4945,15 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\CustomerController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
     <Compile Include="Areas\Admin\Controllers\OutOfStockStatusController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductCategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\MasterSecurityController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductGalleryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ShopController.cs" />
     <Compile Include="Areas\Admin\Controllers\WarrantyPeriodController.cs" />
     <Compile Include="Areas\Admin\Models\FileUploadModel.cs" />
@@ -4942,6 +4963,8 @@
     <Compile Include="Areas\Admin\Models\UserLoginModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\CustomerViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\OrderViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ProductCategoryViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ProductGalleryViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\ShopViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\StatisticViewModel.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -5070,12 +5093,14 @@
     <Compile Include="Repository\Abstract\ITaxDescriptionRepository.cs" />
     <Compile Include="Repository\Abstract\IUnitOfWork.cs" />
     <Compile Include="Repository\Abstract\IWarrantyPeriodRepository.cs" />
+    <Compile Include="Repository\Concrete\EntityFramework\EfCategoryRepository.cs" />
     <Compile Include="Repository\Concrete\EntityFramework\EfCountyRepository.cs" />
     <Compile Include="Repository\Concrete\EntityFramework\EfCustomerRepository.cs" />
     <Compile Include="Repository\Concrete\EntityFramework\EfLogRepository.cs" />
     <Compile Include="Repository\Concrete\EntityFramework\EfOrderRepository.cs" />
     <Compile Include="Repository\Concrete\EntityFramework\EfOrderStatusRepository.cs" />
     <Compile Include="Repository\Concrete\EntityFramework\EfOutOfStockStatusRepository.cs" />
+    <Compile Include="Repository\Concrete\EntityFramework\EfProductCategoryRepository.cs" />
     <Compile Include="Repository\Concrete\EntityFramework\EfProductGalleryRepository.cs" />
     <Compile Include="Repository\Concrete\EntityFramework\EfProductRepository.cs" />
     <Compile Include="Repository\Concrete\EntityFramework\EfProvinceRepository.cs" />
@@ -5112,6 +5137,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\AccountEdit\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Uploads\ProductGallery\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>

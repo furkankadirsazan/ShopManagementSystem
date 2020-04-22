@@ -15,8 +15,8 @@ namespace ShopManagementSystem.WebUI.Extensions.String
 
         public const string Domain = "https://magaza.idealiz.biz";
 
-        /// <summary>{0} Hakkında</summary>
-        public const string MailTitle = "{0} Hakkında";
+        /// <summary>{0}</summary>
+        public const string MailTitle = "{0}";
 
         /// <summary>{0} Shop Id {1} token </summary>
         public const string AuthenticationLink = Domain + "/security/verifyaccount?sid=" + "{0}" + "&token=" + "{1}";
@@ -38,6 +38,14 @@ namespace ShopManagementSystem.WebUI.Extensions.String
             "<p>Mağaza açma talebiniz başarıyla tarafımıza ulaşmıştır.</p>" +
             "<p>Talebiniz ekibimiz tarafından değerlendirilmekte olup süreç hakkında en kısa zamanda sizlere dönüş yapılacaktır.</p>" +
             "<p><b>İyi günler, iyi çalışmalar dileriz</b></p>";
+
+
+        /// <summary>{0} Title </summary>
+        public const string NewOrderBody =
+            "<p>Merhaba {0} ,</p>" +
+            "<p>Mağazanıza yeni bir sipariş geldi.</p>" +
+            "<p>Detaylı bilgi için yönetim panelinizi ziyaret edebilirsiniz.</p>" +
+            "<p><b>İyi günler, bol kazançlar dileriz</b></p>";
 
         /// <summary>{0}(mailTitle) from {1} (senderName)/summary>
         public const string Subject = "{0} from {1}" ;

@@ -19,6 +19,8 @@ namespace ShopManagementSystem.WebUI.Repository.Abstract
         IOrderRepository Orders { get; }
         ICustomerRepository Customers { get; }
         IOrderStatusRepository OrderStatuses { get; }
+        ICategoryRepository Categories { get; }
+        IProductCategoryRepository ProductCategories { get; }
         int SaveChanges();
         
     }

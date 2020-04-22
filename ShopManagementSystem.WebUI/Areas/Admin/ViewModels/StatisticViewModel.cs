@@ -16,5 +16,13 @@ namespace ShopManagementSystem.WebUI.Areas.Admin.ViewModels
 
         public int OrdersInUnsuccesfull { get; set; } //status 5 + 6 + 8 + 12 +  13 + 15 
         public int OrdersInReturnBack { get; set; } //status 9 + 11
+
+        public int TotalProducts { get; set; }
+
+
+
+
+
+
     }
 }

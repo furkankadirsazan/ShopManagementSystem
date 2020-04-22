@@ -18,13 +18,11 @@ namespace ShopManagementSystem.WebUI.Controllers
         {
             _uow = uow;
         }
-        public FileUploadModel SetUploadFileName(string filename, string extension) =>
-            new FileUploadModel
-            {
-                FileName = filename,
-                Path = string.Format(UploadStrings.ProductImageFilePath, Guid.NewGuid() + extension)
-            };
-
+        public FileUploadModel SetUploadFileName(string filename, string extension, string path) =>
+             new FileUploadModel
+             {
+                 FileName = filename, Path = string.Format(path, Guid.NewGuid() + extension)
+             };
         public string ToTitleCase(string input) => new CultureInfo("tr-TR", false).TextInfo.ToTitleCase(input);
         public Shops ShopBuilder(CreateAccountModel entity) =>
             new Shops

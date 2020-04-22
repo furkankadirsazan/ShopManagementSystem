@@ -28,7 +28,11 @@
                     </div>
                 </div>
             }
-            <a class="btn btn-brand" href="/admin/order/add"><i class="flaticon2-plus-1"></i>Yeni Sipariş</a>
+            @if (ViewData["UserRole"] as string == "Admin")
+            {
+                <a class="btn btn-brand" href="/admin/order/add"><i class="flaticon2-plus-1"></i>Yeni Sipariş</a>
+            }
+
             @using (Html.BeginForm("Index", "Order", FormMethod.Post))
             {
                 <div class="kt-section__content">
@@ -38,23 +42,24 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Ürün Adı</th>
+                                    <th>Fotoğraf</th>
+                                    <th>Ürün Adı</th>                               
                                     <th>İlgili<br />Mağaza</th>
                                     <th>Email</th>
                                     <th>Telefon</th>
                                     <th>Sipariş Durumu</th>
                                     <th>Sipariş Tarihi</th>
                                     <th>Son Güncelleme</th>
-                                    <th>Dopingo<br />Durumu</th>
                                     <th>İşlemler</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in Model.Orders)
+                                @foreach (var item in Model.Orders.OrderByDescending(a=>a.ID))
                                 {
                                     <tr>
                                         <td>@item.ID</td>
-                                        <td>@(item.Products.Name)</td>
+                                        <td><img src="@item.Products.ImagePath" height="50" /></td>
+                                        <td>@(item.Products.Name)</td>                                  
                                         <td>@item.Shops.Title</td>
                                         <td>@item.Shops.Email</td>
                                         <td>@item.Shops.Phone</td>
@@ -62,20 +67,14 @@
                                         <td><span><span class="kt-badge kt-badge--warning kt-badge--dot"></span>&nbsp;<span class="kt-font-bold kt-font-warning"> @Convert.ToDateTime(item.OrderDate).ToShortDateString()</span></span></td>
                                         <td><span><span class="kt-badge kt-badge--brand kt-badge--dot"></span>&nbsp;<span class="kt-font-bold kt-font-brand"> @Convert.ToDateTime(item.UpdateDate).ToShortDateString()</span></span></td>
                                         <td>
-                                            @if (item.IsInDopingo)
-                                            {
-                                                <span><span class="kt-badge kt-badge--success kt-badge--dot"></span>&nbsp;<span class="kt-font-bold kt-font-success"> Girildi </span></span>
-                                            }
-                                            else
-                                            {
-                                                <span><span class="kt-badge kt-badge--danger kt-badge--dot"></span>&nbsp;<span class="kt-font-bold kt-font-danger"> Girilmedi </span></span>
-                                            }
-                                        </td>
-                                        <td>
                                             <a class="btn btn-primary btn-icon" href="/admin/order/edit/@item.ID" title="Düzenle"><i class="flaticon-edit-1"></i></a>
+                                            @if (ViewData["UserRole"] as string == "Admin")
+                                            {                                                                                                
+                                                <a class="btn btn-danger btn-icon view" href="#" data-toggle="modal" data-target="/admin/order/removeordermodal/@item.ID" title="Sil"><font color="white"><i class="flaticon-delete"></i></font></a>
+                                            }
+
                                             <a class="btn btn-warning btn-icon" href="/admin/order/details/@item.ID" title="Detaylar"><i class="flaticon-eye"></i></a>
-                                            <a class="btn btn-success btn-icon" href="/admin/order/changedopingostatus/@item.ID" title="Dopingo Durum Değiştir"><i class="flaticon-refresh"></i></a>
-                                            <a class="btn btn-danger btn-icon view" href="#" data-toggle="modal" data-target="/admin/order/removeordermodal/@item.ID" title="Sil"><font color="white"><i class="flaticon-delete"></i></font></a>
+
                                         </td>
                                     </tr>
                                 }

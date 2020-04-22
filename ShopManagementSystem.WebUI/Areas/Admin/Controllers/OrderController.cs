@@ -2,6 +2,7 @@
 using ShopManagementSystem.WebUI.Controllers;
 using ShopManagementSystem.WebUI.Entity;
 using ShopManagementSystem.WebUI.Extensions.Log;
+using ShopManagementSystem.WebUI.Extensions.Mail.Concrete;
 using ShopManagementSystem.WebUI.Extensions.String;
 using ShopManagementSystem.WebUI.Repository.Abstract;
 using System;
@@ -112,6 +113,7 @@ namespace ShopManagementSystem.WebUI.Areas.Admin.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Add()
         {
             SetViewBags();
@@ -120,6 +122,7 @@ namespace ShopManagementSystem.WebUI.Areas.Admin.Controllers
         [HttpPost, ValidateInput(false)]
         [ValidateAntiForgeryToken]
         [Log]
+        [Authorize(Roles = "Admin")]
         public ActionResult Add(Orders entity)
         {
             SetViewBags();
@@ -127,12 +130,6 @@ namespace ShopManagementSystem.WebUI.Areas.Admin.Controllers
             {
                 if (entity != null)
                 {
-                    if (uow.Orders.HasSameRecords(entity))
-                    {
-                        TempData["ResultClass"] = AlertType.Warning;
-                        TempData["Message"] = String.Format(WarningMessages.HasSameRecord, "<b>Ürün Adı veya Mağaza Adı</b>");
-                        return View(entity);
-                    }
                     try
                     {
                         int Number = entity.Number;
@@ -149,6 +146,11 @@ namespace ShopManagementSystem.WebUI.Areas.Admin.Controllers
                         uow.Orders.Add(entity);                     
                         uow.Products.Edit(product);
                         uow.SaveChanges();
+
+                        //Mağazaya bilgilendirme maili gönder
+                        Email email = new Email();
+                        email.SendForNewOrder(product.Shops.Email, ToTitleCase(product.Shops.Title));
+                        
 
                         TempData["ResultClass"] = AlertType.Success;
                         TempData["Message"] = SuccessMessages.Success;

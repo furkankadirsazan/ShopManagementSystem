@@ -1,0 +1,8 @@
+﻿
+@model Customers
+<p><strong>@Html.Raw(Model.Name + " " + Model.Surname)  </strong> isimli müşteriyi silmek istediğinize emin misiniz?</p><br />
+<div class="modal-footer">
+    <a class="btn btn-primary" href="/admin/customer/remove/@Model.ID"><i class="flaticon-delete"></i>Onayla</a>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Vazgeç</button>
+</div>
+

@@ -1,0 +1,504 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+
+<!-- begin::Head -->
+<head>
+    <base href="../../../../">
+    <meta charset="utf-8" />
+    <title>İdealiz Mağaza Yönetim Sistemi | Yönetim Paneli</title>
+    <meta name="description" content="Pricing table example">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="https://images.kentmedia.com.tr/uploads/big/13ebbb1fae879ab2531952ef672e5003.png" />
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: {
+                "families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"]
+            },
+            active: function () {
+                sessionStorage.fonts = true;
+            }
+        });
+    </script>
+    <link href="~/Content/Bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" />
+    <link href="~/Content/Iconpicker/dist/css/bootstrap-iconpicker.min.css" rel="stylesheet" />
+    <link href="~/Content/AdminTemplate/assets/css/demo1/pages/general/pricing/pricing-1.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/tether/dist/css/tether.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/ion-rangeslider/css/ion.rangeSlider.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/nouislider/distribute/nouislider.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/owl.carousel/dist/assets/owl.carousel.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/owl.carousel/dist/assets/owl.theme.default.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/dropzone/dist/dropzone.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/bootstrap-markdown/css/bootstrap-markdown.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/animate.css/animate.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/toastr/build/toastr.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/morris.js/morris.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/sweetalert2/dist/sweetalert2.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/general/socicon/css/socicon.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/custom/vendors/line-awesome/css/line-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/custom/vendors/flaticon/flaticon.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/custom/vendors/flaticon2/flaticon.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/custom/vendors/flaticon2/flaticon.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/custom/vendors/flaticon/flaticon.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/vendors/custom/vendors/line-awesome/css/line-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/css/demo1/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/css/demo1/skins/header/base/light.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/css/demo1/skins/header/menu/light.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/css/demo1/skins/brand/dark.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/css/demo1/skins/aside/dark.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/AdminTemplate/assets/css/demo1/pages/general/pricing/pricing-4.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css" rel="stylesheet" />
+
+    <style>
+        /* width */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #646c9a;
+        }
+
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+                background: #555;
+            }
+
+        /*.kt-aside-menu .kt-menu__nav > .kt-menu__item {
+            position: relative;
+            margin: -5px 0;
+        }
+
+            .kt-aside-menu .kt-menu__nav > .kt-menu__item > .kt-menu__heading, .kt-aside-menu .kt-menu__nav > .kt-menu__item > .kt-menu__link {
+                cursor: pointer;
+                height: 37px;
+            }*/
+    </style>
+</head>
+<!-- end::Head -->
+<!-- begin::Body -->
+<body onload="codeAddress();StartTimers();" onmousemove="ResetTimers();" class="kt-quick-panel--right kt-demo-panel--right kt-offcanvas-panel--right kt-header--fixed kt-header-mobile--fixed kt-subheader--fixed kt-subheader--enabled kt-subheader--solid kt-aside--enabled kt-aside--fixed kt-page--loading">
+    <!-- begin:: Page -->
+    <!-- begin:: Header Mobile -->
+    <div id="kt_header_mobile" class="kt-header-mobile  kt-header-mobile--fixed ">
+        <div class="kt-header-mobile__logo">
+            <a href="/admin/home/index">
+                <img alt="Logo" src="~/content/admintemplate/assets/media/logos/logo-5.png" height="35" />
+            </a>
+        </div>
+        <div class="kt-header-mobile__toolbar">
+            <button class="kt-header-mobile__toggler kt-header-mobile__toggler--left" id="kt_aside_mobile_toggler"><span></span></button>
+            <button class="kt-header-mobile__topbar-toggler" id="kt_header_mobile_topbar_toggler"><i class="flaticon-more"></i></button>
+        </div>
+    </div>
+
+    <!-- end:: Header Mobile -->
+
+
+    <div class="kt-grid kt-grid--hor kt-grid--root">
+        <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--ver kt-page">
+
+            <!-- begin:: Aside -->
+            <button class="kt-aside-close " id="kt_aside_close_btn"><i class="la la-close"></i></button>
+            <div class="kt-aside  kt-aside--fixed  kt-grid__item kt-grid kt-grid--desktop kt-grid--hor-desktop" id="kt_aside">
+
+                <!-- begin:: Aside -->
+                <div class="kt-aside__brand kt-grid__item " id="kt_aside_brand">
+                    <div class="kt-aside__brand-logo">
+                        <a href="/admin/home/index">
+                            <img alt="Logo" src="~/content/admintemplate/assets/media/logos/logo-5.png" height="35" />
+                        </a>
+                    </div>
+                    <div class="kt-aside__brand-tools">
+                        <button class="kt-aside__brand-aside-toggler" id="kt_aside_toggler">
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <polygon id="Shape" points="0 0 24 0 24 24 0 24" />
+                                        <path d="M5.29288961,6.70710318 C4.90236532,6.31657888 4.90236532,5.68341391 5.29288961,5.29288961 C5.68341391,4.90236532 6.31657888,4.90236532 6.70710318,5.29288961 L12.7071032,11.2928896 C13.0856821,11.6714686 13.0989277,12.281055 12.7371505,12.675721 L7.23715054,18.675721 C6.86395813,19.08284 6.23139076,19.1103429 5.82427177,18.7371505 C5.41715278,18.3639581 5.38964985,17.7313908 5.76284226,17.3242718 L10.6158586,12.0300721 L5.29288961,6.70710318 Z" id="Path-94" fill="#000000" fill-rule="nonzero" transform="translate(8.999997, 11.999999) scale(-1, 1) translate(-8.999997, -11.999999) " />
+                                        <path d="M10.7071009,15.7071068 C10.3165766,16.0976311 9.68341162,16.0976311 9.29288733,15.7071068 C8.90236304,15.3165825 8.90236304,14.6834175 9.29288733,14.2928932 L15.2928873,8.29289322 C15.6714663,7.91431428 16.2810527,7.90106866 16.6757187,8.26284586 L22.6757187,13.7628459 C23.0828377,14.1360383 23.1103407,14.7686056 22.7371482,15.1757246 C22.3639558,15.5828436 21.7313885,15.6103465 21.3242695,15.2371541 L16.0300699,10.3841378 L10.7071009,15.7071068 Z" id="Path-94" fill="#000000" fill-rule="nonzero" opacity="0.3" transform="translate(15.999997, 11.999999) scale(-1, 1) rotate(-270.000000) translate(-15.999997, -11.999999) " />
+                                    </g>
+                                </svg>
+                            </span>
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <polygon id="Shape" points="0 0 24 0 24 24 0 24" />
+                                        <path d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z" id="Path-94" fill="#000000" fill-rule="nonzero" />
+                                        <path d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z" id="Path-94" fill="#000000" fill-rule="nonzero" opacity="0.3" transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999) " />
+                                    </g>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- end:: Aside -->
+                <!-- begin:: Aside Menu -->
+
+                <div class="kt-aside-menu-wrapper kt-grid__item kt-grid__item--fluid overflow-auto" id="kt_aside_menu_wrapper">
+                    <div id="kt_aside_menu" class="kt-aside-menu " style="margin: -5px 0;" data-ktmenu-vertical="1" data-ktmenu-scroll="1" data-ktmenu-dropdown-timeout="500">
+                        <ul class="kt-menu__nav ">
+                            <li class="kt-menu__item " aria-haspopup="true">
+                                <a href="/admin/home/index" class="kt-menu__link ">
+                                    <span class="kt-menu__link-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect id="bound" x="0" y="0" width="24" height="24" />
+                                                <path d="M3,19 L5,19 L5,21 L3,21 L3,19 Z M8,19 L10,19 L10,21 L8,21 L8,19 Z M13,19 L15,19 L15,21 L13,21 L13,19 Z M18,19 L20,19 L20,21 L18,21 L18,19 Z" id="Combined-Shape" fill="#000000" opacity="0.3" />
+                                                <path d="M10.504,3.256 L12.466,3.256 L17.956,16 L15.364,16 L14.176,13.084 L8.65000004,13.084 L7.49800004,16 L4.96000004,16 L10.504,3.256 Z M13.384,11.14 L11.422,5.956 L9.42400004,11.14 L13.384,11.14 Z" id="A" fill="#000000" />
+                                            </g>
+                                        </svg>
+                                    </span><span class="kt-menu__link-text">Anasayfa</span>
+                                </a>
+                            </li>
+                            <li class="kt-menu__item" aria-haspopup="true">
+                                <a href="/admin/account/index" class="kt-menu__link ">
+                                    <span class="kt-menu__link-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect id="bound" x="0" y="0" width="24" height="24" />
+                                                <path d="M3.95709826,8.41510662 L11.47855,3.81866389 C11.7986624,3.62303967 12.2013376,3.62303967 12.52145,3.81866389 L20.0429,8.41510557 C20.6374094,8.77841684 21,9.42493654 21,10.1216692 L21,19.0000642 C21,20.1046337 20.1045695,21.0000642 19,21.0000642 L4.99998155,21.0000673 C3.89541205,21.0000673 2.99998155,20.1046368 2.99998155,19.0000673 L2.99999828,10.1216672 C2.99999935,9.42493561 3.36258984,8.77841732 3.95709826,8.41510662 Z M10,13 C9.44771525,13 9,13.4477153 9,14 L9,17 C9,17.5522847 9.44771525,18 10,18 L14,18 C14.5522847,18 15,17.5522847 15,17 L15,14 C15,13.4477153 14.5522847,13 14,13 L10,13 Z" id="Combined-Shape" fill="#000000" />
+                                            </g>
+                                        </svg>
+                                    </span><span class="kt-menu__link-text">Mağazam</span>
+                                </a>
+                            </li>
+                            @if (ViewData["UserRole"] as string == "Admin")
+                            {
+                                <li class="kt-menu__item" aria-haspopup="true">
+                                    <a href="/admin/shop/index" class="kt-menu__link ">
+                                        <span class="kt-menu__link-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect id="bound" x="0" y="0" width="24" height="24" />
+                                                    <circle id="Oval-47" fill="#000000" opacity="0.3" cx="20.5" cy="12.5" r="1.5" />
+                                                    <rect id="Rectangle-162" fill="#000000" opacity="0.3" transform="translate(12.000000, 6.500000) rotate(-15.000000) translate(-12.000000, -6.500000) " x="3" y="3" width="18" height="7" rx="1" />
+                                                    <path d="M22,9.33681558 C21.5453723,9.12084552 21.0367986,9 20.5,9 C18.5670034,9 17,10.5670034 17,12.5 C17,14.4329966 18.5670034,16 20.5,16 C21.0367986,16 21.5453723,15.8791545 22,15.6631844 L22,18 C22,19.1045695 21.1045695,20 20,20 L4,20 C2.8954305,20 2,19.1045695 2,18 L2,6 C2,4.8954305 2.8954305,4 4,4 L20,4 C21.1045695,4 22,4.8954305 22,6 L22,9.33681558 Z" id="Combined-Shape" fill="#000000" />
+                                                </g>
+                                            </svg>
+                                        </span><span class="kt-menu__link-text">Mağaza Yönetimi</span>
+                                    </a>
+                                </li>
+                                <li class="kt-menu__item" aria-haspopup="true">
+                                    <a href="/admin/outofstockstatus/index" class="kt-menu__link ">
+                                        <span class="kt-menu__link-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect id="bound" x="0" y="0" width="24" height="24" />
+                                                    <path d="M12,4.56204994 L7.76822128,9.6401844 C7.4146572,10.0644613 6.7840925,10.1217854 6.3598156,9.76822128 C5.9355387,9.4146572 5.87821464,8.7840925 6.23177872,8.3598156 L11.2317787,2.3598156 C11.6315738,1.88006147 12.3684262,1.88006147 12.7682213,2.3598156 L17.7682213,8.3598156 C18.1217854,8.7840925 18.0644613,9.4146572 17.6401844,9.76822128 C17.2159075,10.1217854 16.5853428,10.0644613 16.2317787,9.6401844 L12,4.56204994 Z" id="Path-30" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                                    <path d="M3.28077641,9 L20.7192236,9 C21.2715083,9 21.7192236,9.44771525 21.7192236,10 C21.7192236,10.0817618 21.7091962,10.163215 21.6893661,10.2425356 L19.5680983,18.7276069 C19.234223,20.0631079 18.0342737,21 16.6576708,21 L7.34232922,21 C5.96572629,21 4.76577697,20.0631079 4.43190172,18.7276069 L2.31063391,10.2425356 C2.17668518,9.70674072 2.50244587,9.16380623 3.03824078,9.0298575 C3.11756139,9.01002735 3.1990146,9 3.28077641,9 Z M12,12 C11.4477153,12 11,12.4477153 11,13 L11,17 C11,17.5522847 11.4477153,18 12,18 C12.5522847,18 13,17.5522847 13,17 L13,13 C13,12.4477153 12.5522847,12 12,12 Z M6.96472382,12.1362967 C6.43125772,12.2792385 6.11467523,12.8275755 6.25761704,13.3610416 L7.29289322,17.2247449 C7.43583503,17.758211 7.98417199,18.0747935 8.51763809,17.9318517 C9.05110419,17.7889098 9.36768668,17.2405729 9.22474487,16.7071068 L8.18946869,12.8434035 C8.04652688,12.3099374 7.49818992,11.9933549 6.96472382,12.1362967 Z M17.0352762,12.1362967 C16.5018101,11.9933549 15.9534731,12.3099374 15.8105313,12.8434035 L14.7752551,16.7071068 C14.6323133,17.2405729 14.9488958,17.7889098 15.4823619,17.9318517 C16.015828,18.0747935 16.564165,17.758211 16.7071068,17.2247449 L17.742383,13.3610416 C17.8853248,12.8275755 17.5687423,12.2792385 17.0352762,12.1362967 Z" id="Combined-Shape" fill="#000000" />
+                                                </g>
+                                            </svg>
+                                        </span><span class="kt-menu__link-text">Stok Dışı Durum Yönetimi</span>
+                                    </a>
+                                </li>
+                                <li class="kt-menu__item" aria-haspopup="true">
+                                    <a href="/admin/warrantyperiod/index" class="kt-menu__link ">
+                                        <span class="kt-menu__link-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect id="bound" x="0" y="0" width="24" height="24" />
+                                                    <path d="M4,4 L11.6314229,2.5691082 C11.8750185,2.52343403 12.1249815,2.52343403 12.3685771,2.5691082 L20,4 L20,13.2830094 C20,16.2173861 18.4883464,18.9447835 16,20.5 L12.5299989,22.6687507 C12.2057287,22.8714196 11.7942713,22.8714196 11.4700011,22.6687507 L8,20.5 C5.51165358,18.9447835 4,16.2173861 4,13.2830094 L4,4 Z" id="Path-50" fill="#000000" opacity="0.3" />
+                                                    <path d="M14.5,11 C15.0522847,11 15.5,11.4477153 15.5,12 L15.5,15 C15.5,15.5522847 15.0522847,16 14.5,16 L9.5,16 C8.94771525,16 8.5,15.5522847 8.5,15 L8.5,12 C8.5,11.4477153 8.94771525,11 9.5,11 L9.5,10.5 C9.5,9.11928813 10.6192881,8 12,8 C13.3807119,8 14.5,9.11928813 14.5,10.5 L14.5,11 Z M12,9 C11.1715729,9 10.5,9.67157288 10.5,10.5 L10.5,11 L13.5,11 L13.5,10.5 C13.5,9.67157288 12.8284271,9 12,9 Z" id="Combined-Shape" fill="#000000" />
+                                                </g>
+                                            </svg>
+                                        </span><span class="kt-menu__link-text">Garanti Süresi Yönetimi</span>
+                                    </a>
+                                </li>
+                                <li class="kt-menu__item" aria-haspopup="true">
+                                    <a href="/admin/customer/index" class="kt-menu__link ">
+                                        <span class="kt-menu__link-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect id="bound" x="0" y="0" width="24" height="24" />
+                                                    <path d="M6,2 L18,2 C19.6568542,2 21,3.34314575 21,5 L21,19 C21,20.6568542 19.6568542,22 18,22 L6,22 C4.34314575,22 3,20.6568542 3,19 L3,5 C3,3.34314575 4.34314575,2 6,2 Z M12,11 C13.1045695,11 14,10.1045695 14,9 C14,7.8954305 13.1045695,7 12,7 C10.8954305,7 10,7.8954305 10,9 C10,10.1045695 10.8954305,11 12,11 Z M7.00036205,16.4995035 C6.98863236,16.6619875 7.26484009,17 7.4041679,17 C11.463736,17 14.5228466,17 16.5815,17 C16.9988413,17 17.0053266,16.6221713 16.9988413,16.5 C16.8360465,13.4332455 14.6506758,12 11.9907452,12 C9.36772908,12 7.21569918,13.5165724 7.00036205,16.4995035 Z" id="Combined-Shape" fill="#000000" />
+                                                </g>
+                                            </svg>
+                                        </span><span class="kt-menu__link-text">Müşteri Yönetimi</span>
+                                    </a>
+                                </li>
+                                <li class="kt-menu__item" aria-haspopup="true">
+                                    <a href="/admin/category/index" class="kt-menu__link ">
+                                        <span class="kt-menu__link-icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect id="bound" x="0" y="0" width="24" height="24" />
+                                                    <path d="M4.88230018,17.2353996 L13.2844582,0.431083506 C13.4820496,0.0359007077 13.9625881,-0.12427877 14.3577709,0.0733126292 C14.5125928,0.15072359 14.6381308,0.276261584 14.7155418,0.431083506 L23.1176998,17.2353996 C23.3152912,17.6305824 23.1551117,18.1111209 22.7599289,18.3087123 C22.5664522,18.4054506 22.3420471,18.4197165 22.1378777,18.3482572 L14,15.5 L5.86212227,18.3482572 C5.44509941,18.4942152 4.98871325,18.2744737 4.84275525,17.8574509 C4.77129597,17.6532815 4.78556182,17.4288764 4.88230018,17.2353996 Z" id="Path-99" fill="#000000" fill-rule="nonzero" transform="translate(14.000087, 9.191034) rotate(-315.000000) translate(-14.000087, -9.191034) " />
+                                                </g>
+                                            </svg>
+                                        </span><span class="kt-menu__link-text">Kategori Yönetimi</span>
+                                    </a>
+                                </li>                     
+                            }
+                            <li class="kt-menu__item" aria-haspopup="true">
+                                <a href="/admin/order/index" class="kt-menu__link ">
+                                    <span class="kt-menu__link-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect id="bound" x="0" y="0" width="24" height="24" />
+                                                <path d="M18.1446364,11.84388 L17.4471627,16.0287218 C17.4463569,16.0335568 17.4455155,16.0383857 17.4446387,16.0432083 C17.345843,16.5865846 16.8252597,16.9469884 16.2818833,16.8481927 L4.91303792,14.7811299 C4.53842737,14.7130189 4.23500006,14.4380834 4.13039941,14.0719812 L2.30560137,7.68518803 C2.28007524,7.59584656 2.26712532,7.50338343 2.26712532,7.4104669 C2.26712532,6.85818215 2.71484057,6.4104669 3.26712532,6.4104669 L16.9929851,6.4104669 L17.606173,3.78251876 C17.7307772,3.24850086 18.2068633,2.87071314 18.7552257,2.87071314 L20.8200821,2.87071314 C21.4717328,2.87071314 22,3.39898039 22,4.05063106 C22,4.70228173 21.4717328,5.23054898 20.8200821,5.23054898 L19.6915238,5.23054898 L18.1446364,11.84388 Z" id="Combined-Shape" fill="#000000" opacity="0.3" />
+                                                <path d="M6.5,21 C5.67157288,21 5,20.3284271 5,19.5 C5,18.6715729 5.67157288,18 6.5,18 C7.32842712,18 8,18.6715729 8,19.5 C8,20.3284271 7.32842712,21 6.5,21 Z M15.5,21 C14.6715729,21 14,20.3284271 14,19.5 C14,18.6715729 14.6715729,18 15.5,18 C16.3284271,18 17,18.6715729 17,19.5 C17,20.3284271 16.3284271,21 15.5,21 Z" id="Combined-Shape" fill="#000000" />
+                                            </g>
+                                        </svg>
+                                    </span><span class="kt-menu__link-text">Sipariş Yönetimi</span>
+                                </a>
+                            </li>
+                            <li class="kt-menu__item" aria-haspopup="true">
+                                <a href="/admin/product/index" class="kt-menu__link ">
+                                    <span class="kt-menu__link-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+                                            <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect id="bound" x="0" y="0" width="24" height="24" />
+                                                <path d="M14,9 L14,8 C14,6.8954305 13.1045695,6 12,6 C10.8954305,6 10,6.8954305 10,8 L10,9 L8,9 L8,8 C8,5.790861 9.790861,4 12,4 C14.209139,4 16,5.790861 16,8 L16,9 L14,9 Z M14,9 L14,8 C14,6.8954305 13.1045695,6 12,6 C10.8954305,6 10,6.8954305 10,8 L10,9 L8,9 L8,8 C8,5.790861 9.790861,4 12,4 C14.209139,4 16,5.790861 16,8 L16,9 L14,9 Z" id="Rectangle-58" fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                                <path d="M6.84712709,9 L17.1528729,9 C17.6417121,9 18.0589022,9.35341304 18.1392668,9.83560101 L19.611867,18.671202 C19.7934571,19.7607427 19.0574178,20.7911977 17.9678771,20.9727878 C17.8592143,20.9908983 17.7492409,21 17.6390792,21 L6.36092084,21 C5.25635134,21 4.36092084,20.1045695 4.36092084,19 C4.36092084,18.8898383 4.37002252,18.7798649 4.388133,18.671202 L5.86073316,9.83560101 C5.94109783,9.35341304 6.35828794,9 6.84712709,9 Z" id="Combined-Shape" fill="#000000" />
+                                            </g>
+                                        </svg>
+                                    </span><span class="kt-menu__link-text">Ürün Yönetimi</span>
+                                </a>
+                            </li>
+                          
+                          
+                                                                      
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- end:: Aside Menu -->
+            </div>
+
+            <!-- end:: Aside -->
+            <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-wrapper" id="kt_wrapper">
+
+                <!-- begin:: Header -->
+                <div id="kt_header" class="kt-header kt-grid__item  kt-header--fixed ">
+
+                    <!-- begin:: Header Menu -->
+                    <button class="kt-header-menu-wrapper-close" id="kt_header_menu_mobile_close_btn"><i class="la la-close"></i></button>
+                    <div class="kt-header-menu-wrapper" id="kt_header_menu_wrapper">
+                        <div id="kt_header_menu" class="kt-header-menu kt-header-menu-mobile  kt-header-menu--layout-default ">
+                            <ul class="kt-menu__nav ">
+                                <li class="kt-menu__item  kt-menu__item--rel" aria-haspopup="true">
+                                    <a href="https://www.kentmedia.com.tr" target="_blank" class="kt-menu__link"><span class="kt-menu__link-text">@Html.Raw("Kentmedia İnternet Hizmetleri")</span><i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- end:: Header Menu -->
+                    <!-- begin:: Header Topbar -->
+                    <div class="kt-header__topbar">
+                        <div class="kt-header__topbar-item kt-header__topbar-item--user">
+                            <div class="kt-header__topbar-wrapper" data-offset="0px,0px">
+                                <div class="kt-header__topbar-user">
+                                    <a href="/security/login" target="_blank">
+                                        <span class="kt-header__topbar-welcome kt-hidden-mobile"></span>
+                                        <span class="kt-header__topbar-username kt-hidden-mobile">
+                                            @Html.Raw("<i class=\"fa fa-door-open\"></i>&nbsp; " + " Anasayfayı Göster")
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--begin: User Bar -->
+                        <div class="kt-header__topbar-item kt-header__topbar-item--user">
+                            <div class="kt-header__topbar-wrapper" data-toggle="dropdown" data-offset="0px,0px">
+                                <div class="kt-header__topbar-user">
+                                    <span class="kt-header__topbar-welcome kt-hidden-mobile">Merhaba,</span>
+                                    <span class="kt-header__topbar-username kt-hidden-mobile">
+                                        @Html.Raw((!string.IsNullOrEmpty(ViewData["FullName"].ToString())) ? ViewData["FullName"].ToString() : "Giriş Yapmayan Kullanıcı")
+                                    </span>
+                                    <img class="kt-hidden" alt="Pic" src="~/Content/AdminTemplate/assets/media/users/300_25.jpg" />
+                                    <span class="kt-badge kt-badge--username kt-badge--unified-success kt-badge--lg kt-badge--rounded kt-badge--bold">
+                                        @Html.Raw((!string.IsNullOrEmpty(ViewData["FullName"].ToString())) ? ViewData["FullName"].ToString().Substring(0, 1) : "G")
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
+                                <!--begin: Head -->
+                                <div class="kt-user-card kt-user-card--skin-dark kt-notification-item-padding-x" style="background-image: url(/content/admintemplate/assets/media/misc/bg-1.jpg)">
+                                    <div class="kt-user-card__avatar">
+                                        <img class="kt-hidden" alt="Pic" src="~/content/admintemplate/assets/media/users/300_25.jpg" />
+
+                                        <!--use below badge element instead the user avatar to display username's first letter(remove kt-hidden class to display it) -->
+                                        <span class="kt-badge kt-badge--lg kt-badge--rounded kt-badge--bold kt-font-success">
+                                            @Html.Raw((!string.IsNullOrEmpty(ViewData["FullName"].ToString())) ? ViewData["FullName"].ToString().Substring(0, 1) : "G")
+
+                                        </span>
+                                    </div>
+                                    <div class="kt-user-card__name">
+                                        @Html.Raw((!string.IsNullOrEmpty(ViewData["FullName"].ToString())) ? ViewData["FullName"].ToString() : "Giriş Yapmayan Kullanıcı")
+                                    </div>
+                                    <div class="kt-user-card__badge">
+                                        <span class="btn btn-success btn-sm btn-bold btn-font-md"><a href="/admin/account/index"> <font color="white">Bilgilerim</font></a> </span>
+                                    </div>
+                                </div>
+                                <!--end: Head -->
+                                <!--begin: Navigation -->
+                                <div class="kt-notification">
+                                    <div class="kt-notification__custom kt-space-between">
+                                        <a href="https://www.kentmedia.com.tr/iletisim" target="_blank" class="btn btn-outline-warning btn-sm btn-bold">Yardım İstiyorum</a>
+                                        <a href="/admin/mastersecurity/logout" class="btn btn-label btn-label-brand btn-sm btn-bold">Çıkış Yap</a>
+                                    </div>
+                                </div>
+
+                                <!--end: Navigation -->
+                            </div>
+                        </div>
+                        <!--end: User Bar -->
+                    </div>
+
+                    <!-- end:: Header Topbar -->
+                </div>
+
+                <!-- end:: Header -->
+                <div class="kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor">
+
+                    <!-- begin:: Subheader -->
+                    <div class="kt-subheader   kt-grid__item" id="kt_subheader">
+                        <div class="kt-subheader__main">
+                            <h3 class="kt-subheader__title">
+                                @Html.Raw("İdealiz Mağaza Yönetim Sistemi | Yönetim Paneli (V1.1) ")
+                            </h3>
+                            <span class="kt-subheader__separator kt-hidden"></span>
+                        </div>
+
+                    </div>
+
+                    <!-- end:: Subheader -->
+                    <!-- begin:: Content -->
+                    <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
+                        @RenderBody()
+                    </div>
+
+                    <!-- end:: Content -->
+                </div>
+                <!-- begin:: Footer -->
+                <div class="kt-footer kt-grid__item kt-grid kt-grid--desktop kt-grid--ver-desktop" id="kt_footer">
+                    <div class="kt-footer__copyright">
+                        @DateTime.Now.Year&nbsp;&copy;&nbsp;<a href="https://www.kentmedia.com.tr" target="_blank" class="kt-link"><b>Kentmedia İnternet Hizmetleri</b></a>&nbsp;&nbsp;Tüm Hakları Saklıdır
+                    </div>
+                </div>
+
+                <!-- end:: Footer -->
+            </div>
+        </div>
+    </div>
+    <div class="kt-dialog kt-dialog--shown kt-dialog--default kt-dialog--loader kt-dialog--top-center" id="loading-dialog">Yükleniyor...</div>
+    <div id="kt_scrolltop" class="kt-scrolltop">
+        <i class="fa fa-arrow-up"></i>
+    </div>
+    <script>
+        var KTAppOptions = {
+            "colors": {
+                "state": {
+                    "brand": "#5d78ff",
+                    "dark": "#282a3c",
+                    "light": "#ffffff",
+                    "primary": "#5867dd",
+                    "success": "#34bfa3",
+                    "info": "#36a3f7",
+                    "warning": "#ffb822",
+                    "danger": "#fd3995"
+                },
+                "base": {
+                    "label": ["#c5cbe3", "#a1a8c3", "#3d4465", "#3e4466"],
+                    "shape": ["#f0f3ff", "#d9dffa", "#afb4d4", "#646c9a"]
+                }
+            }
+        };
+    </script>
+    <script src="~/Content/AdminTemplate/assets/vendors/general/jquery/dist/jquery.js"></script>
+    <script src="~/Scripts/umd/popper.js"></script>
+
+    <script src="~/Content/AdminTemplate/assets/vendors/general/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/AdminTemplate/assets/vendors/general/js-cookie/src/js.cookie.js"></script>
+    <script src="~/Content/AdminTemplate/assets/vendors/general/moment/min/moment.min.js"></script>
+    <script src="~/Content/AdminTemplate/assets/vendors/general/tooltip.js/dist/umd/tooltip.min.js"></script>
+    <script src="~/Content/AdminTemplate/assets/vendors/general/sticky-js/dist/sticky.min.js"></script>
+
+
+
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+
+
+    <script src="~/Content/Iconpicker/dist/js/bootstrap-iconpicker.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js" integrity="sha256-3blsJd4Hli/7wCQ+bmgXfOdK7p/ZUMtPXY08jmxSSgk=" crossorigin="anonymous"></script>
+    <script src="~/Content/AdminTemplate/assets/js/demo1/pages/components/extended/perfect-scrollbar.js"></script>
+    <script src="~/Content/AdminTemplate/assets/js/demo1/scripts.bundle.js" type="text/javascript"></script>
+    @RenderSection("scripts", false)
+
+    <script language="javascript" type="text/javascript">
+        function codeAddress() {
+            setTimeout(function () {
+                document.getElementById("loading-dialog").style.visibility = 'hidden';
+            }, 1000);
+        }
+        window.onload = codeAddress;
+    </script>
+    <script type="text/javascript">
+        // Set timeout variables.
+        var timoutWarning = 840000; // Display warning in 14 Mins.
+        var timoutNow = 900000; // Timeout in 15 mins.
+        var logoutUrl = 'admin/mastersecurity/logout'; // URL to logout page.
+
+        var warningTimer;
+        var timeoutTimer;
+
+        // Start timers.
+        function StartTimers() {
+            warningTimer = setTimeout("IdleWarning()", timoutWarning);
+            timeoutTimer = setTimeout("IdleTimeout()", timoutNow);
+        }
+
+        // Reset timers.
+        function ResetTimers() {
+            clearTimeout(warningTimer);
+            clearTimeout(timeoutTimer);
+            StartTimers();
+        }
+
+        // Show idle timeout warning dialog.
+        function IdleWarning() {
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": true,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "10000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+            toastr.warning("15 dakikadır herhangi bir işlem yapmadığınız için 1 dk sonra oturum kapatılacak. Kapanmasını istemiyorsan mouseyi hareket ettir.", "Dikkat");
+        }
+
+        // Logout the user.
+        function IdleTimeout() {
+            window.location = logoutUrl;
+        }
+    </script>
+</body>
+<!-- end::Body -->
+</html>

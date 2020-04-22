@@ -138,6 +138,22 @@ namespace ShopManagementSystem.WebUI.Repository.Concrete.EntityFramework
                 return _orderstatuses ?? (_orderstatuses = new EfOrderStatusRepository(dbContext));
             }
         }
+        private ICategoryRepository _categories;
+        public ICategoryRepository Categories
+        {
+            get
+            {
+                return _categories ?? (_categories = new EfCategoryRepository(dbContext));
+            }
+        }
+        private IProductCategoryRepository _productcategories;
+        public IProductCategoryRepository ProductCategories
+        {
+            get
+            {
+                return _productcategories ?? (_productcategories = new EfProductCategoryRepository(dbContext));
+            }
+        }
         public void Dispose()
         {
             dbContext.Dispose();

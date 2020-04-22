@@ -227,7 +227,7 @@ namespace ShopManagementSystem.WebUI.Areas.Admin.Controllers
                         {
                             if (file != null && file.ContentLength > 0)
                             {
-                                var fileuploadmodel = SetUploadFileName(file.FileName, Path.GetExtension(file.FileName));
+                                var fileuploadmodel = SetUploadFileName(file.FileName, Path.GetExtension(file.FileName), UploadStrings.ShopBannerFilePath);
                                 file.SaveAs(Server.MapPath("~" + fileuploadmodel.Path));
 
                                 shop.BannerImagePath = fileuploadmodel.Path;
@@ -247,7 +247,7 @@ namespace ShopManagementSystem.WebUI.Areas.Admin.Controllers
                         {
                             if (file != null && file.ContentLength > 0)
                             {
-                                var fileuploadmodel = SetUploadFileName(file.FileName, Path.GetExtension(file.FileName));
+                                var fileuploadmodel = SetUploadFileName(file.FileName, Path.GetExtension(file.FileName), UploadStrings.ShopLogoFilePath);
                                 file.SaveAs(Server.MapPath("~" + fileuploadmodel.Path));
 
                                 shop.LogoPath = fileuploadmodel.Path;

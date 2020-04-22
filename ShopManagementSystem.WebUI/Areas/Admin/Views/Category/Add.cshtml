@@ -1,0 +1,103 @@
+﻿@model Categories
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+
+        <!--begin::Portlet-->
+        <div class="kt-portlet">
+            <div class="kt-portlet__head">
+                <div class="kt-portlet__head-label">
+                    <h3 class="kt-portlet__head-title">
+                        Kategori Ekle
+                    </h3>
+                </div>
+            </div>
+
+            <!--begin::Form-->
+
+            @using (Html.BeginForm("Add", "Category", FormMethod.Post, new { enctype = "multipart/form-data", @class = "kt-form kt-form--label-right" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="kt-portlet__body">
+                    <div class="form-group form-group-last">
+                        @if (!string.IsNullOrEmpty(TempData["Message"] as string))
+                        {
+                            <div class="@("alert " + TempData["ResultClass"] as string) fade show" role="alert">
+                                <div class="alert-icon"><i class="flaticon-warning"></i></div>
+                                <div class="alert-text">@(Html.Raw(TempData["Message"] as string))</div>
+                                <div class="alert-close">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true"><i class="la la-close"></i></span>
+                                    </button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="form-group row">
+                        <label for="Name" class="col-2 col-form-label"><font color="red">*</font> Kategori Adı</label>
+                        <div class="col-10">
+                            @Html.TextBoxFor(m => Model.Name, new { id = "Name", name = "Name", @class = "form-control", type = "text", required = "" })
+                        </div>
+                    </div>
+                </div>
+                <div class="kt-portlet__foot">
+                    <div class="kt-form__actions">
+                        <div class="row">
+                            <div class="col-2">
+                            </div>
+                            <div class="col-10">
+                                <button type="submit" class="btn btn-success">Güncelle</button>
+                                <a href="/admin/category/index" class="btn btn-warning">Geri</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+        <!--end::Portlet-->
+    </div>
+
+</div>
+
+
+@section scripts{
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.js" integrity="sha256-+VCjCLUkzOOnKtJ0s04D3mcyypeENTag5Xivs9hQVKs=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.10/js/bootstrap-select.min.js" integrity="sha256-FXzZGmaRFZngOjUKy3lWZJq/MflaMpffBbu3lPT0izE=" crossorigin="anonymous"></script>
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

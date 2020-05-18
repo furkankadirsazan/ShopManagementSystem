@@ -43,10 +43,10 @@
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(m => m.ID)
                 @Html.HiddenFor(m => m.IsInDopingo)
-                <div class="kt-portlet__body">
-                    <div class="form-group form-group-last">
-                        @if (!string.IsNullOrEmpty(TempData["Message"] as string))
-                        {
+            <div class="kt-portlet__body">
+                <div class="form-group form-group-last">
+                    @if (!string.IsNullOrEmpty(TempData["Message"] as string))
+                    {
                         <div class="@("alert " + TempData["ResultClass"] as string) fade show" role="alert">
                             <div class="alert-icon"><i class="flaticon-warning"></i></div>
                             <div class="alert-text">@(Html.Raw(TempData["Message"] as string))</div>
@@ -56,125 +56,131 @@
                                 </button>
                             </div>
                         </div>
-                        }
-                    </div>
-                    <div class="form-group m-form__group row">
-                        <div class="col-10 ml-auto">
-                            <h3 class="m-form__section">Mağaza Bilgisi</h3>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="ShopID" class="col-2 col-form-label"><font color="red">*</font> Mağaza</label>
-                        <div class="col-10">
-                            @Html.DropDownListFor(m => Model.ShopID, (IEnumerable<SelectListItem>)ViewBag.Shops, "Seçiniz", new { @class = "selectpicker form-control", data_live_search = "true", id = "ShopID", required = "" })
-                        </div>
-                    </div>
-                    <hr />
-                    <div class="form-group m-form__group row">
-                        <div class="col-10 ml-auto">
-                            <h3 class="m-form__section">Ürün Bilgisi</h3>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-form-label col-2"> Önizleme</label>
-                        <div id='img_contain' class="col-10">
-                            <img id="blah" align='left' src="~/Content/sample-upload-image.png" alt="ornek resim" title='' />
-                            <a class="btn btn-danger" style="color:white;" id="cleanImage">Temizle</a>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-2"><font color="red">*</font> Ürün Fotoğrafı</label>
-                        <div></div>
-                        <div class="custom-file col-10">
-                            <input type="file" class="custom-file-input" id="inputGroupFile01" name="upload" accept=".jpg">
-                            <label class="custom-file-label selected" for="upload"></label>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="Name" class="col-2 col-form-label"><font color="red">*</font> Ürün Adı</label>
-                        <div class="col-10">
-                            @Html.TextBoxFor(m => Model.Name, new { id = "Name", name = "Name", @class = "form-control", type = "text", required = "" })
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="ProductCode" class="col-2 col-form-label"><font color="red">*</font> Ürün Kodu</label>
-                        <div class="col-10">
-                            @Html.TextBoxFor(m => Model.ProductCode, new { id = "ProductCode", name = "ProductCode", @class = "form-control", type = "text", required = "" })
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="Price" class="col-2 col-form-label"><font color="red">*</font> Fiyat</label>
-                        <div class="col-10">
-                            @Html.TextBoxFor(m => Model.Price, new { id = "Price", name = "Price", @class = "form-control", type = "text", required = "" })
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="ShopID" class="col-2 col-form-label"><font color="red">*</font> Vergi Sınıfı</label>
-                        <div class="col-10">
-                            @Html.DropDownListFor(m => Model.TaxDescriptionID, (IEnumerable<SelectListItem>)ViewBag.TaxDescriptions, "Seçiniz", new { @class = "selectpicker form-control", data_live_search = "true", id = "TaxDescriptionID", required = "" })
-                        </div>
-                    </div>
-                    <hr />
-                    <div class="form-group m-form__group row">
-                        <div class="col-10 ml-auto">
-                            <h3 class="m-form__section">Stok Bilgileri</h3>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="Number" class="col-2 col-form-label"><font color="red">*</font> Stok Adeti</label>
-                        <div class="col-10">
-                            @Html.TextBoxFor(m => Model.Number, new { id = "Number", name = "Number", @class = "form-control", type = "number", required = "" })
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="OutOfStockStatusID" class="col-2 col-form-label"><font color="red">*</font> Stok Dışı Durumu</label>
-                        <div class="col-10">
-                            @Html.DropDownListFor(m => Model.OutOfStockStatusID, (IEnumerable<SelectListItem>)ViewBag.OutOfStockStatuses, "Seçiniz", new { @class = "selectpicker form-control", data_live_search = "true", id = "OutOfStockStatusID", required = "" })
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="StockHoldingUnit" class="col-2 col-form-label"> Stok Tutma Birimi</label>
-                        <div class="col-10">
-                            @Html.TextBoxFor(m => Model.StockHoldingUnit, new { id = "StockHoldingUnit", name = "StockHoldingUnit", @class = "form-control", type = "text" })
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="IsInStock" class="col-2 col-form-label">Stokta Mı?</label>
-                        <div class="col-10">
-                            <span class="kt-switch kt-switch--icon">
-                                <label>
-                                    @Html.CheckBoxFor(m => Model.IsInStock, new { id = "IsInStock" })
-                                    <span></span>
-                                </label>
-                            </span>
-                        </div>
-                    </div>
-
-                    <hr />
-                    <div class="form-group m-form__group row">
-                        <div class="col-10 ml-auto">
-                            <h3 class="m-form__section">Genel Bilgiler</h3>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="WarrantyPeriodID" class="col-2 col-form-label"><font color="red">*</font> Garanti Süresi</label>
-                        <div class="col-10">
-                            @Html.DropDownListFor(m => Model.WarrantyPeriodID, (IEnumerable<SelectListItem>)ViewBag.WarrantyPeriods, "Seçiniz", new { @class = "selectpicker form-control", data_live_search = "true", id = "WarrantyPeriodID", required = "" })
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="Description" class="col-2 col-form-label"> Açıklama</label>
-                        <div class="col-10">
-                            @Html.TextAreaFor(m => Model.Description, new { id = "Description", name = "Description", @class = "form-control", type = "text",style= "height: 200px;" })
-                        </div>
+                    }
+                </div>
+                <div class="form-group m-form__group row">
+                    <div class="col-10 ml-auto">
+                        <h3 class="m-form__section">Mağaza Bilgisi</h3>
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label for="ShopID" class="col-2 col-form-label"><font color="red">*</font> Mağaza</label>
+                    <div class="col-10">
+                        @Html.DropDownListFor(m => Model.ShopID, (IEnumerable<SelectListItem>)ViewBag.Shops, "Seçiniz", new { @class = "selectpicker form-control", data_live_search = "true", id = "ShopID", required = "" })
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group m-form__group row">
+                    <div class="col-10 ml-auto">
+                        <h3 class="m-form__section">Ürün Bilgisi</h3>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-2"> Önizleme</label>
+                    <div id='img_contain' class="col-10">
+                        <img id="blah" align='left' src="~/Content/sample-upload-image.png" alt="ornek resim" title='' />
+                        <a class="btn btn-danger" style="color:white;" id="cleanImage">Temizle</a>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-2"><font color="red">*</font> Ürün Fotoğrafı</label>
+                    <div></div>
+                    <div class="custom-file col-10">
+                        <input type="file" class="custom-file-input" id="inputGroupFile01" name="upload" accept=".jpg">
+                        <label class="custom-file-label selected" for="upload"></label>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="Name" class="col-2 col-form-label"><font color="red">*</font> Ürün Adı</label>
+                    <div class="col-10">
+                        @Html.TextBoxFor(m => Model.Name, new { id = "Name", name = "Name", @class = "form-control", type = "text", required = "" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="ProductCode" class="col-2 col-form-label"><font color="red">*</font> Ürün Kodu</label>
+                    <div class="col-10">
+                        @Html.TextBoxFor(m => Model.ProductCode, new { id = "ProductCode", name = "ProductCode", @class = "form-control", type = "text", required = "" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="Price" class="col-2 col-form-label"><font color="red">*</font> Satış Fiyatı</label>
+                    <div class="col-10">
+                        @Html.TextBoxFor(m => Model.Price, new { id = "Price", name = "Price", @class = "form-control", type = "text", required = "" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="Price" class="col-2 col-form-label"> Piyasa Fiyatı</label>
+                    <div class="col-10">
+                        @Html.TextBoxFor(m => Model.MarketPrice, new { id = "MarketPrice", name = "MarketPrice", @class = "form-control", type = "text", required = "" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="ShopID" class="col-2 col-form-label"><font color="red">*</font> Vergi Sınıfı</label>
+                    <div class="col-10">
+                        @Html.DropDownListFor(m => Model.TaxDescriptionID, (IEnumerable<SelectListItem>)ViewBag.TaxDescriptions, "Seçiniz", new { @class = "selectpicker form-control", data_live_search = "true", id = "TaxDescriptionID", required = "" })
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group m-form__group row">
+                    <div class="col-10 ml-auto">
+                        <h3 class="m-form__section">Stok Bilgileri</h3>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="Number" class="col-2 col-form-label"><font color="red">*</font> Stok Adeti</label>
+                    <div class="col-10">
+                        @Html.TextBoxFor(m => Model.Number, new { id = "Number", name = "Number", @class = "form-control", type = "number", required = "" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="OutOfStockStatusID" class="col-2 col-form-label"><font color="red">*</font> Stok Dışı Durumu</label>
+                    <div class="col-10">
+                        @Html.DropDownListFor(m => Model.OutOfStockStatusID, (IEnumerable<SelectListItem>)ViewBag.OutOfStockStatuses, "Seçiniz", new { @class = "selectpicker form-control", data_live_search = "true", id = "OutOfStockStatusID", required = "" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="StockHoldingUnit" class="col-2 col-form-label"> Stok Tutma Birimi</label>
+                    <div class="col-10">
+                        @Html.TextBoxFor(m => Model.StockHoldingUnit, new { id = "StockHoldingUnit", name = "StockHoldingUnit", @class = "form-control", type = "text" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="IsInStock" class="col-2 col-form-label">Stokta Mı?</label>
+                    <div class="col-10">
+                        <span class="kt-switch kt-switch--icon">
+                            <label>
+                                @Html.CheckBoxFor(m => Model.IsInStock, new { id = "IsInStock" })
+                                <span></span>
+                            </label>
+                        </span>
+                    </div>
+                </div>
+
+                <hr />
+                <div class="form-group m-form__group row">
+                    <div class="col-10 ml-auto">
+                        <h3 class="m-form__section">Genel Bilgiler</h3>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="WarrantyPeriodID" class="col-2 col-form-label"><font color="red">*</font> Garanti Süresi</label>
+                    <div class="col-10">
+                        @Html.DropDownListFor(m => Model.WarrantyPeriodID, (IEnumerable<SelectListItem>)ViewBag.WarrantyPeriods, "Seçiniz", new { @class = "selectpicker form-control", data_live_search = "true", id = "WarrantyPeriodID", required = "" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="Description" class="col-2 col-form-label"> Açıklama</label>
+                    <div class="col-10">
+                        @Html.TextAreaFor(m => Model.Description, new { id = "Description", name = "Description", @class = "form-control", type = "text", style = "height: 200px;" })
+                    </div>
+                </div>
+            </div>
                 <div class="kt-portlet__foot">
                     <div class="kt-form__actions">
                         <div class="row">

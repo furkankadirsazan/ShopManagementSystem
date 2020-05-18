@@ -61,6 +61,7 @@
     <EntitySetMapping Name="Products">
       <EntityTypeMapping TypeName="ShopManagementSystemModel.Products">
         <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="MarketPrice" ColumnName="MarketPrice" />
           <ScalarProperty Name="FileName" ColumnName="FileName" />
           <ScalarProperty Name="IsInDopingo" ColumnName="IsInDopingo" />
           <ScalarProperty Name="ID" ColumnName="ID" />

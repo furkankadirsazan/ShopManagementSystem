@@ -1,24 +1,4 @@
 ﻿@model ProductCategories
-<style>
-    #blah {
-        max-height: 120px;
-        height: auto;
-        width: auto;
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        padding: 5px;
-        max-width: 735px;
-    }
-
-    #img_contain {
-        border-radius: 5px;
-        /*border:1px solid grey;*/
-        margin-top: 20px;
-        width: auto;
-    }
-</style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/css/bootstrap3/bootstrap-switch.min.css" integrity="sha256-sj3qkRTZIL8Kff5fST1TX0EF9lEmSfFgjNvuiw2CV5w=" crossorigin="anonymous" />
 <div class="row">
     <div class="col-md-12">
 
@@ -81,53 +61,6 @@
     </div>
 
 </div>
-
-@section scripts{
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.4/js/bootstrap-switch.js" integrity="sha256-+VCjCLUkzOOnKtJ0s04D3mcyypeENTag5Xivs9hQVKs=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.10/js/bootstrap-select.min.js" integrity="sha256-FXzZGmaRFZngOjUKy3lWZJq/MflaMpffBbu3lPT0izE=" crossorigin="anonymous"></script>
-    <script>
-         $("#inputGroupFile01").change(function (event) {
-             RecurFadeIn();
-             readURL(this);
-         });
-         $("#inputGroupFile01").on('click', function (event) {
-             RecurFadeIn();
-         });
-         function readURL(input) {
-             if (input.files && input.files[0]) {
-                 var reader = new FileReader();
-                 var filename = $("#inputGroupFile01").val();
-                 filename = filename.substring(filename.lastIndexOf('\\') + 1);
-                 reader.onload = function (e) {
-                     debugger;
-                     $('#blah').attr('src', e.target.result);
-                     $('#blah').hide();
-                     $('#blah').fadeIn(500);
-                     $('.custom-file-label').text(filename).attr('style', 'text-align:left');
-                 }
-                 reader.readAsDataURL(input.files[0]);
-             }
-             $(".alert").removeClass("loading").hide();
-         }
-         function RecurFadeIn() {
-             FadeInAlert("Wait for it...");
-         }
-         function FadeInAlert(text) {
-             $(".alert").show();
-             $(".alert").text(text).addClass("loading");
-         }
-         $('#cleanImage').on({
-             'click': function () {
-                 $('#blah').attr('src', '/Content/sample-upload-image.png');
-                 $('.custom-file-label').text('');
-             }
-         });
-        //$("#upload").change(function () {
-        //    readURL(this);
-        //});
-    </script>
-
-}
 
 
 

@@ -85,6 +85,7 @@
     <NavigationProperty Name="ProductCategories" Relationship="ShopManagementSystemModel.FK_ProductCategories_Products" FromRole="Products" ToRole="ProductCategories" />
     <Property Name="FileName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Orders" Relationship="ShopManagementSystemModel.FK_Orders_Products" FromRole="Products" ToRole="Orders" />
+    <Property Name="MarketPrice" Type="Decimal" Precision="19" Scale="4" />
   </EntityType>
   <EntityType Name="Provinces">
     <Key>

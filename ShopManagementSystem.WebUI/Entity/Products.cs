@@ -38,6 +38,7 @@ namespace ShopManagementSystem.WebUI.Entity
         public string ThumbNailImagePath { get; set; }
         public bool IsInDopingo { get; set; }
         public string FileName { get; set; }
+        public Nullable<decimal> MarketPrice { get; set; }
     
         public virtual OutOfStockStatuses OutOfStockStatuses { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

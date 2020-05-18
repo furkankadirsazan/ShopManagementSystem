@@ -37,7 +37,7 @@
                     </div>
                 </div>
             </div>
-
+            <a class="btn btn-secondary" href="/admin/product/index"><i class="flaticon2-back"></i>Geri</a>
             <a class="btn btn-brand" href="/admin/productgallery/add?productId=@Model.Product.ID&shopId=@Model.Shop.ID"><i class="flaticon2-plus-1"></i>Yeni Ekle</a>
             @using (Html.BeginForm("Index", "ProductGallery", FormMethod.Post))
             {
@@ -58,7 +58,7 @@
                                 {
                                     <tr>
                                         <td>@(item.ID)</td>
-                                        <td><a href="@item.ImagePath" target="_blank"><img src="@item.ImagePath" height="70"/></a></td>
+                                        <td><a href="@item.ImagePath" target="_blank"><img src="@item.ImagePath" height="70" /></a></td>
                                         <td><a href="@item.ImagePath" target="_blank">@item.FileName</a></td>
                                         <td>
                                             <a class="btn btn-danger btn-icon view" href="#" data-toggle="modal" data-target="/admin/productgallery/removeproductgallerymodal/@item.ID" title="Sil"><font color="white"><i class="flaticon-delete"></i></font></a>

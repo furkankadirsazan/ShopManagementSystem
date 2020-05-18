@@ -119,6 +119,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="ProductCode" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="MarketPrice" Type="money" />
           <Property Name="TaxDescriptionID" Type="int" Nullable="false" />
           <Property Name="Number" Type="int" Nullable="false" />
           <Property Name="Description" Type="nvarchar(max)" />
@@ -673,6 +674,7 @@
           <NavigationProperty Name="ProductCategories" Relationship="ShopManagementSystemModel.FK_ProductCategories_Products" FromRole="Products" ToRole="ProductCategories" />
           <Property Name="FileName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Orders" Relationship="ShopManagementSystemModel.FK_Orders_Products" FromRole="Products" ToRole="Orders" />
+          <Property Name="MarketPrice" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="Provinces">
           <Key>
@@ -1275,6 +1277,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="ShopManagementSystemModel.Products">
               <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="MarketPrice" ColumnName="MarketPrice" />
                 <ScalarProperty Name="FileName" ColumnName="FileName" />
                 <ScalarProperty Name="IsInDopingo" ColumnName="IsInDopingo" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

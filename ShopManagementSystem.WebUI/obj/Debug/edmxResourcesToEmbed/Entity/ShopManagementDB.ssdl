@@ -114,6 +114,7 @@
     <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
     <Property Name="ProductCode" Type="nvarchar" MaxLength="500" Nullable="false" />
     <Property Name="Price" Type="money" Nullable="false" />
+    <Property Name="MarketPrice" Type="money" />
     <Property Name="TaxDescriptionID" Type="int" Nullable="false" />
     <Property Name="Number" Type="int" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" />

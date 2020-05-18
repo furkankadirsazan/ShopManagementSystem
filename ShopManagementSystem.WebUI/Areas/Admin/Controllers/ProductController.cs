@@ -1,4 +1,5 @@
-﻿using ShopManagementSystem.WebUI.Controllers;
+﻿using ICSharpCode.SharpZipLib.Zip;
+using ShopManagementSystem.WebUI.Controllers;
 using ShopManagementSystem.WebUI.Entity;
 using ShopManagementSystem.WebUI.Extensions.Log;
 using ShopManagementSystem.WebUI.Extensions.String;
@@ -6,6 +7,7 @@ using ShopManagementSystem.WebUI.Repository.Abstract;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -60,6 +62,32 @@ namespace ShopManagementSystem.WebUI.Areas.Admin.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult ChangeDopingoState(int? id)
+        {
+            if (id == null) return Json(new { Url = "/admin/product/index", Status = "EmptyId" });
+            try
+            {
+                var product = uow.Products.Get(Convert.ToInt32(id));
+                if (product != null)
+                {
+                    product.IsInDopingo = !product.IsInDopingo;
+                    uow.Products.Edit(product);
+                    uow.SaveChanges();
+
+                    return Json(new { Url = "/admin/product/index", Status = "Success" });
+                }
+                else
+                {
+                    return Json(new { Url = "/admin/product/index", Status = "EmptyEntity" });
+                }
+            }
+            catch (Exception)
+            {
+                return Json(new { Url = "/admin/product/index", Status = "Error" });
+            }
+        }
+
         [Log]
         public ActionResult Remove(int? id)
         {
@@ -74,6 +102,12 @@ namespace ShopManagementSystem.WebUI.Areas.Admin.Controllers
                         TempData["ResultClass"] = AlertType.Warning;
                         TempData["Message"] = string.Format(WarningMessages.HasRelatedRecord, "Sipariş veya Ürün Galerisi", "bu ürüne ait kayıtlar");
                         return RedirectToAction("Index", "Product");
+                    }
+
+
+                    if (System.IO.File.Exists(Server.MapPath("~" + product.ImagePath)))
+                    {
+                        System.IO.File.Delete(Server.MapPath("~" + product.ImagePath));
                     }
 
                     uow.Products.Delete(product);
@@ -265,8 +299,82 @@ namespace ShopManagementSystem.WebUI.Areas.Admin.Controllers
 
             else return RedirectToAction("Index", "Product");
         }
+
+        public ActionResult Download(int? id)
+        {
+            if (id == null) return RedirectToAction("Index", "Product");
+
+            var product = uow.Products.Get((int)id);
+
+            if (product == null) return RedirectToAction("Index", "Product");
+
+            var productgallery = uow.ProductGalleries.Find(a => a.ProductID == (int)id);
+
+            if (productgallery == null) return RedirectToAction("Index", "Product");
+
+            var fileName = string.Format(FileStrings.DownloadFileName, product.ID, DateTime.Today.Date.ToString("dd-MM-yyyy"));
+            var tempOutPutPath = Server.MapPath(Url.Content("/Uploads/Temp/")) + fileName;
+
+            using (ZipOutputStream s = new ZipOutputStream(System.IO.File.Create(tempOutPutPath)))
+            {
+                s.SetLevel(9); // 0-9, 9 being the highest compression  
+
+                byte[] buffer = new byte[4096];
+
+                var ImageList = new List<string>();
+
+                ImageList.Add(Server.MapPath(product.ImagePath));
+
+                foreach (var item in productgallery)
+                {
+                    ImageList.Add(Server.MapPath(item.ImagePath));
+                }
+
+                foreach (var image in ImageList)
+                {
+                    ZipEntry entry = new ZipEntry(Path.GetFileName(image));
+                    entry.DateTime = DateTime.Now;
+                    entry.IsUnicodeText = true;
+                    s.PutNextEntry(entry);
+
+                    using (FileStream fs = System.IO.File.OpenRead(image))
+                    {
+                        int sourceBytes;
+                        do
+                        {
+                            sourceBytes = fs.Read(buffer, 0, buffer.Length);
+                            s.Write(buffer, 0, sourceBytes);
+                        }
+                        while (sourceBytes > 0);
+                    }
+                }
+                s.Finish();
+                s.Flush();
+                s.Close();
+            }
+
+            byte[] finalResult = System.IO.File.ReadAllBytes(tempOutPutPath);
+            if (System.IO.File.Exists(tempOutPutPath)) System.IO.File.Delete(tempOutPutPath);
+
+            if (finalResult == null || !finalResult.Any())
+            {
+                TempData["ResultClass"] = AlertType.Danger;
+                TempData["Message"] = ExceptionMessages.FileNotFound;                
+                return RedirectToAction("Index", "Product");
+            }
+
+            return File(finalResult, "application/zip", fileName);
+
+        }
+
         [HttpPost]
         public ActionResult RemoveProductModal(int? id) => PartialView(uow.Products.Get((int)id));
+
+
+        [HttpPost]
+        public ActionResult ChangeDopingoStatusModal(int? id) => PartialView(uow.Products.Get((int)id));
+
+
         protected void SetViewBags() {
             int shopID = (int)ViewData["ShopID"];
             var userrole = ViewData["ShopRole"] as string;

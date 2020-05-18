@@ -71,3 +71,12 @@ C:\repos\ShopManagementSystem.WebUI\ShopManagementSystem.WebUI\bin\Unity.Mvc.pdb
 C:\repos\ShopManagementSystem.WebUI\ShopManagementSystem.WebUI\bin\Unity.Mvc.xml
 C:\repos\ShopManagementSystem.WebUI\ShopManagementSystem.WebUI\obj\Release\ShopManagementSystem.WebUI.dll
 C:\repos\ShopManagementSystem.WebUI\ShopManagementSystem.WebUI\obj\Release\ShopManagementSystem.WebUI.pdb
+C:\repos\ShopManagementSystem.WebUI\ShopManagementSystem.WebUI\bin\DotNetZip.dll
+C:\repos\ShopManagementSystem.WebUI\ShopManagementSystem.WebUI\bin\DotNetZip.pdb
+C:\repos\ShopManagementSystem.WebUI\ShopManagementSystem.WebUI\bin\DotNetZip.xml
+C:\repos\ShopManagementSystem.WebUI\ShopManagementSystem.WebUI\obj\Release\ShopManagementSystem.WebUI.csproj.CoreCompileInputs.cache
+C:\repos\ShopManagementSystem.WebUI\ShopManagementSystem.WebUI\obj\Release\ShopManagementSystem.WebUI.csproj.CopyComplete
+C:\repos\ShopManagementSystem.WebUI\ShopManagementSystem.WebUI\bin\ICSharpCode.SharpZipLib.dll
+C:\repos\ShopManagementSystem.WebUI\ShopManagementSystem.WebUI\bin\ICSharpCode.SharpZipLib.pdb
+C:\repos\ShopManagementSystem.WebUI\ShopManagementSystem.WebUI\bin\ICSharpCode.SharpZipLib.xml
+C:\repos\ShopManagementSystem.WebUI\ShopManagementSystem.WebUI\obj\Release\ShopManagementSystem.WebUI.csprojAssemblyReference.cache

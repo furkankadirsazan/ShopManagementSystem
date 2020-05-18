@@ -44,7 +44,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/19/2020 21:29:23</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Home/Index.cshtml">
-      <publishTime>03/20/2020 11:09:12</publishTime>
+      <publishTime>04/26/2020 18:55:58</publishTime>
     </File>
     <File Include="Areas/Admin/Views/MasterSecurity/Login.cshtml">
       <publishTime>03/16/2020 18:22:29</publishTime>
@@ -56,10 +56,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/19/2020 21:28:14</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Order/Edit.cshtml">
-      <publishTime>03/19/2020 16:31:01</publishTime>
+      <publishTime>04/22/2020 10:41:22</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Order/Index.cshtml">
-      <publishTime>03/20/2020 11:01:44</publishTime>
+      <publishTime>04/29/2020 13:40:34</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Order/RemoveOrderModal.cshtml">
       <publishTime>03/19/2020 16:12:01</publishTime>
@@ -83,22 +83,31 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/14/2020 11:49:54</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Product/Edit.cshtml">
-      <publishTime>03/20/2020 11:28:46</publishTime>
+      <publishTime>04/21/2020 17:12:31</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Product/Index.cshtml">
-      <publishTime>04/20/2020 15:18:13</publishTime>
+      <publishTime>05/02/2020 17:41:37</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Product/RemoveProductModal.cshtml">
       <publishTime>03/20/2020 02:05:38</publishTime>
     </File>
     <File Include="Areas/Admin/Views/ProductCategory/Add.cshtml">
-      <publishTime>04/20/2020 14:49:21</publishTime>
+      <publishTime>04/21/2020 12:10:01</publishTime>
     </File>
     <File Include="Areas/Admin/Views/ProductCategory/Index.cshtml">
       <publishTime>04/20/2020 15:17:50</publishTime>
     </File>
     <File Include="Areas/Admin/Views/ProductCategory/RemoveProductCategoryModal.cshtml">
       <publishTime>04/20/2020 14:56:20</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ProductGallery/Add.cshtml">
+      <publishTime>04/21/2020 14:30:19</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ProductGallery/Index.cshtml">
+      <publishTime>05/02/2020 17:40:31</publishTime>
+    </File>
+    <File Include="Areas/Admin/Views/ProductGallery/RemoveProductGalleryModal.cshtml">
+      <publishTime>04/21/2020 14:49:54</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Shop/Add.cshtml">
       <publishTime>03/20/2020 11:32:51</publishTime>
@@ -110,7 +119,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/20/2020 11:32:02</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Shop/Index.cshtml">
-      <publishTime>03/20/2020 02:18:52</publishTime>
+      <publishTime>04/29/2020 13:40:50</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Shop/RemoveShopModal.cshtml">
       <publishTime>03/12/2020 14:05:39</publishTime>
@@ -136,6 +145,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/ApplicationInsights.config">
       <publishTime>03/04/2020 12:41:20</publishTime>
     </File>
+    <File Include="bin/DotNetZip.dll">
+      <publishTime>03/17/2020 14:58:40</publishTime>
+    </File>
+    <File Include="bin/DotNetZip.pdb">
+      <publishTime>03/17/2020 14:58:40</publishTime>
+    </File>
     <File Include="bin/Elmah.dll">
       <publishTime>04/12/2012 19:19:36</publishTime>
     </File>
@@ -144,6 +159,12 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="bin/EntityFramework.SqlServer.dll">
       <publishTime>10/23/2017 13:15:20</publishTime>
+    </File>
+    <File Include="bin/ICSharpCode.SharpZipLib.dll">
+      <publishTime>08/09/2019 08:40:22</publishTime>
+    </File>
+    <File Include="bin/ICSharpCode.SharpZipLib.pdb">
+      <publishTime>08/09/2019 08:40:22</publishTime>
     </File>
     <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
       <publishTime>11/30/2016 16:07:42</publishTime>
@@ -221,7 +242,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>01/26/2015 09:01:10</publishTime>
     </File>
     <File Include="bin/ShopManagementSystem.WebUI.dll">
-      <publishTime>04/20/2020 15:39:52</publishTime>
+      <publishTime>05/03/2020 16:29:30</publishTime>
+    </File>
+    <File Include="bin/ShopManagementSystem.WebUI.pdb">
+      <publishTime>05/03/2020 16:29:30</publishTime>
     </File>
     <File Include="bin/System.Diagnostics.DiagnosticSource.dll">
       <publishTime>09/18/2018 19:38:16</publishTime>
@@ -256,10 +280,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="bin/Unity.Abstractions.dll">
       <publishTime>06/20/2019 19:38:48</publishTime>
     </File>
+    <File Include="bin/Unity.Abstractions.pdb">
+      <publishTime>06/20/2019 19:38:48</publishTime>
+    </File>
     <File Include="bin/Unity.Container.dll">
       <publishTime>06/20/2019 19:55:42</publishTime>
     </File>
+    <File Include="bin/Unity.Container.pdb">
+      <publishTime>06/20/2019 19:55:42</publishTime>
+    </File>
     <File Include="bin/Unity.Mvc.dll">
+      <publishTime>06/20/2019 20:13:20</publishTime>
+    </File>
+    <File Include="bin/Unity.Mvc.pdb">
       <publishTime>06/20/2019 20:13:20</publishTime>
     </File>
     <File Include="bin/WebActivatorEx.dll">
@@ -10820,286 +10853,286 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/05/2020 12:32:43</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/Context.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/Context.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/core/async.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/core/async.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/core/dom.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/core/dom.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/core/env.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/core/env.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/core/func.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/core/func.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/core/key.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/core/key.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/core/lists.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/core/lists.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/core/range.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/core/range.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/editing/Bullet.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/editing/Bullet.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/editing/History.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/editing/History.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/editing/Style.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/editing/Style.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/editing/Table.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/editing/Table.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/editing/Typing.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/editing/Typing.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/AirPopover.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/AirPopover.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/AutoLink.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/AutoLink.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/AutoSync.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/AutoSync.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/Buttons.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/Buttons.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/Clipboard.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/Clipboard.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/Codeview.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/Codeview.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/Dropzone.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/Dropzone.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/Editor.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/Editor.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/Fullscreen.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/Fullscreen.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/Handle.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/Handle.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/HelpDialog.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/HelpDialog.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/HintPopover.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/HintPopover.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/ImageDialog.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/ImageDialog.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/ImagePopover.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/ImagePopover.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/LinkDialog.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/LinkDialog.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/LinkPopover.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/LinkPopover.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/Placeholder.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/Placeholder.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/Statusbar.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/Statusbar.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/TablePopover.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/TablePopover.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/Toolbar.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/Toolbar.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/VideoDialog.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/module/VideoDialog.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/renderer.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/renderer.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/summernote-en-US.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/base/summernote-en-US.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/bs3/settings.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/bs3/settings.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/bs3/ui.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/bs3/ui.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/bs4/settings.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/bs4/settings.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/bs4/ui.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/bs4/ui.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/lite/settings.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/lite/settings.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/lite/ui.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/lite/ui.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/lite/ui/DropdownUI.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/lite/ui/DropdownUI.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/lite/ui/ModalUI.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/lite/ui/ModalUI.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/lite/ui/PopoverUI.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>03/05/2020 15:34:59</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/lite/ui/PopoverUI.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>03/05/2020 15:34:59</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/lite/ui/TooltipUI.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/lite/ui/TooltipUI.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/summernote.js">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/built/summernote.js.map">
-      <publishTime>04/20/2020 15:39:46</publishTime>
+      <publishTime>05/03/2020 16:25:58</publishTime>
     </File>
     <File Include="Content/AdminTemplate/assets/vendors/general/summernote/coverage/Chrome 70.0.3538 %28Mac OS X 10.13.6%29/html/base.css">
       <publishTime>03/05/2020 12:32:43</publishTime>
@@ -14192,7 +14225,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/04/2020 09:40:08</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>03/04/2020 13:01:51</publishTime>
+      <publishTime>05/03/2020 15:48:23</publishTime>
     </File>
     <File Include="Scripts/bootstrap.bundle.js">
       <publishTime>03/04/2020 10:00:23</publishTime>
@@ -14289,6 +14322,21 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Scripts/jquery-ui.js">
       <publishTime>03/04/2020 12:38:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery.blockUI.js">
+      <publishTime>04/20/2020 17:41:44</publishTime>
+    </File>
+    <File Include="Scripts/jquery.form.js">
+      <publishTime>04/20/2020 17:41:30</publishTime>
+    </File>
+    <File Include="Scripts/jquery.MetaData.js">
+      <publishTime>04/20/2020 17:42:18</publishTime>
+    </File>
+    <File Include="Scripts/jquery.MultiFile.js">
+      <publishTime>04/20/2020 17:42:10</publishTime>
+    </File>
+    <File Include="Scripts/jquery.MultiFile.pack.js">
+      <publishTime>04/20/2020 17:42:01</publishTime>
     </File>
     <File Include="Scripts/jquery.unobtrusive-ajax.js">
       <publishTime>03/04/2020 12:47:16</publishTime>
@@ -14396,13 +14444,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/17/2020 13:14:45</publishTime>
     </File>
     <File Include="Views/Shared/_LayoutAdmin.cshtml">
-      <publishTime>04/20/2020 15:14:53</publishTime>
+      <publishTime>04/22/2020 11:45:00</publishTime>
     </File>
     <File Include="Views/Shared/_UserAvatar.cshtml">
       <publishTime>03/16/2020 15:02:59</publishTime>
     </File>
     <File Include="Views/Shared/_UserInfo.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>03/16/2020 15:03:00</publishTime>
     </File>
     <File Include="Views/web.config">
       <publishTime>03/16/2020 18:13:20</publishTime>
@@ -14411,7 +14459,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>03/04/2020 13:15:39</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/20/2020 11:11:35</publishTime>
+      <publishTime>05/03/2020 16:28:21</publishTime>
     </File>
   </ItemGroup>
 </Project>

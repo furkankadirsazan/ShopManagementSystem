@@ -7,6 +7,7 @@ namespace ShopManagementSystem.WebUI.Extensions.String
 
         public const string EmptyEntity = "İşlem sonucunda boş bir nesne döndürüldü! Lütfen tekrar deneyiniz.";
 
+        public const string FileNotFound = "Aranan dosyalar bulunamadı. Lütfen tekrar deneyiniz.";
 
         /// <summary>{0} can't be null or empty.</summary>
         public const string StringParamCannotBeNullOrEmpty_ParamName = "{0} can't be null or empty.";

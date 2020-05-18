@@ -12,7 +12,7 @@
             </h3>
         </div>
     </div>
-    <div class="kt-portlet__body">       
+    <div class="kt-portlet__body">
         <!--begin::Section-->
         <div class="kt-section">
             @if (!string.IsNullOrEmpty(TempData["Message"] as string))
@@ -57,7 +57,7 @@
                                         <td>@(item.Shops.Title)</td>
                                         @if (ViewData["UserRole"] as string == "Admin")
                                         {
-                                            <td>
+                                            <td class="dopingostatus">
                                                 @if (item.IsInDopingo)
                                                 {
                                                     <span><span class="kt-badge kt-badge--success kt-badge--dot"></span>&nbsp;<span class="kt-font-bold kt-font-success"> Girildi </span></span>
@@ -69,16 +69,19 @@
                                             </td>
                                         }
 
-                                        <td>
-                                            <a class="btn btn-warning btn-icon" href="/admin/productcategory/index?productId=@item.ID&shopId=@item.ShopID" title="Kategoriler"><i class="flaticon-add-label-button"></i></a>
-                                            <a class="btn btn-primary btn-icon" href="/admin/productgallery/index?productId=@item.ID&shopId=@item.ShopID" title="Galeri"><i class="flaticon-photo-camera"></i></a>
-                                            <a class="btn btn-brand btn-icon" href="/admin/product/edit/@item.ID" title="Düzenle"><i class="flaticon-edit-1"></i></a>
-                                            @if (ViewData["UserRole"] as string == "Admin")
-                                            {
-                                                <a class="btn btn-success btn-icon" href="/admin/product/changedopingostatus/@item.ID" title="Dopigo Durum Değiştir"><i class="flaticon-refresh"></i></a>
-                                            }
-                                            <a class="btn btn-danger btn-icon view" href="#" data-toggle="modal" data-target="/admin/product/removeproductmodal/@item.ID" title="Sil"><font color="white"><i class="flaticon-delete"></i></font></a>
-                                        </td>
+                                            <td>
+                                                <a class="btn btn-warning btn-icon" href="/admin/productcategory/index?productId=@item.ID&shopId=@item.ShopID" title="Kategoriler"><i class="flaticon-add-label-button"></i></a>
+                                                <a class="btn btn-primary btn-icon" href="/admin/productgallery/index?productId=@item.ID&shopId=@item.ShopID" title="Galeri"><i class="flaticon-photo-camera"></i></a>
+                                                <a class="btn btn-brand btn-icon" href="/admin/product/edit/@item.ID" title="Düzenle"><i class="flaticon-edit-1"></i></a>
+                                                @if (ViewData["UserRole"] as string == "Admin")
+                                                {
+                                                    <button type="button" class="btn btn-success btn-icon" id="changedopingostate" title="Dopigo Durum Değiştir"><i class="flaticon-refresh"></i></button>
+                                                    <a class="btn btn-secondary btn-icon" href="/admin/product/download/@item.ID" title="Tüm Görselleri İndir"><i class="flaticon-download-1"></i></a>
+                                                }
+                                                <a class="btn btn-danger btn-icon view" href="#" data-toggle="modal" data-target="/admin/product/removeproductmodal/@item.ID" title="Sil"><font color="white"><i class="flaticon-delete"></i></font></a>
+
+
+                                            </td>
                                     </tr>
                                 }
                             </tbody>
@@ -100,7 +103,6 @@
                         <div class="modal-body">
 
                         </div>
-
                     </form>
                 </div>
             </div>
@@ -122,6 +124,7 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/themes/smoothness/jquery-ui.css" />
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+    <script src="http://malsup.github.io/min/jquery.blockUI.min.js"></script>
     <script>
         jQuery.fn.DataTable.ext.type.search.string = function (sVal) {
             var letters = { "İ": "i", "I": "ı", "i": "İ", "ı": "I" };
@@ -168,5 +171,153 @@
 
             });
         })
+
+        $("#tblLocations").on('click', '#changedopingostate', function () {
+            var tr = $(this).parent().parent();
+            var otherInput = tr.find('td:eq(4)');
+            var Id = tr.find('td:eq(0)');
+
+            $.ajax({
+                type: "POST",
+                url: '/admin/product/changedopingostate',
+                data: {
+                    Id: Id.text()
+                },
+                dataType: 'json',
+                beforeSend: function () {
+                    $.blockUI({
+                        css: {
+                            border: 'none',
+                            padding: '15px',
+                            backgroundColor: '#000',
+                            '-webkit-border-radius': '10px',
+                            '-moz-border-radius': '10px',
+                            opacity: .5,
+                            color: '#fff',                         
+                        },
+                        message: '<h1>Lütfen Bekleyin..</h1>'
+                    }); 
+                },
+                complete: function () {
+                    $.unblockUI();
+                },
+                success: function (result) {
+                    if (result.Status === "Success") {
+
+                        if (otherInput.text().trim() == 'Girildi') {
+                            otherInput.html('<span><span class="kt-badge kt-badge--danger kt-badge--dot"></span>&nbsp;<span class="kt-font-bold kt-font-danger"> Girilmedi </span></span>');
+                        }
+                        else {
+                            otherInput.html('<span><span class="kt-badge kt-badge--success kt-badge--dot"></span>&nbsp;<span class="kt-font-bold kt-font-success"> Girildi </span></span>');
+                        }
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        };
+
+                        toastr.success("İşlem başarıyla gerçekleştirildi.");
+                    }
+                    else if (result.Status === "EmptyId") {
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        };
+
+                        toastr.warning("Ürün bilgisine ulaşılamadı. Tekrar deneyiniz.");
+
+                    }
+                    else if (result.Status === "EmptyEntity") {
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        };
+
+                        toastr.warning("Ürün bilgisine ulaşılamadı. İşlem sonucunda boş bir nesne döndürüldü. Tekrar deneyiniz.");
+                    }
+                    else if (result.Status === "Error") {
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": false,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        };
+
+                        toastr.error("Bir hata ile karşılaşıldı. Yeniden deneyiniz.");
+                    }
+                },
+                error: function () {
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": false,
+                        "positionClass": "toast-top-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+
+                    toastr.error("Bir hata ile karşılaşıldı. Yeniden deneyiniz.");
+                }
+            });
+            return false;
+        });
     </script>
 }
